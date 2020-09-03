@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/home" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Components
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <!-- loop to get name and no of items in component -->
+  <ion-grid no-padding *ngFor="let comp of mainArr">
+    <ion-row no-padding>
+      <ion-col no-padding size="12">
+        <div>
+          <p>
+            <span>{{comp.category}}</span>
+            <small>({{comp.Number}})</small>
+          </p>
+        </div>
+        <div>
+        </div>
+        <!-- custom icon color applied from custom-theme service -->
+        <div [ngStyle]="{'background':itemColor}"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size="12" no-padding>
+        <!-- swipe slider with annimation in it -->
+        <ion-slides [options]="sliderConfig" no-padding class="animated bounceInRight delay-900ms" no-padding>
+          <!-- loop to get the components name and images of there items -->
+          <ion-slide *ngFor="let prod of comp.products; let i=index" no-padding>
+            <ion-col>
+              <ion-card no-padding (click)="goToComponent(comp.category,i)">
+                <img src="{{prod.image}}" alt="categories" />
+              </ion-card>
+              <ion-text>
+                <h6>{{prod.name}}</h6>
+              </ion-text>
+            </ion-col>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

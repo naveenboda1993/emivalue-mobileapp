@@ -1,0 +1,9 @@
+ion-content{
+    ion-avatar{
+        border: solid lightgray;
+        border-width: 0.5px;
+    }
+    ion-checkbox{
+        --border-radius: 50%;
+    }
+}

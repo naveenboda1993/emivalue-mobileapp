@@ -1,0 +1,14 @@
+ion-content{
+    ion-icon{
+        zoom:4;
+        width: 100%;
+    }
+    ion-button{
+        --color:white;
+        margin-top: 10px;
+        &:last-child{
+          --color:white;
+          --background:#3b5998;
+        }
+    }
+  }

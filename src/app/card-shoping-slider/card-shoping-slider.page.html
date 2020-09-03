@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cards Shoping Cart Sliders</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid *ngFor="let item of [1,2,3,4]">
+    <!-- swiping slider -->
+    <ion-slides [options]="sliderConfig">
+      <ion-slide *ngFor="let product of items">
+        <!-- card with content having images with name and price on it with iterations -->
+        <ion-card>
+          <ion-card-content>
+            {{ product.name }} - ${{ product.price }}
+            <ion-img src="{{product.img}}"></ion-img>
+            <ion-button expand="full">Buy Now</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+</ion-content>

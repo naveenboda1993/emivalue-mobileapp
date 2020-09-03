@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Tab Footer Text Icons</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- tabs footer position -->
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <!-- tab buttons to navigate to specified page(page links are avaliable in tab module file) -->
+            <ion-tab-button tab="tab-chat">
+                <ion-icon name="chatboxes"></ion-icon>
+                <ion-label>
+                    <b>CHATS</b>
+                </ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="tab-status">
+                <ion-icon src="assets/status.svg"></ion-icon>
+                <ion-label>
+                    <b>STATUS</b>
+                </ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="tab-call">
+                <ion-icon name="call"></ion-icon>
+                <ion-label>
+                    <b>CALLS</b>
+                </ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-content>

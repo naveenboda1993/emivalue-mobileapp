@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Outline Button</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid *ngFor="let item of items">
+    <ion-text>
+      <h2>{{item.heading}}</h2>
+    </ion-text>
+    <ion-img src="{{item.image}}"></ion-img>
+    <ion-item lines="none" no-padding>
+      <ion-thumbnail slot="start">
+        <img src="{{item.personImage}}">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{item.personName}}</h3>
+        <p>{{item.email}}</p>
+      </ion-label>
+      <!-- button outline -->
+      <ion-button side="end" fill="outline" size="small">Follow</ion-button>
+    </ion-item>
+    <p>
+      {{item.para}}
+    </p>
+    <p>
+      {{item.para}}
+    </p>
+    <ion-list>
+      <ion-item *ngFor="let item1 of item.friendImg" lines="none" no-padding>
+        <ion-thumbnail slot="start">
+          <img src="{{item1.imag}}">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{item1.personNam}}</h3>
+          <p>{{item1.emai}}</p>
+        </ion-label>
+        <!-- button outline -->
+        <ion-button side="end" fill="outline" size="small">Follow</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

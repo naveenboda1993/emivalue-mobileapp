@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Action Sheet Simple</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid *ngFor="let item of items">
+    <ion-text>
+      <h2>{{item.heading}}</h2>
+    </ion-text>
+    <ion-img src="{{item.image}}"></ion-img>
+    <!-- presentActionSheet() get the property of action sheet which you will get from actionsheet-simple.ts file -->
+    <ion-button expand="full" class="view" (click)="presentActionSheet()">Share</ion-button>
+    <ion-text>
+      <h4>{{item.subheading}}</h4>
+    </ion-text>
+    <p>
+      {{item.para}}
+    </p>
+  </ion-grid>
+</ion-content>

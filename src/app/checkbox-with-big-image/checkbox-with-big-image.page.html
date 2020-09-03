@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title> Big Image</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+    <ion-list *ngFor="let game of items, let i = index">
+        <ion-item lines="full">
+            <ion-img class="longImg" src="{{game.img}}"></ion-img>
+            <!-- checkbox right position in item -->
+            <ion-checkbox slot="end"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</ion-content>

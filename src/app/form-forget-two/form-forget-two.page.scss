@@ -1,0 +1,13 @@
+ion-content{
+    ion-button{
+        margin-top: 15px;
+    }
+    ion-button{
+        --color:white;
+        margin-top: 10px;
+        &:last-child{
+          --color:white;
+          --background:#3b5998;
+        }
+    }
+}

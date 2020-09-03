@@ -1,0 +1,15 @@
+
+ion-content{
+    ion-item{
+        --inner-padding-end: 0px;
+    }
+    ion-item-options{
+            ion-button{
+                margin-top: 25%;
+                height: 50px;
+                ion-icon{
+                    zoom: 2.5;
+                }
+            }
+        }
+}

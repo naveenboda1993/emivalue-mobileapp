@@ -1,0 +1,41 @@
+
+ion-content{
+    ion-row{
+        &:first-child{
+            opacity: 0.6;;
+        }
+        ion-col{
+            &:first-child{
+                padding-left: 0;
+                ion-icon{
+                    zoom: 4;
+                }
+            }
+            ion-icon{
+                zoom: 1.5;
+            }
+        }
+    }
+    ion-item{
+        ion-icon{
+            zoom: 1;
+            padding: 10px;
+        }
+    }
+    ion-item-options{
+        ion-button{
+            margin-top: 15px;
+            ion-icon{
+                zoom: 1.5;
+            }
+        }
+    }
+}
+ion-footer{
+    ion-fab{
+        position: fixed;
+        ion-icon{
+            zoom: 1;
+        }
+    }
+}

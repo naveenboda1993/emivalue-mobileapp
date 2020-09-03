@@ -1,0 +1,8 @@
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let p of items">
+      <ion-icon slot="start" name="{{p.icon}}"></ion-icon>
+      {{p.text}}
+    </ion-item>
+  </ion-list>
+</ion-content>

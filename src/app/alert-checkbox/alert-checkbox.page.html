@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Alert Checkbox</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- presentAlertCheckbox() get the property of alert which you will get from alert-checkbox.ts file -->
+  <ion-button  expand="full" (click)="presentAlertCheckbox()">
+    Show Alert
+  </ion-button>
+</ion-content>

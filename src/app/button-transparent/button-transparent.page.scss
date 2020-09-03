@@ -1,0 +1,29 @@
+ion-content{
+    
+    ion-card{
+        margin: 0;
+        p{
+            margin: 3px 8px;
+        display: inline-block;
+        }
+        ion-col{
+            text-align: end;
+        }
+        ion-list{
+            background: white;
+        ion-item{
+            --background: white;
+        }
+    }
+    }
+}
+ion-footer{
+    ion-row{
+        background: white;
+        ion-col{
+            &:last-child{
+                text-align: end;
+            }
+        }
+    }
+}

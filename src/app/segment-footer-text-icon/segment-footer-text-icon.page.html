@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Segment Footer Text Icons</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="contentClass" padding>
+    <!-- name of segment to access segment on runtime -->
+    <div class="module" [ngSwitch]="segments">
+        <!-- segmnet one -->
+        <div *ngSwitchCase="'segmentOne'">
+            <ion-card *ngFor="let item of items">
+                <img src="{{item.image}}" />
+                <ion-card-header>
+                    <ion-card-title>{{item.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    {{item.para}}
+                </ion-card-content>
+                <ion-list>
+                    <ion-item lines="full">
+                        <ion-icon slot="start" name="musical-notes"></ion-icon>
+                        <ion-label>Albums</ion-label>
+                        <ion-badge slot="end">{{item.albums}}</ion-badge>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-icon slot="start" name='logo-twitter'></ion-icon>
+                        <ion-label>Follwers</ion-label>
+                        <ion-badge slot="end">{{item.followers}}</ion-badge>
+                    </ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+        <!-- segment two -->
+        <div *ngSwitchCase="'segmentTwo'">
+            <ion-card *ngFor="let item of items">
+                <img src="{{item.image}}" />
+                <ion-card-header>
+                    <ion-card-title>{{item.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    {{item.para}}
+                </ion-card-content>
+                <ion-list>
+                    <ion-item lines="full">
+                        <ion-icon slot="start" name="musical-notes"></ion-icon>
+                        <ion-label>Albums</ion-label>
+                        <ion-badge slot="end">{{item.albums}}</ion-badge>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-icon slot="start" name='logo-twitter'></ion-icon>
+                        <ion-label>Follwers</ion-label>
+                        <ion-badge slot="end">{{item.followers}}</ion-badge>
+                    </ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+        <!-- segment three -->
+        <div *ngSwitchCase="'segmentThree'">
+            <ion-card *ngFor="let item of items">
+                <img src="{{item.image}}" />
+                <ion-card-header>
+                    <ion-card-title>{{item.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    {{item.para}}
+                </ion-card-content>
+                <ion-list>
+                    <ion-item lines="full">
+                        <ion-icon slot="start" name="musical-notes"></ion-icon>
+                        <ion-label>Albums</ion-label>
+                        <ion-badge slot="end">{{item.albums}}</ion-badge>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-icon slot="start" name='logo-twitter'></ion-icon>
+                        <ion-label>Follwers</ion-label>
+                        <ion-badge slot="end">{{item.followers}}</ion-badge>
+                    </ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <!-- segment footer button  -->
+    <ion-segment class="segBtn" [(ngModel)]="segments">
+        <ion-segment-button value="segmentOne" checked>{{ 'Card One' }}
+            <ion-icon name="home"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="segmentTwo">{{ 'Card two' }}
+            <ion-icon name="heart"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="segmentThree"> {{ 'Card three' }}
+            <ion-icon name="pin"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+</ion-footer>

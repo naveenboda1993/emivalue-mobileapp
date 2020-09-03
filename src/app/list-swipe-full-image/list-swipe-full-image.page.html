@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Swipe Full Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <!-- list with multiple iterations -->
+  <ion-list no-padding>
+    <!-- for sliding item  -->
+    <ion-item-sliding *ngFor="let item of items" no-padding>
+      <ion-item no-padding>
+        <img src="{{item.img}}" />
+      </ion-item>
+      <!-- slide item from left -->
+      <ion-item-options side="start">
+        <ion-button fill="clear">
+          <ion-icon [ngStyle]="{color:itemColor}" name="add-circle"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon [ngStyle]="{color:itemColor}" name="remove-circle"></ion-icon>
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Fab Left With Text</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-grid *ngFor="let item of items">
+        <ion-text>
+            <h2>{{item.heading}}</h2>
+        </ion-text>
+
+        <ion-img src="{{item.image}}"></ion-img>
+        <ion-row align-items-center>
+            <ion-col size="8">
+                <ion-text>
+                    <h4>{{item.subheading}}</h4>
+                </ion-text>
+            </ion-col>
+            <ion-col align-self-end size="4">
+                <ion-button>Share</ion-button>
+            </ion-col>
+        </ion-row>
+        <p>
+            {{item.para}}
+        </p>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+    <!-- float action button placed at the end and bottom of screen -->
+    <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button>Share</ion-fab-button>
+        <!-- fab list show more buttons from left side on click -->
+        <ion-fab-list side="start">
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-footer>

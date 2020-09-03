@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" routerLink="/component-details" routerDirection="backward">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>Toggle With Avatar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-avatar slot="start">
+        <img src="{{item.img}}">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{item.text}}</h3>
+        <p>{{item.short_des}}</p>
+      </ion-label>
+      <!-- toggle button -->
+      <ion-toggle> </ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Right Fab with text</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+    <ion-list>
+        <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
+            <ion-item *ngFor="let item of products">
+                <ion-avatar slot="start">
+                    <ion-img src="{{item.image}}"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    {{item.name}}
+                    <p>These celebirties are famous because...</p>
+                </ion-label>
+                <ion-reorder></ion-reorder>
+            </ion-item>
+        </ion-reorder-group>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <!-- float action button placed at the left and center of screen -->
+    <ion-fab vertical="center" horizontal="start">
+        <ion-fab-button>
+            Share
+        </ion-fab-button>
+        <!-- fab list show more buttons from right side on click -->
+        <ion-fab-list side="end">
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+            <ion-fab-button>ABC</ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-footer>

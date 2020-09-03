@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Cards Timeline Theme 1</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+    <!-- card with content and item with person profile  -->
+    <ion-card *ngFor="let item of items">
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="{{item.img}}" />
+            </ion-avatar>
+            <ion-label>
+                <h3>{{item.text}}</h3>
+                <p>{{item.dob}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-img src="{{item.img}}"></ion-img>
+        <ion-card-content>
+            <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?!
+                Whoa. This is heavy.</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col size="4" no-padding>
+                <ion-button size="small" color="primary" fill="clear">
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    12 Likes
+                </ion-button>
+            </ion-col>
+            <ion-col size="5" no-padding>
+                <ion-button color="primary" size="small" fill="clear">
+                    <ion-icon name='text'></ion-icon>
+                    4 Comments
+                </ion-button>
+            </ion-col>
+            <ion-col size="3" no-padding>
+                <ion-button size="small" fill="clear">
+                    11h ago
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>

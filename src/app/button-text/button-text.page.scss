@@ -1,0 +1,35 @@
+ion-content{
+  ion-grid{
+    padding: 0 0 16px 0;
+    margin-bottom:12px;
+    border-bottom:1px solid #ddd; 
+    ion-text{
+      h2{
+        margin-top:0;
+      }
+      h4{
+        margin:0;
+      }
+    }
+    ion-button{
+      margin-left:0;
+      margin-right:0;
+    }
+    &:last-child{
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    ion-row{
+      ion-col{
+        &:first-child{
+          padding-left:0;
+        }
+        &:last-child{
+          text-align: right;
+          padding-right:0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Cards Timeline Theme 3</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+    <!-- card with content and item with person profile  -->
+    <ion-card *ngFor="let item of items">
+        <ion-img src="{{item.img}}"></ion-img>
+        <ion-card-content>
+            <ion-card-title>
+                {{item.text}}
+            </ion-card-title>
+            <p>The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col size="4" no-padding>
+                <ion-button size="small" color="primary" fill="clear">
+                    <ion-icon name='star'></ion-icon>
+                    Favorite
+                </ion-button>
+            </ion-col>
+            <ion-col size="5" no-padding>
+                <ion-button color="primary" size="small" fill="clear">
+                    <ion-icon name='musical-notes'></ion-icon>
+                    Listen
+                </ion-button>
+            </ion-col>
+            <ion-col size="3" no-padding>
+                <ion-button size="small" color="primary" fill="clear">
+                    <ion-icon name='share-alt'></ion-icon>
+                    Share
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>

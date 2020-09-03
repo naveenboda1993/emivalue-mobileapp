@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>List Expandable</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <!-- expand list one -->
+  <ion-list no-padding>
+    <ion-item lines="full" *ngFor="let item of itemsList1" no-padding>
+      <ion-grid (click)="expandItemList1(item)" no-padding>
+        <img src="assets/images/big-images/big2.jpg">
+        <div>
+          <ion-button fill="outline" shape="round">Buy</ion-button>
+        </div>
+        <ion-row (click)="expandItemList1(item)" no-padding>
+          <!-- expandable component "list component". You should  its referebce in "list-expandable" mobile file -->
+          <app-expand-list-component expandHeight="280px" [expanded]="item.expanded" no-padding>
+            <ion-item lines="full" no-padding *ngFor="let list of listView1;let i = index">
+              <ion-col size="8">
+                <ion-text>
+                  <p>{{list.name}}</p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon [ngStyle]="{color:itemColor}" name="arrow-dropright"></ion-icon>
+              </ion-col>
+            </ion-item>
+          </app-expand-list-component>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <!-- expand list two -->
+  <ion-list no-padding>
+    <ion-item lines="full" *ngFor="let item of itemsList2" no-padding>
+      <ion-grid (click)="expandItemList2(item)" no-padding>
+        <img src="assets/images/big-images/big3.jpg">
+        <div>
+          <ion-button fill="outline" shape="round">Buy</ion-button>
+        </div>
+        <ion-row (click)="expandItemList2(item)" no-padding>
+          <!-- expandable component "list component". You should  its referebce in "list-expandable" mobile file -->
+          <app-expand-list-component expandHeight="280px" [expanded]="item.expanded" no-padding>
+            <ion-item lines="full" no-padding *ngFor="let list of listView2;let i = index">
+              <ion-col size="8">
+                <ion-text>
+                  <p>{{list.name}}</p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name="arrow-dropright"></ion-icon>
+              </ion-col>
+            </ion-item>
+          </app-expand-list-component>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <!-- expand list three -->
+  <ion-list no-padding>
+    <ion-item lines="full" *ngFor="let item of itemsList3" no-padding>
+      <ion-grid (click)="expandItemList3(item)" no-padding>
+        <img src="assets/images/big-images/big4.jpg">
+        <div>
+          <ion-button fill="outline" shape="round">Buy</ion-button>
+        </div>
+        <ion-row (click)="expandItemList3(item)" no-padding>
+          <!-- expandable component "list component". You should  its referebce in "list-expandable" mobile file -->
+          <app-expand-list-component expandHeight="280px" [expanded]="item.expanded" no-padding>
+            <ion-item lines="full" no-padding *ngFor="let list of listView3;let i = index">
+              <ion-col size="8">
+                <ion-text>
+                  <p>{{list.name}}</p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name="arrow-dropright"></ion-icon>
+              </ion-col>
+            </ion-item>
+          </app-expand-list-component>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

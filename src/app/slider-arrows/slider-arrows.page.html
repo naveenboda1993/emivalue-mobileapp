@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Slider Arrows</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-button fill="clear" color="light" class="swiper-button-prev swiper-button-black" (click)="prevSlide()"></ion-button>
+    <!-- slides  -->
+    <ion-slides #IonSlides pager="true">
+        <!-- single slide iteration -->
+        <ion-slide *ngFor="let item of items">
+            <img src="{{item.img}}" />
+        </ion-slide>
+    </ion-slides>
+    <ion-button fill="clear" color="light" class="swiper-button-next swiper-button-black" (click)="nextSlide()"></ion-button>
+</ion-content>

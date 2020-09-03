@@ -1,0 +1,13 @@
+ion-content{
+    ion-row{
+        margin-top: 10px; 
+        ion-col{
+            text-align: center;
+            img{
+                height: 40px;
+                width: 40px;
+                border-radius: 200px;
+            }
+        }
+    }
+}

@@ -1,0 +1,548 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu side="start" menu-id="Menu1">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="contaentClass">
+        <ion-list class="listClass">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item style='--background:var(--my-var)' class="itemIcon" no-padding>
+              <span>
+                <div class="logoDiv">
+                  <img src="assets/uiuxicon.png" class="LogoImg" />
+                </div>
+                <div class="textDiv">
+                  <h3>IONIC 4 UI Components</h3>
+                </div>
+              </span>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item class="mainComponent" lines="full">
+              <div class="divPara">
+                <p class="textParaComponents">
+                  <b>{{p.title}}</b>
+                </p>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-item no-padding lines="full" (click)="expandItemList(item)" class="listItem" *ngFor="let item of itemsList">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="list"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    List View
+                  </p>
+                </ion-col>
+
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge fill="outline" class="buttonList">12</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" class="expandList" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of listView;let i = index" (click)="goToList(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" (click)="expandItemCard(item)" class="listItem" *ngFor="let item of itemsCard" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="card"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Card
+                  </p>
+                </ion-col>
+
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">9</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of card;let i = index" (click)="goToCard(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" class="listItem" (click)="expandItemGrid(item)" *ngFor="let item of itemsGrid" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="grid"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Grid
+                  </p>
+                </ion-col>
+
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">7</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component class="expandList" expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of grid;let i = index" (click)="goToGrid(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item (click)="expandItemTab(item)" lines="full" class="listItem" *ngFor="let item of itemsTab" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="tablet-portrait"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Tabs
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">8</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of tabs;let i = index" (click)="goToTabs(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding lines="full" (click)="expandItemSegment(item)" class="listItem" *ngFor="let item of itemsSegment">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="tablet-portrait"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Segments
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">7</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component class="expandList" expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of segment;let i = index" (click)="goToSegment(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" (click)="expandItemFAB(item)" class="listItem" *ngFor="let item of itemsFab" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="bookmarks"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    FAB
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">12</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of fab;let i = index" (click)="goToFab(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding (click)="expandItemForm(item)" lines="full" class="listItem" *ngFor="let item of itemsForm">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="paper"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Form
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">9</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of form;let i = index" (click)="goToForm(i)" no-padding>
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding (click)="expandItemButton(item)" lines="full" class="listItem" *ngFor="let item of itemsButton">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="radio-button-off"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Buttons
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">6</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of button;let i = index" (click)="goToButton(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" (click)="expandItemAlert(item)" class="listItem" *ngFor="let item of itemsAlert" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="alert"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Alert
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">5</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of alert;let i = index" (click)="goToAlert(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" class="listItem" (click)="expandItemSlider(item)" *ngFor="let item of itemsSlider" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="albums"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Sliders
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">4</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of slider;let i = index" (click)="goToSlider(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item (click)="expandItemCheckbox(item)" lines="full" class="listItem" *ngFor="let item of itemsCheckbox" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="checkbox"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Checkbox
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">4</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of checkbox;let i = index" (click)="goToCheckbox(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding lines="full" class="listItem" (click)="expandItemRadio(item)" *ngFor="let item of itemsRadio">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="radio-button-on"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Radio
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">4</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true" no-padding>
+                <app-menu-component expandHeight="650px" class="expandList" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of radio;let i = index" (click)="goToRadio(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" (click)="expandItemBadge(item)" class="listItem" *ngFor="let item of itemsBadge" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="bookmark"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Badge
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">3</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of badge;let i = index" (click)="goToBadge(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding (click)="expandItemToast(item)" lines="full" class="listItem" *ngFor="let item of itemsToast">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="remove"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Toast
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">3</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of toast;let i = index" (click)="goToToast(i)" no-padding>
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+          <ion-item lines="full" (click)="expandItemSearchbar(item)" class="listItem" *ngFor="let item of itemsSearchbar" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="search"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Searchbar
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">2</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of searchbar;let i = index" (click)="goToSearchbar(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item no-padding (click)="expandItemActionSheet(item)" lines="full" class="listItem" *ngFor="let item of itemsActionsheet">
+            <ion-grid no-padding class="listGrid">
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="chatbubbles"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Action Sheet
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">2</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of actionSheet;let i = index" (click)="goToActionSheet(i)" no-padding>
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="full" (click)="expandItemToggle(item)" class="listItem" *ngFor="let item of itemsToogle" no-padding>
+            <ion-grid class="listGrid" no-padding>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-icon [ngStyle]="{'color':itemColor}" class="listIcon" name="logo-flickr"></ion-icon>
+                </ion-col>
+                <ion-col size="8" class="allColPos">
+                  <p class="textPara">
+                    Toggle
+                  </p>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="div-badge">
+                    <ion-badge class="buttonList">2</ion-badge>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-menu-toggle auto-hide="true">
+                <app-menu-component expandHeight="650px" [expanded]="item.expanded" no-padding>
+                  <ion-item lines="full" class="listHelpItem" *ngFor="let list of toggle;let i = index" (click)="goToToggle(i)">
+                    <p class="parainnerList">{{list.name}}</p>
+                  </ion-item>
+                </app-menu-component>
+              </ion-menu-toggle>
+            </ion-grid>
+          </ion-item>
+
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <ion-menu menu-id="Menu2">
+      <ion-header>
+        <ion-toolbar class="toolbar">
+          <ion-title>Menu</ion-title>
+          <ion-icon slot="end" name="globe" class="globeIcon"></ion-icon>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="full">
+          <ion-item class="itemBgImg" no-padding>
+            <img src="assets/images/icons_stripe.svg" class="bgImg" no-padding>
+          </ion-item>
+          <ion-item class="avatarItem" color="transparent">
+            <ion-avatar class="avatar">
+              <img src="assets/images/avatar.png" class="avatarImg">
+            </ion-avatar>
+            <span class="menuText">
+              <h5>login & Register</h5>
+              <p>Please login or create an account for free</p>
+            </span>
+          </ion-item>
+
+          <!-- other items list -->
+          <ion-item *ngFor="let p of appPages2; let i=index" no-padding lines="full" class="othersItems">
+            <ion-menu-toggle auto-hide="false" no-padding>
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" no-padding (click)="share(i)">
+                <ion-grid no-padding>
+                  <ion-row no-padding>
+                    <ion-col size="2" no-padding>
+                      <div class="otherIconsDiv">
+                        <ion-icon slot="start" class="otherIcons" [name]="p.icon"></ion-icon>
+                      </div>
+                    </ion-col>
+                    <ion-col size="10" class="otherDivCol">
+                      <div class="otherDivText">
+                        <h3>{{p.title}}</h3>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

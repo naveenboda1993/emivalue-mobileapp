@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>List swipe Left To Right</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+    <!-- list with multiple iterations -->
+    <ion-list>
+        <!-- for sliding item  -->
+        <ion-item-sliding *ngFor="let item of products">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-img src="{{item.image}}"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    {{item.name}}
+                    <p>It is very rare that a 100% cotton....</p>
+                </ion-label>
+                <ion-icon name="arrow-dropright-circle"></ion-icon>
+            </ion-item>
+            <!-- slide item from left -->
+            <ion-item-options side="start">
+                <ion-button fill="clear">
+                    <ion-icon [ngStyle]="{color:itemColor}" name="add-circle"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear">
+                    <ion-icon [ngStyle]="{color:itemColor}" name="remove-circle"></ion-icon>
+                </ion-button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

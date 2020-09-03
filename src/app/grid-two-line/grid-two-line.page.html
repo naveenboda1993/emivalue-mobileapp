@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar class="toolbarTag">
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Grid Two Line</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <!-- single row contain 2 columns of equal lenght due to size=6  -->
+    <ion-row no-padding>
+      <ion-col [ngStyle]="{background:itemColor}" *ngFor="let item of items" size="6" no-padding>
+        <img src="{{item.img}}" alt="Image not loading">
+        <ion-text>
+          <h4>
+            <b>{{item.name}}</b>
+          </h4>
+          <p>{{item.details}}</p>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

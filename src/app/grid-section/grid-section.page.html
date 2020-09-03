@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Grid Section Images</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <ion-grid no-padding>
+    <!-- single row contain 3 columns of equal lenght due to size=4  -->
+    <ion-row no-padding>
+      <ion-col *ngFor="let item of items" no-padding size="4">
+        <ion-item-divider>
+          <p>{{item.date}}</p>
+        </ion-item-divider>
+        <img src="{{item.img}}" alt="Image not loading">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

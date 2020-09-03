@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Alert Basic</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- showAlert() get the property of alert which you will get from alert-basic.ts file -->
+  <ion-button expand="full" (click)="showAlert()">
+    Show Alert
+  </ion-button>
+</ion-content>

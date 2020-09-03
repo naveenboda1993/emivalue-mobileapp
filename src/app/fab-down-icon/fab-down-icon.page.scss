@@ -1,0 +1,24 @@
+
+ion-content{
+    ion-item{
+        ion-icon{
+            zoom: 1.5;
+        } 
+    }
+    ion-item-options{
+        ion-button{
+            margin-top: 15px;
+            ion-icon{
+                zoom: 1.5;
+            }
+        }
+    }
+}
+ion-footer{
+    ion-fab{
+        position: fixed;
+        ion-icon{
+            zoom: 1;
+        }
+    }
+}

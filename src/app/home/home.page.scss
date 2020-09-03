@@ -1,0 +1,218 @@
+ion-content{
+  --background:#eee;
+}
+.item{
+  --inner-padding-end:0;
+}
+.materialAppPara{
+  font-size: 17px;
+  color: white;
+}
+.materialAppThemeCol{
+  --padding-left:0px;
+  --padding-right:0px;
+}
+.materialAppRow{
+  --padding-start:0px;
+  --padding-end:0px;
+  --padding-top:0px;
+  --padding-right:0px;
+}
+.lightPurpleSegmentBtn{
+    --indicator-color-checked: #03A9F4;
+}
+.darkBlueSegmentBtn{
+    --indicator-color-checked: #673AB7;
+}
+.darkPinkBtn{
+  --background: #4CAF50;   
+}
+.lightOrangeBtn{
+  --background: #F44336;   
+}
+.lightGreenBtn{
+  --background: #00BCD4;   
+}
+
+.redBtn{
+  --background: #9E9E9E;   
+}
+.purpleBtn{
+  --background: #E91E63;   
+}
+.lightBlueBtn{
+  --background: #3F51B5;   
+}
+.lightGray1{
+  --background: #8BC34A;   
+}
+.blueBtn{
+  --background: #008577;   
+}
+.darkBlueBtn{
+  --background: #673AB7;   
+}
+.lightPurpleBtn{
+  --background: #03A9F4;   
+}
+.lightOrangeBtn, .lightGrayBtn, .darkPinkBtn, .lightPurpleBtn, .lightGreenBtn, .lightBlueBtn, .lightGray1,.redBtn, .purpleBtn, .darkBlueBtn, .blueBtn{
+  --border-radius: 200px;
+    height: 40px;
+    width: 40px; 
+}
+.lightGraySegmentBtn{
+    --indicator-color-checked: #f4f4f4;
+}
+.segmentTextBtn,
+.lightOrangeSegmentBtn,
+.darkPinkSegmentBtn,
+.darkPinkSegmentBtn,
+.whiteSegmentBtn,
+.redSegmentBtn{
+  min-height: 65px;
+}
+.lightOrangeSegmentBtn{
+    --indicator-color-checked: #F44336;   
+}
+.darkPinkSegmentBtn{
+    --indicator-color-checked: #4CAF50;
+}
+.redSegmentBtn{
+  --indicator-color-checked: #9E9E9E;
+}
+.purpleSegmentBtn{
+  --indicator-color-checked: #E91E63;
+}
+.lightBlueSegmentBtn{
+  --indicator-color-checked: #3F51B5;
+}
+.lightGreenSegmentBtn{
+  --indicator-color-checked: #00BCD4;
+}
+.lightGray1SegmentBtn{
+  --indicator-color-checked: #8BC34A;
+}
+.blueSegmentBtn{
+  --indicator-color-checked: #008577;
+}
+/*slider design(banner)*/
+.img{
+  border-radius: 10px;
+  width: 100%;
+}
+ion-slides.slides{
+  border-radius: 10px;
+  margin-top: -65px;
+  --bullet-background: black !important;
+}
+.segmentTextBtn{
+  color: white;
+}
+.forward-icon{
+  zoom: 1.5;
+  margin-left: 19px;
+  position: absolute;
+  margin-top: -1px
+}
+/*swipe slider*/
+/*swipe segment design*/
+.segment{
+  --inner-padding-end:0;
+  --inner-border-width:0;
+  margin-top: -1px;
+}
+.itemSlider{
+  --inner-border-width:0;
+  --min-height: 274px;
+  --inner-padding-end:15px;
+  margin-top: -1px;
+}
+
+ion-icon.checkmark{
+  margin-left: auto;
+  margin-right: auto;
+  color: #ccc;
+}
+.rowtag{
+  margin-top: 30px;
+}
+/*tag card design*/
+.contentClass{
+  --background: #eee;
+}
+.card{
+  border-radius: 10px;
+  margin: 15px 0 0 0;
+}
+.imgBgTag{
+  width: 100%;
+}
+.card-title {
+  position: absolute;
+    top: 50px;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+.tagRow{
+  margin-top: -100px;
+}
+.rowComp{
+  margin-top: -25px;
+}
+.tagCard{
+  background: white;
+  border-radius:8px;
+  text-align: center;
+  padding: 15px;
+  margin: 0;
+}
+.paraTagCard{
+  font-size: 13px;
+  margin-bottom: 0%;
+  margin-top: 0%;
+  text-align: center;
+  font-weight: bold;
+}
+.col2Tag{
+  margin-left: -10%;
+  z-index: 10;
+  margin-top: 25px;
+}
+.col3Tag{
+  margin-left: -10%;
+}
+.nextBtn, .prevBtn{
+  width:30px;
+  height: 40px;
+  background-color: gray;
+  font-size: 15px;
+  border-radius: 0;
+  top: 39%;
+  background-size: 14px 44px;
+}
+.nextBtn{
+  right: 13px;
+}
+.prevBtn{
+  left: -2px;
+}
+.themeBg{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  opacity: 0.55;
+}
+.themeBgDisable{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  opacity: 0.7;
+}
+.themeImg, .uiImg{
+  opacity: 0.7;
+}

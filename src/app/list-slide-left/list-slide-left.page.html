@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>List Slide Left</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <!-- list with multiple iterations -->
+  <ion-list>
+    <!-- @itemState for animation  -->
+    <ion-item @itemState *ngFor="let mProduct of items">
+      <ion-avatar slot="start">
+        <img src="{{mProduct.img}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ mProduct.text }}</h2>
+        <p>{{mProduct.text1}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Checkbox Right Avatar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-list>
+    <ion-item *ngFor="let game of items" lines="full">
+      <ion-avatar slot="end">
+        <img src="{{game.img}}" />
+      </ion-avatar>
+      <ion-label>
+        <p>
+          {{game.text}}
+        </p>
+      </ion-label>
+      <!-- checkbox with left position in item -->
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

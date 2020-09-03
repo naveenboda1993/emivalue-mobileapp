@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Icon With Square </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+    <ion-list no-padding>
+        <ion-item *ngFor="let game of items">
+            <ion-icon slot="start" name="flag"></ion-icon>
+            <ion-label>
+                <h2>{{game.text}}</h2>
+                <p>Lorum Ipsum country...</p>
+            </ion-label>
+            <!-- checkbox with right position in iten -->
+            <ion-checkbox slot="end"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</ion-content>

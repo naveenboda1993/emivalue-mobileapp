@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Badge With Tabs
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="badge-setting">
+        <ion-icon name="settings"></ion-icon>
+        <ion-label>
+          <b>Setting</b>
+        </ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="badge-movie">
+        <ion-icon name="videocam"></ion-icon>
+        <!-- simple badge on top of label used in tabs -->
+        <ion-badge>6</ion-badge>
+        <ion-label>
+          <b>Movies</b>
+        </ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="badge-card">
+        <ion-icon name="card"></ion-icon>
+        <!-- simple badge on top of label used in tabs -->
+        <ion-badge>10</ion-badge>
+        <ion-label>
+          <b>Cards</b>
+        </ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

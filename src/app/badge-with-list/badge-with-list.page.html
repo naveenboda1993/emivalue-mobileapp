@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Badge With List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-img src="assets/images/fashion-types.jpeg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>Fashion Accessories</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let p of items" lines="full">
+        <ion-text>
+          {{p.text}}
+        </ion-text>
+        <!-- badge with right position with different badge values -->
+        <ion-badge slot="end">{{p.badgeValue}}</ion-badge>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

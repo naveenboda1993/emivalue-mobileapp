@@ -1,0 +1,25 @@
+ion-content{
+    ion-item{
+        p{
+            padding-left:10px;
+        }
+        ion-icon{
+            zoom: 1.5;
+        }
+        --inner-padding-end:0px;
+        div{
+            position: absolute;
+            background: transparent;
+            margin-top: -70px;
+            padding-left: 10px;  
+        }
+        ion-col{
+            &:last-child{
+                text-align: right;
+            }
+        }
+        app-expand-list-component{
+            width: 100%;
+        }
+    }
+}

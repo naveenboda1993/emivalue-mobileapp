@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Fab Simple With Icon</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+    <ion-list>
+        <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
+            <ion-item *ngFor="let item of products">
+                <ion-avatar slot="start">
+                    <ion-img src="{{item.image}}"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    {{item.name}}
+                    <p>These celebirties are famous because...</p>
+                </ion-label>
+                <ion-reorder></ion-reorder>
+            </ion-item>
+        </ion-reorder-group>
+    </ion-list>
+</ion-content>
+<ion-footer>
+        <!-- float action button placed at the end and bottom of screen -->
+    <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-footer>

@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Swipe Item With Header</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-row [ngStyle]="{background:itemColor}" align-items-center padding>
+      <ion-col align-self-start size="2" padding>
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </ion-col>
+      <ion-col size="7">
+        <h3>
+          <b>Music Player</b>
+        </h3>
+        <h4>
+          <b>playlist (8)</b>
+        </h4>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon name="thumbs-up"></ion-icon>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon name="heart-empty"></ion-icon>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon name="share"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- list with multiple iterations -->
+  <ion-list no-padding>
+    <!-- for sliding item  -->
+    <ion-item-sliding *ngFor="let item of items; let i=index">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="{{item.img}}"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          {{item.text}}
+          <p>ksduasjdas asd ...</p>
+        </ion-label>
+        <p>4:00 </p>
+        <ion-icon name="arrow-dropright-circle"></ion-icon>
+      </ion-item>
+      <!-- slide item from right -->
+      <ion-item-options side="end">
+        <ion-button fill="clear">
+          <ion-icon [ngStyle]="{color:itemColor}" name="add-circle"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon [ngStyle]="{color:itemColor}" name="remove-circle"></ion-icon>
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

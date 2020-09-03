@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cards List Avatar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="contentClass">
+  <!-- card with header and title inside with list loop as a child of card tag -->
+  <ion-card>
+    <ion-img src="assets/images/all-types.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>Daily Use Accessories</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let p of items">
+        <ion-avatar slot="start">
+          <img src="{{p.img}}" />
+        </ion-avatar>
+        <ion-label>
+          <ion-text>
+            {{p.text}}
+          </ion-text>
+          <ion-badge slot="end">{{p.badgeValue}}</ion-badge>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

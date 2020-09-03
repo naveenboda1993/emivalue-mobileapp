@@ -1,0 +1,52 @@
+//overall content of page
+ion-content{
+  //grid inside content 
+  ion-grid{
+    //applied on overall grid 
+    padding: 0 0 16px 0;
+    margin-bottom:12px;
+    border-bottom:1px solid #ddd;
+    //text containing h2 and h4 tag 
+    ion-text{
+      h2{
+      margin-top:0;
+      }
+      h4{
+      margin:0;
+    }
+  }
+  //all buttons
+  ion-button{
+    margin-left:0;
+    margin-right:0;
+  }
+  //last button 
+  &:last-child{
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  //overall row 
+  ion-row{
+    //overall column inside row 
+    ion-col{
+      //first column of row
+      &:first-child{
+      padding-left:0;
+      }
+      &:last-child{
+        text-align: right;
+        padding-right:0;
+        }
+      }
+    }
+  }
+}
+ion-footer{
+  ion-fab{
+    position: fixed;
+    ion-icon{
+      zoom: 1;
+    }
+  }  
+}

@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Radio Thumbnail</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list radio-group>
+        <!-- all iterated are in radio group so only one item is choosen at one time -->
+        <ion-radio-group>
+            <ion-item *ngFor="let item of products">
+                <ion-thumbnail slot="start">
+                    <img src="{{item.img}}" />
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>{{item.text}}</h3>
+                    <p>{{item.short_des}}</p>
+                </ion-label>
+                <!-- for radio button with right position -->
+                <ion-radio slot="end"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+</ion-content>

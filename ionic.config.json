@@ -1,0 +1,7 @@
+{
+  "name": "ionic-material-design-t1",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
