@@ -12,29 +12,35 @@
       <ion-content padding>
         <ion-img src="assets/images/icons_stripe.svg"></ion-img>
         <!-- form with input text and submit buttons -->
-        <form>
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
             <ion-item>
-                <ion-input type="text" placeholder="Email or Username" name="email" required>
+                <ion-input type="text" placeholder="Phone number" formControlName="mobile" required>
                 </ion-input>
             </ion-item>
-            <ion-item>
-                <ion-input type="password" placeholder="Password" name="password" required>
+            <ion-item *ngIf="!isOtp" >
+                <ion-input type="password" placeholder="Password" formControlName="password" >
                 </ion-input>
             </ion-item>
-        </form>
-        <ion-row>
+            <ion-item *ngIf="isOtp" >
+                <ion-input type="number" placeholder="OTP" formControlName="otp" >
+                </ion-input>
+            </ion-item>
             <ion-col size="12">
-                <ion-button expand="block" type="submit">Login</ion-button>
+                <ion-button expand="block" type="submit" >Login</ion-button>
             </ion-col>
-            <ion-col size="12">
+        </form>
+        <ion-row *ngIf="!isOtp">
+            <ion-col size="12" >
                 <ion-button expand="block" fill="clear">
-                    <b>I've Forgotten My Password?</b>
+                    <b>Get OTP ?</b>
+                    <!-- <b>I've Forgotten My Password?</b> -->
                 </ion-button>
             </ion-col>
-            <ion-col size="12">
-                <ion-button fill="outline" expand="block" type="submit">Register</ion-button>
+            <ion-col size="12" >
+                <!-- form-register-three -->
+                <ion-button fill="outline" routerLink="/form-register-three" routerDirection="forward" expand="block" type="submit">Register</ion-button>
             </ion-col>
-            <ion-col size="12">
+            <!-- <ion-col size="12">
                 <ion-button expand="block" color="danger" type="submit">Login with
                     <ion-icon name="logo-google"></ion-icon>
                 </ion-button>
@@ -43,6 +49,6 @@
                 <ion-button expand="block" type="submit">Login with
                     <ion-icon name="logo-facebook"></ion-icon>
                 </ion-button>
-            </ion-col>
+            </ion-col> -->
         </ion-row>
       </ion-content>

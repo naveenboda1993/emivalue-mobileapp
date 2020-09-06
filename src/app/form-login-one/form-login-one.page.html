@@ -11,22 +11,18 @@
 
 <ion-content padding>
     <ion-text>
-        <h2>Log-In</h2>
+        <h2>Enter the OTP</h2>
     </ion-text>
     <!-- form with input text and submit buttons -->
-    <form>
-        <ion-icon [ngStyle]="{color:itemColor}" name="logo-ionic"></ion-icon>
+    <form [formGroup]="Otpform" (ngSubmit)="onSubmit()">
+       
         <ion-item>
-            <ion-label position="floating">Username</ion-label>
-            <ion-input type="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-label position="floating">OTP</ion-label>
+            <ion-input type="text" formControlName="otp"></ion-input>
         </ion-item>
         <ion-button expand="block" fill="outline" type="submit">Login</ion-button>
-        <ion-button expand="block" fill="outline">Register</ion-button>
+        <!-- <ion-button expand="block" fill="outline">Register</ion-button>
         <ion-button expand="block" fill="outline" color="danger">Google</ion-button>
-        <ion-button expand="block" fill="outline">facebook</ion-button>
+        <ion-button expand="block" fill="outline">facebook</ion-button> -->
     </form>
 </ion-content>

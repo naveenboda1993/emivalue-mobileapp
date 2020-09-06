@@ -2,6 +2,9 @@ ion-header{
     ion-segment{
         --color-checked: white !important;
     }
+    ion-title{
+        color: blue;
+    }
 }
 ion-content{
     --padding-bottom: 5px;

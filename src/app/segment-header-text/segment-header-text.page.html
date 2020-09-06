@@ -5,13 +5,13 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Segments Header Text</ion-title>
+    <ion-title>KYC Update documents</ion-title>
   </ion-toolbar>
   <!-- segment header button  -->
   <ion-segment [(ngModel)]="segments">
-    <ion-segment-button value="segmentOne" checked>{{ 'Latest' }}</ion-segment-button>
-    <ion-segment-button value="segmentTwo">{{ 'On Sale' }} </ion-segment-button>
-    <ion-segment-button value="segmentThree"> {{ 'Featured' }}</ion-segment-button>
+    <ion-segment-button value="segmentOne" checked>{{ 'Id Proof' }}</ion-segment-button>
+    <ion-segment-button value="segmentTwo">{{ 'Address Proof' }} </ion-segment-button>
+    <!-- <ion-segment-button value="segmentThree"> {{ 'Featured' }}</ion-segment-button> -->
   </ion-segment>
 </ion-header>
 
@@ -20,48 +20,38 @@
   <div [ngSwitch]="segments">
     <!-- segment One -->
     <div *ngSwitchCase="'segmentOne'">
-      <ion-grid *ngFor="let item of [1,2,3,4]">
-        <ion-slides @itemState [options]="sliderConfig">
-          <ion-slide *ngFor="let product of items">
-            <ion-card>
-              <ion-card-content>
-                {{ product.name }} - ${{ product.price }}
-                <ion-img src="{{product.img}}"></ion-img>
-                <ion-button expand="full">Buy Now</ion-button>
-              </ion-card-content>
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-      </ion-grid>
+      <ion-row>
+        <ion-col size="12" style="text-align:center;">
+          <div (click)="onFileSelect($event)">
+            <img *ngIf="!isimage" src="assets/images/upload_doc.png" />
+            <img *ngIf="isimage" src="{{image}}">
+          </div>
+         
+        </ion-col>
+      </ion-row>
+      <ion-row col="12" style="position:fixed; bottom:30px;">
+        <ion-col size="4">
+          <div>
+            <ion-button color="primary" routerLink="/form-login-three" routerDirection="forward">Skip
+            </ion-button>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+        </ion-col>
+        <ion-col size="4">
+          <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
+          <ion-button  color="primary" routerLink="/form-login-three" routerDirection="forward" >UPLOAD
+          </ion-button>
+          <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
+        </ion-col>
+      </ion-row>
     </div>
     <!-- segment two -->
     <div *ngSwitchCase="'segmentTwo'">
-      <div *ngFor="let cat of data" class="category-block">
-        <ion-row no-padding>
-          <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
-            <ion-item>
-              <p>{{ cat.category }}</p>
-            </ion-item>
-          </ion-col>
-        </ion-row>
 
-        <ion-slides @itemState [options]="sliderConfig">
-          <ion-slide *ngFor="let product of cat.products">
-            <div *ngIf="cat.expanded">
-              <ion-card>
-                <ion-card-content>
-                  {{ product.name }} - ${{ product.price }}
-                  <img src="{{product.image}}">
-                  <ion-button expand="full" (click)="addToCart(product)">Buy Now</ion-button>
-                </ion-card-content>
-              </ion-card>
-            </div>
-          </ion-slide>
-        </ion-slides>
-      </div>
     </div>
     <!-- segment three -->
-    <div *ngSwitchCase="'segmentThree'">
+    <!-- <div *ngSwitchCase="'segmentThree'">
       <ion-slides @itemState [options]="sliderConfig">
         <ion-slide *ngFor="let product of items">
           <ion-card>
@@ -85,6 +75,6 @@
           <ion-icon name="cart"></ion-icon>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
   </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CustomThemeService {
   public color;
+  public response;
   constructor() {
    }
   public setTheme(c){
@@ -12,5 +13,11 @@ export class CustomThemeService {
   }
   public getTheme(){
     return this.color;
+  }
+  public setresponse(c){
+    this.response = c;
+  }
+  public getresponse(){
+    return this.response;
   }
 }

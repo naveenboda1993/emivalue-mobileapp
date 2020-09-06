@@ -129,6 +129,8 @@ export class HomePage {
     this.visiableBtnAutum = true;
     this.itemColor = "#F44336";
     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    this.theme.setTheme(themes['neon'], 'neon');
+    this.service.setTheme('neon');
   }
   ionViewWillEnter() {
     this.menuCtrl.enable(false, 'Menu2')
@@ -146,8 +148,8 @@ export class HomePage {
   }
   ////////////////////////////////
   changeTheme(name) {
-    this.theme.setTheme(themes[name], name);
-    this.service.setTheme(name);
+    this.theme.setTheme(themes['neon'], 'neon');
+    this.service.setTheme('neon');
     this.events.publish('icons', name);
     if (name == 'autumn') {
       this.itemColor = "#F44336";//red

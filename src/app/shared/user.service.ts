@@ -16,8 +16,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  uploadFile(data: any): Observable<any> {
+    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appupload', data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Upload file error'))
+      );
+
+  }
   addUser(user: any): Observable<any> {
-    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/applogin', user, this.httpOptions)
+    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appadduser', user, this.httpOptions)
       // return this.http.post<any>('http://emivalue.snitchmedia.in/Crud/test', user, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Add User'))
@@ -28,11 +35,23 @@ export class UserService {
       //   })
       ;
 
-      // .pipe(catchError( data => of(I caught: ${JSON.stringify(data)})))
-      // .subscribe((data)=>{
-      //   this.param.data = data;
-      //   alert('subscribe : ’ + JSON.stringify(data));
-      //   }
+    // .pipe(catchError( data => of(I caught: ${JSON.stringify(data)})))
+    // .subscribe((data)=>{
+    //   this.param.data = data;
+    //   alert('subscribe : ’ + JSON.stringify(data));
+    //   }
+  }
+  login(user: any): Observable<any> {
+    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/applogin', user, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Add User'))
+      );   
+  }
+  otplogin(user: any): Observable<any> {
+    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appotplogin', user, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Add User'))
+      );   
   }
 
 
@@ -40,7 +59,7 @@ export class UserService {
     return (error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);
-      alert(error+' detailed '+`${operation} failed: ${error.message}`)
+      alert(error + ' detailed ' + `${operation} failed: ${error.message}`)
       return of(result as T);
     };
   }
