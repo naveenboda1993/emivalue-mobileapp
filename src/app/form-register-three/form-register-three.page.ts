@@ -6,6 +6,10 @@ import { FormGroup, FormBuilder ,Validators} from "@angular/forms";
 import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular'//toastcontroller package
+
+
+
 @Component({
   selector: 'app-form-register-three',
   templateUrl: './form-register-three.page.html',
@@ -18,9 +22,11 @@ export class FormRegisterThreePage implements OnInit {
   imageData: any = ''
   data: any;
   form: FormGroup;
+  isMatching: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
+    private toastCtrl: ToastController,
     private zone: NgZone,
     private router: Router,
     private service: CustomThemeService,
@@ -35,34 +41,87 @@ export class FormRegisterThreePage implements OnInit {
     }
     
   }
+
+  error_messages = {
+
+    'password': [
+      { type: 'required', message: 'password is required.' },
+      { type: 'minlength', message: 'password length too short.' },
+      { type: 'maxlength', message: 'password length is strong.' }
+    ],
+    'confirmpassword': [
+      { type: 'required', message: 'password is required.' },
+      { type: 'minlength', message: 'password length too short.' },
+      { type: 'maxlength', message: 'password length is strong.' }
+    ],
+    'mobile': [
+      { type: 'required', message: 'Mobile Number is required.' },
+      { type: 'minlength', message: 'Mobile Number at least 10 Digits' }
+    ],
+
+  }
+
+
   ngOnInit() {
     this.form = this.formBuilder.group({
-      firstname: [''],
-      lastname: [''],
-      email: [''],
-      mobile: ['',Validators.required],
-      password: [''],
-      confirmpassword: ['']
-    });
+      firstname: ['', Validators.compose([Validators.required])],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      mobile: ['',Validators.compose([
+        Validators.required,
+        Validators.minLength(10)])],
+
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(10)])],
+
+      confirmpassword: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(10)])]
+    },{Validators: this.password.bind(this)});
     console.log("hello")
   }
+
+  password(formGroup: FormGroup){
+    const { value: password } = formGroup.get('password');
+    const { value: confirmpassword } = formGroup.get('confirmpassword');
+    return password == confirmpassword ? null : {passwordDoNotMatch: true};
+  }
+
+
+  async onToast() {
+    const toast = await this.toastCtrl.create({
+        cssClass: 'toastTag',
+        color: "danger",
+        showCloseButton: true,
+        position: 'top',
+        message: "Hello Your Registration is Completeded",
+        closeButtonText: '| Done',
+        duration: 2000,
+    });
+    toast.present();
+}
+
+
   onSubmit() {
     if (!this.form.valid) {
       return false;
     } else {
       console.log(this.form.value)
-      this.userAPI.addUser(this.form.value)
-        .subscribe((res) => {
-          this.zone.run(() => {
-            console.log(res);
-            this.service.setresponse(res);
-            if(res.isSuccess){
-              // this.form.setValue([name,res]);
-              this.form.reset();
-              this.router.navigate(['/form-login-one']);
-            }
-          })
-        });
+      // this.userAPI.addUser(this.form.value)
+      //   .subscribe((res) => {
+      //     this.zone.run(() => {
+      //       console.log(res);
+      //       this.service.setresponse(res);
+      //       if(res.isSuccess){
+      //         // this.form.setValue([name,res]);
+      //         this.form.reset();
+      //         this.router.navigate(['/form-login-one']);
+      //       }
+      //     })
+      //   });
     }
   }
 
