@@ -80,11 +80,11 @@ export class FormRegisterThreePage implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(10)])]
-    },{Validators: this.password.bind(this)});
+    },{Validators: this.checkPassword});
     console.log("hello")
   }
 
-  password(formGroup: FormGroup){
+  checkPassword(formGroup: FormGroup){
     const { value: password } = formGroup.get('password');
     const { value: confirmpassword } = formGroup.get('confirmpassword');
     return password == confirmpassword ? null : {passwordDoNotMatch: true};
@@ -107,6 +107,7 @@ export class FormRegisterThreePage implements OnInit {
 
   onSubmit() {
     if (!this.form.valid) {
+
       return false;
     } else {
       console.log(this.form.value)

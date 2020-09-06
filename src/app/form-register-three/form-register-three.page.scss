@@ -1,4 +1,7 @@
 ion-content{
+    .error-msg{
+      color:red;
+    }
     div{
       &:first-child{
       text-align: center;
