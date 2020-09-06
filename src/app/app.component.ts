@@ -96,6 +96,16 @@ export class AppComponent {
     { text: "Deals" },
     { text: "Most Liked" },
   ];
+
+  // financial app
+  visibleLoan = false;
+  visibleReferralWallet = false;
+  visibleHowItWorks = false;
+  visibleOurChannelPartners = false;
+  visibleContactUs = false;
+  visibleMyAccount = false;
+
+  ///////
   visibleBtn = false;
   visibleList = false;
   visibleGrid = false;
@@ -120,7 +130,16 @@ export class AppComponent {
   public itemsHome: any = [];
   public itemsCategory: any = [];
   public itemsShop: any = [];
-  ///
+
+  /// finanacial appa
+  public itemsLoan: any =[];
+  public itemsReferralWallet: any =[];
+  public itemsHowItWorks: any =[];
+  public itemsOurChannelPartners: any =[];
+  public itemsContactUs: any =[];
+  public itemsMyAccount: any =[];
+
+  //////
   public itemsList: any = [];
   public itemsGrid: any = [];
   public itemsCard: any = [];
@@ -139,6 +158,88 @@ export class AppComponent {
   public itemsActionsheet: any = [];
   public itemsForm: any = [];
   ///////
+
+
+  //// financial app
+  public home = [];
+
+  public loan =[
+    {name:"Personal Loan"},
+    {name: "Business Loan"},
+    {name: "Home Loan"},
+    {name: "Martigage Loan"},
+    {name: "Professional Loan"},
+    {name: "Vehicle Loan"}
+  ];
+
+  goToLoan(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("personal-loan");
+    }
+    if (i == 1) {
+      this.navCtrl.navigateForward("business-loan");
+    }
+    if (i == 2) {
+      this.navCtrl.navigateForward("home-loan");
+    }
+    if (i == 3) {
+      this.navCtrl.navigateForward("martigage-loan");
+    }
+    if (i == 4) {
+      this.navCtrl.navigateForward("professional-loan");
+    }
+    if (i == 5) {
+      this.navCtrl.navigateForward("vehicle-loan");
+    }
+  }
+  
+  public referralWallet = [
+    {name: "Refer Now"},
+    {name: "My Referrals"},
+    {name: "Refer & Earn"}
+  ];
+
+  goToReferralWallet(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("refer-now");
+    }
+    if (i == 1) {
+      this.navCtrl.navigateForward("my-referrals");
+    }
+    if (i == 2) {
+      this.navCtrl.navigateForward("refer-earn");
+    }
+  }
+
+   public howItWorks = [];
+   goToHowItWorks(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+   public ourChannelPartners = [];
+   goToOurChannelWorks(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+
+   public contactUs = [];
+   goToContactUs(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+
+   public myAccount = [];
+   goToMyAccount(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+
+
+   //////
   public listView = [
     { name: "Infinite Scroll" },
     { name: "Refresher" },
@@ -575,6 +676,28 @@ export class AppComponent {
     this.itemsHome = [
       { expandedHome: false },
     ];
+
+    // financial app code
+    this.itemsLoan = [
+      { expandedHelp: false },
+    ];
+    this.itemsReferralWallet = [
+      { expandedHelp: false },
+    ];
+    this.itemsHowItWorks = [
+      { expandedHelp: false },
+    ];
+    this.itemsOurChannelPartners = [
+      { expandedHelp: false },
+    ];
+    this.itemsContactUs = [
+      { expandedHelp: false },
+    ];
+    this.itemsMyAccount = [
+      { expandedHelp: false },
+    ];
+
+    // normal code
     this.itemsCategory = [
       { expandedcategory: false },
     ];
@@ -719,6 +842,108 @@ export class AppComponent {
       this.navCtrl.navigateForward("list-expandable");
     }
   }
+
+  //finanacial app
+
+  expandItemLoan(item): void {
+    this.visibleLoan = !this.visibleLoan;
+    if (item.expandedHelp) {
+      item.expandedHelp = false;
+    } else {
+      this.itemsLoan.map(listItem => {
+        if (item == listItem) {
+          listItem.expanded = !listItem.expanded;
+        } else {
+          listItem.expanded = false;
+        }
+        return listItem;
+      });
+    }
+  }
+  expandItemReferralWallet(item): void {
+    this.visibleReferralWallet = !this.visibleReferralWallet;
+    if (item.expandedHelp) {
+      item.expandedHelp = false;
+    } else {
+      this.itemsReferralWallet.map(listItem => {
+        if (item == listItem) {
+          listItem.expanded = !listItem.expanded;
+        } else {
+          listItem.expanded = false;
+        }
+        return listItem;
+      });
+    }
+  }
+
+  expandHowItWorks(item): void {
+    this.visibleHowItWorks = !this.visibleHowItWorks;
+    if (item.expandedHelp) {
+      item.expandedHelp = false;
+    } else {
+      this.itemsHowItWorks.map(listItem => {
+        if (item == listItem) {
+          listItem.expanded = !listItem.expanded;
+        } else {
+          listItem.expanded = false;
+        }
+        return listItem;
+      });
+    }
+  }
+
+  expandOurChannelPartners(item): void {
+    this.visibleOurChannelPartners = !this.visibleOurChannelPartners;
+    if (item.expandedHelp) {
+      item.expandedHelp = false;
+    } else {
+      this.itemsOurChannelPartners.map(listItem => {
+        if (item == listItem) {
+          listItem.expanded = !listItem.expanded;
+        } else {
+          listItem.expanded = false;
+        }
+        return listItem;
+      });
+    }
+  }
+
+  expandContactUs(item): void {
+    this.visibleContactUs = !this.visibleContactUs;
+    if (item.expandedHelp) {
+      item.expandedHelp = false;
+    } else {
+      this.itemsContactUs.map(listItem => {
+        if (item == listItem) {
+          listItem.expanded = !listItem.expanded;
+        } else {
+          listItem.expanded = false;
+        }
+        return listItem;
+      });
+    }
+  }
+
+  expandMyAccount(item): void{
+    this.visibleMyAccount = !this.visibleMyAccount;
+    if(item.expandedHelp) {
+      item.expandedHelp = false;
+    }else{
+      this.itemsMyAccount.map(listItem =>{
+        if(item == listItem){
+          listItem.expanded = !listItem.expanded;
+        }else{
+          listItem.expanded = false;
+        }
+        return listItem;
+      })
+    }
+  }
+
+
+
+
+
   /////
   ////////////
   expandItemList(item): void {
