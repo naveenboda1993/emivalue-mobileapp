@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular'//toastcontroller package
+import { MissMatch } from './miss-match.validator';
 
 
 
@@ -71,24 +72,30 @@ export class FormRegisterThreePage implements OnInit {
         Validators.required,
         Validators.minLength(10)])],
 
-      password: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(10)])],
+       
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmpassword: ['', Validators.required],  
 
-      confirmpassword: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(10)])]
-    },{Validators: this.checkPassword});
+      // password: ['', Validators.compose([
+      //   Validators.required,
+      //   Validators.minLength(6),
+      //   Validators.maxLength(10)])],
+
+      // confirmpassword: ['', Validators.compose([
+      //   Validators.required,
+      //   Validators.minLength(6),
+      //   Validators.maxLength(10)])]
+    },{
+      Validator: MissMatch('password','confirmpassword')
+    });
     console.log("hello")
   }
 
-  checkPassword(formGroup: FormGroup){
-    const { value: password } = formGroup.get('password');
-    const { value: confirmpassword } = formGroup.get('confirmpassword');
-    return password == confirmpassword ? null : {passwordDoNotMatch: true};
-  }
+  // Missmatch(formGroup: FormGroup){
+  //   const { value: password } = formGroup.get('password');
+  //   const { value: confirmpassword } = formGroup.get('confirmpassword');
+  //   return password == confirmpassword ? null : {passwordDoNotMatch: true};
+  // }
 
 
   async onToast() {
