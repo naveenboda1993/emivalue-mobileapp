@@ -125,7 +125,11 @@ const routes: Routes = [
   { path: 'intro', loadChildren: './intro/intro.module#IntroPageModule' },
   { path: 'form-forget-one', loadChildren: './form-forget-one/form-forget-one.module#FormForgetOnePageModule' },
   { path: 'form-forget-two', loadChildren: './form-forget-two/form-forget-two.module#FormForgetTwoPageModule' },
-  { path: 'form-forget-three', loadChildren: './form-forget-three/form-forget-three.module#FormForgetThreePageModule' }
+  { path: 'form-forget-three', loadChildren: './form-forget-three/form-forget-three.module#FormForgetThreePageModule' },
+  //
+  { path: 'register-personal-loan', loadChildren: './register-personal-loan/register-personal-loan.module#RegisterPersonalLoanPageModule' },
+  { path: 'register-personal-loan2', loadChildren: './register-personal-loan2/register-personal-loan2.module#RegisterPersonalLoan2PageModule' }
+
 ];
 
 @NgModule({

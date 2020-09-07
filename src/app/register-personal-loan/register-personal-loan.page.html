@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Registration Form of Personal loan </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- form with input text and submit buttons -->
+
+
+    <!-- <ion-button (click)="openCam()" >Take Photo</ion-button>
+    <ion-button (click)="uploadFile()" >Upload</ion-button>
+    <img src="{{image}}">
+    <br>
+    <br> -->
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- <ion-row>
+            <ion-col size="12">
+                <div>
+                    <img src="assets/images/avatar.png" />
+                </div>
+                <div>
+                    <ion-avatar>
+                        <ion-icon [ngStyle]="{color:itemColor}" (click)="onFileSelect($event)" name="image"></ion-icon>
+                    </ion-avatar>
+                </div>
+            </ion-col>
+        </ion-row> -->
+        <ion-row>
+            <ion-col size="12">
+                <ion-list>
+                    <ion-item>
+                       <ion-input type= "text" class="formGroup" placeholder = "First Name" formControlName = "firstname" required>
+                       </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Date of Birth" formControlName = "dob" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Company Name" formControlName = "company" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Employee Type" formControlName = "employee" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "email" class="formGroup" placeholder = "Enter Your E-mail" formControlName = "email" required>
+                        </ion-input>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-input type= "number" class="formGroup" placeholder = "Net Salary" formControlName = "salary" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "number" class="formGroup" placeholder = "Year of Experience" formControlName = "experience" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Pan Card No" formControlName = "pan_no" required>
+                        </ion-input>
+                     </ion-item>
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Material Status" formControlName = "material_status" required>
+                        </ion-input>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Residential Address" formControlName = "address" required>
+                        </ion-input>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Select your City" formControlName = "city" required>
+                        </ion-input>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-input type= "text" class="formGroup" placeholder = "Select Your State" formControlName = "state" required>
+                        </ion-input>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-input type= "number" class="formGroup" placeholder = "Enter Your Pincode" formControlName = "pincode" required>
+                        </ion-input>
+                     </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button expand="block" type="submit" (click) = "onToast()">Save</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>
