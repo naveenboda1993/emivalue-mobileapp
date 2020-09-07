@@ -112,6 +112,7 @@ const routes: Routes = [
   { path: 'form-register-one', loadChildren: './form-register-one/form-register-one.module#FormRegisterOnePageModule' },
   { path: 'form-register-two', loadChildren: './form-register-two/form-register-two.module#FormRegisterTwoPageModule' },
   { path: 'form-register-three', loadChildren: './form-register-three/form-register-three.module#FormRegisterThreePageModule' },
+  { path: 'form-personal-loan', loadChildren: './form-personal-loan/form-personal-loan.module#FormPersonalPageModule' },
   { path: 'grid-slider', loadChildren: './grid-slider/grid-slider.module#GridSliderPageModule' },
   { path: 'grid-subcategory-two', loadChildren: './grid-subcategory-two/grid-subcategory-two.module#GridSubcategoryTwoPageModule' },
   { path: 'tab-chat', loadChildren: './tab-chat/tab-chat.module#TabChatPageModule' },

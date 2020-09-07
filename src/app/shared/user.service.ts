@@ -16,6 +16,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  getcategory(): Observable<any> {
+    return this.http.get<any>('http://emivalue.snitchmedia.in/Login/getcategory', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   uploadFile(data: any): Observable<any> {
     return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appupload', data, this.httpOptions)
       .pipe(

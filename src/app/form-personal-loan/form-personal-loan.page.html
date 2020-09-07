@@ -1,0 +1,135 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>form-personal-loan</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- form with input text and submit buttons -->
+
+
+    <!-- <ion-button (click)="openCam()" >Take Photo</ion-button>
+    <ion-button (click)="uploadFile()" >Upload</ion-button>
+    <img src="{{image}}">
+    <br>
+    <br> -->
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- <ion-row>
+            <ion-col size="12">
+                <div>
+                    <img src="assets/images/avatar.png" />
+                </div>
+                <div>
+                    <ion-avatar>
+                        <ion-icon [ngStyle]="{color:itemColor}" (click)="onFileSelect($event)" name="image"></ion-icon>
+                    </ion-avatar>
+                </div>
+            </ion-col>
+        </ion-row> -->
+        <ion-row>
+            <ion-col size="12">
+                <ion-list>
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="person"></ion-icon>First Name
+                        </ion-label> -->
+                        <ion-input type="text" class="formGroup" placeholder="form-personal-loan" formControlName="firstname"
+                            required>
+                        </ion-input>
+                        <span class="error-msg" *ngIf="!form.controls['firstname'].valid && form.controls['firstname'].touched"> First
+                            Name Is Required</span>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="person"></ion-icon>Last Name
+                        </ion-label> -->
+                        <ion-input type="text" class="formGroup" placeholder="Last Name" formControlName="lastname"
+                            required>
+                        </ion-input>
+                        <span class="error-msg" *ngIf="!form.controls['lastname'].valid && form.controls['lastname'].touched"> Last Name
+                            Is Required</span>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="mail"></ion-icon>Email
+                        </ion-label> -->
+                        <ion-input type="email" class="formGroup" placeholder="Email" formControlName="email" required>
+                        </ion-input>
+                        <span class="error-msg" *ngIf="!form.controls['email'].valid && form.controls['email'].touched"> Email Is
+                            Required</span>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="phone-portrait"></ion-icon>Mobile Number
+                        </ion-label> -->
+                        <ion-input type="number" class="formGroup" placeholder="Mobile" formControlName="mobile"
+                            required>
+                        </ion-input>
+                        <!-- <div class="error-message"> -->
+                            <span  class="error-msg" *ngFor="let error of error_messages.mobile">
+                                <span class="error-message"
+                                    *ngIf="form.get('mobile').hasError(error.type) && (form.get('mobile').dirty || form.get('mobile').touched)">
+                                    {{error.message}} </span>
+                            </span>
+                        <!-- </div> -->
+                    </ion-item>
+
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="lock"></ion-icon>Password
+                        </ion-label> -->
+                        <ion-input type="password" class="formGroup" placeholder="Password" formControlName="password"
+                            required>
+                        </ion-input>
+                        <!-- <div class="error-message"> -->
+                            <span class="error-msg" *ngFor="let error of error_messages.password">
+                                <span class="error-message"
+                                    *ngIf="form.get('password').hasError(error.type) && (form.get('password').dirty || form.get('password').touched)">
+                                    {{error.message}} </span>
+                            </span>
+                        <!-- </div> -->
+                    </ion-item>
+
+                    <ion-item>
+                        <!-- <ion-label position="floating">
+                            <ion-icon name="lock"></ion-icon>Confirm Password
+                        </ion-label> -->
+                        <ion-input type="password" class="formGroup" placeholder="Confirm Password"
+                            formControlName="confirmpassword" required>
+                        </ion-input>
+                        <!-- <div class="error-message"> -->
+                            <span class="error-msg" *ngFor="let error of error_messages.confirmpassword">
+                                <span class="error-message"
+                                    *ngIf="form.get('confirmpassword').hasError(error.type) && (form.get('confirmpassword').dirty || form.get('confirmpassword').touched)">
+                                    {{error.message}}
+                                 </span>
+                            </span>
+                            <span class="error-msg"
+                                *ngIf="!form.get('confirmpassword').errors && form.hasError('passwordNotMatch') && (form.get('confirmpassword').dirty || form.get('confirmpassword').touched)">
+                                Password and Confirm Password fields should match
+                        </span>
+                        <!-- </div> -->
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <p>Creating an account means you’re okay with our
+                    <a>Term and Services</a>,
+                    <a>Privacy Policy</a> and
+                    <a>Refund Policy</a>
+                </p>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" type="submit" (click) = "onToast()">Register</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

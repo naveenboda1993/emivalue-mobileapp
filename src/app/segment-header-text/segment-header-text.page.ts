@@ -28,8 +28,9 @@ export class SegmentHeaderTextPage implements OnInit {
     };
     isimage:boolean=false;
   itemColor: string[];
-  image: any = ''
-  imageData: any = ''
+  image: any = '';
+  subcategory: any;
+  imageData: any = '';
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
@@ -40,6 +41,15 @@ export class SegmentHeaderTextPage implements OnInit {
     this.itemColor = ["#03A9F4"];
   }
   ngOnInit() {
+    this.userAPI.getcategory() 
+      .subscribe((res) => {
+          this.zone.run(() => {
+            console.log(res);
+            if(res.isSuccess){
+              this.subcategory=res.subcategory;
+            }
+          })
+        });
   }
   openCam() {
 
