@@ -44,48 +44,32 @@ export class RegisterPersonalLoan2Page implements OnInit {
     
   }
 
-  error_messages = {
-
-    'password': [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length too short.' },
-      { type: 'maxlength', message: 'password length is strong.' }
-    ],
-    'confirmpassword': [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length too short.' },
-      { type: 'maxlength', message: 'password length is strong.' }
-    ],
-    'mobile': [
-      { type: 'required', message: 'Mobile Number is required.' },
-      { type: 'minlength', message: 'Mobile Number at least 10 Digits' }
-    ],
-
-  }
-
 
   ngOnInit() {
     this.registerpersonalform2 = this.formBuilder.group({
-      ownhouse: ['']     
+      ownhouse: ['', Validators.required],
+      ownhouse1: ['', Validators.required],
+      cibil: ['', Validators.required],
+      cibil1: ['', Validators.required],
+      apply: ['', Validators.required],
+      apply1: ['', Validators.required],
+      cheque:['', Validators.required],
+      cheque1:['', Validators.required],
+      covid: ['', Validators.required],
+      covid1: ['', Validators.required],
+      banker: ['', Validators.required]    
     }   
     );
     console.log("hello")
   }
 
-  checkPassword(formGroup: FormGroup){
-    const { value: password } = formGroup.get('password');
-    const { value: confirmpassword } = formGroup.get('confirmpassword');
-    return password == confirmpassword ? null : {passwordDoNotMatch: true};
-  }
-
-
-  async onToast() {
+  async onToast(text:any) {
     const toast = await this.toastCtrl.create({
         cssClass: 'toastTag',
         color: "danger",
         showCloseButton: true,
         position: 'top',
-        message: "Hello Your Registration is Completeded",
+        message: text,
         closeButtonText: '| Done',
         duration: 2000,
     });
@@ -95,7 +79,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
 
   onSubmit() {
     if (!this.registerpersonalform2.valid) {
-
+      this.onToast(" Please Enter All Feilds")
       return false;
     } else {
       console.log(this.registerpersonalform2.value)

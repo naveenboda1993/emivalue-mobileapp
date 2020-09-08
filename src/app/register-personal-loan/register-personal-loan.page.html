@@ -19,7 +19,7 @@
     <br>
     <br> -->
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loanregisterform" (ngSubmit)="onSubmit()">
         <!-- <ion-row>
             <ion-col size="12">
                 <div>
@@ -38,26 +38,32 @@
                     <ion-item>
                        <ion-input type= "text" class="formGroup" placeholder = "First Name" formControlName = "firstname" required>
                        </ion-input>
+                       <span class="error-msg" *ngIf = "!form.controls['firstname'].valid && form.controls['firstname'].touched">Full Name is Required</span>
                     </ion-item>
                     <ion-item>
-                        <ion-input type= "date" class="formGroup" placeholder = "Date of Birth" formControlName = "dob" required>
+                        <ion-input type= "date" class="formGroup" placeholder = "Date of Birth" formControlName = "birth" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['birth'].valid && form.controls['birth'].touched"> Date of Birth is Required</span>
                      </ion-item>
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Company Name" formControlName = "company" required>
                         </ion-input>
+                        <span class="erroi-msg" *ngIf = "!form.controls['company'].valid && form.controls['company'].touched"> Company Name is Required</span>
                      </ion-item>
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Employee Type" formControlName = "employee" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['employee'].valid && form.controls['employee'].touched"></span>
                      </ion-item>
                      <ion-item>
                         <ion-input type= "email" class="formGroup" placeholder = "Enter Your E-mail" formControlName = "email" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['email'].valid && form.controls['email'].touched"></span>
                      </ion-item> 
                      <ion-item>
                         <ion-input type= "number" class="formGroup" placeholder = "Net Salary" formControlName = "salary" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['salary'].valid && form.controls['salary'].touched"></span>
                      </ion-item>
                      <ion-item>
                         <ion-input type= "number" class="formGroup" placeholder = "Year of Experience" formControlName = "experience" required>
@@ -66,6 +72,7 @@
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Pan Card No" formControlName = "pan_no" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['pan_no'].valid && form.controls['pan_no'].touched"></span>
                      </ion-item>
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Material Status" formControlName = "material_status" required>
@@ -74,18 +81,22 @@
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Residential Address" formControlName = "address" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['address'].valid && form.controls['address'].touched"></span>
                      </ion-item> 
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Select your City" formControlName = "city" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['city'].valid && form.controls['city'].touched"></span>
                      </ion-item> 
                      <ion-item>
                         <ion-input type= "text" class="formGroup" placeholder = "Select Your State" formControlName = "state" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['state'].valid && form.controls['state'].touched"></span>
                      </ion-item> 
                      <ion-item>
                         <ion-input type= "number" class="formGroup" placeholder = "Enter Your Pincode" formControlName = "pincode" required>
                         </ion-input>
+                        <span class="error-msg" *ngIf = "!form.controls['pincode'].valid && form.controls['pincode'].touched"></span>
                      </ion-item>
                 </ion-list>
             </ion-col>

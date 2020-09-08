@@ -37,7 +37,7 @@
                 <ion-list>
                     <ion-radio-group formControlName="ownhouse">
                         <ion-col>
-                            <ion-item no-lines id="question">
+                            <ion-item no-lines>
                                 1. Do you Have Own House Anywhere in India ?
                             </ion-item>
                         </ion-col>
@@ -54,10 +54,9 @@
                             </ion-item>
                         </ion-col>
                     </ion-radio-group>
-                   <div *ngIf="registerpersonalform2.value.ownhouse==='yes'">
-                       <p>Hello this is </p>
-                   </div>
-                    <ion-radio-group>
+                       <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "ownhouse1" *ngIf="registerpersonalform2.value.ownhouse==='yes'"></ion-textarea>
+
+                    <ion-radio-group formControlName = "cibil">
                         <ion-col>
                             <ion-item no-lines id="question">
                                 2. Do You Have Any Cibil Derog's ?
@@ -76,7 +75,9 @@
                             </ion-item>
                         </ion-col>
                     </ion-radio-group>
-                    <ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "cibil1" *ngIf="registerpersonalform2.value.cibil==='yes'"></ion-textarea>
+
+                    <ion-radio-group formControlName = "apply">
                         <ion-col>
                             <ion-item no-lines id="question">
                                 3. Did you Applied Anywhere in Past 6 Months ?
@@ -95,26 +96,18 @@
                             </ion-item>
                         </ion-col>
                     </ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "apply1" *ngIf="registerpersonalform2.value.apply==='yes'"></ion-textarea>
+                    
                     <ion-radio-group>
                         <ion-col>
                             <ion-item no-lines id="question">
                                 4. Your Primary Banker ?
                             </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item no-lines>
-                                <ion-label>yes</ion-label>
-                                <ion-radio value="yes"></ion-radio>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col>
-                            <ion-item no-lines>
-                                <ion-label>no</ion-label>
-                                <ion-radio value="no"></ion-radio>
-                            </ion-item>
-                        </ion-col>
+                        </ion-col>    
                     </ion-radio-group>
-                    <ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "banker"></ion-textarea>
+
+                    <ion-radio-group formControlName = "cheque">
                         <ion-col>
                             <ion-item no-lines id="question">
                                 5. Is there any Cheque Returns in Past 6 months?
@@ -133,7 +126,9 @@
                             </ion-item>
                         </ion-col>
                     </ion-radio-group>
-                    <ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "cheque1" *ngIf="registerpersonalform2.value.cheque==='yes'"></ion-textarea>
+
+                    <ion-radio-group formControlName ="covid">
                         <ion-col>
                             <ion-item no-lines id="question">
                                 6. Are You Applied EMI moratorium During the Period of Covid -19 ?
@@ -152,11 +147,9 @@
                             </ion-item>
                         </ion-col>
                     </ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "covid1" *ngIf="registerpersonalform2.value.covid==='yes'"></ion-textarea>
                 </ion-list>
             </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-textarea></ion-textarea>
         </ion-row>
         <ion-row>
             <ion-col size="12">
