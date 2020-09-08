@@ -26,8 +26,7 @@
           <ion-item>
             <ion-label>ID Proof </ion-label>
             <ion-select value="notifications" interface="action-sheet">
-              <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id}}">{{sub.subcat_name}}</ion-select-option>
-             
+              <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id}}">{{sub.subcat_name}}</ion-select-option>             
             </ion-select>
           </ion-item>
 
@@ -41,7 +40,7 @@
       <ion-row  style="position:fixed; bottom:30px;width:100%">
         <ion-col size="8" class="ion-align-self-start">
           <div>
-            <ion-button color="primary" routerLink="/form-login-three" routerDirection="forward">Skip
+            <ion-button color="primary" click="uploadFile">Skip
             </ion-button>
           </div>
         </ion-col>

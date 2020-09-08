@@ -13,25 +13,26 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+  baseurl='http://emivalue.snitchmedia.in/Login'
 
   constructor(private http: HttpClient) { }
 
   getcategory(): Observable<any> {
-    return this.http.get<any>('http://emivalue.snitchmedia.in/Login/getcategory', this.httpOptions)
+    return this.http.get<any>(this.baseurl+'/getcategory', this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
 
   }
   uploadFile(data: any): Observable<any> {
-    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appupload', data, this.httpOptions)
+    return this.http.post<any>(this.baseurl+'/appupload', data, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Upload file error'))
       );
 
   }
   addUser(user: any): Observable<any> {
-    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appadduser', user, this.httpOptions)
+    return this.http.post<any>(this.baseurl+'/appadduser', user, this.httpOptions)
       // return this.http.post<any>('http://emivalue.snitchmedia.in/Crud/test', user, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Add User'))
@@ -49,15 +50,21 @@ export class UserService {
     //   }
   }
   login(user: any): Observable<any> {
-    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/applogin', user, this.httpOptions)
+    return this.http.post<any>(this.baseurl+'/applogin', user, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Add User'))
       );   
   }
   otplogin(user: any): Observable<any> {
-    return this.http.post<any>('http://emivalue.snitchmedia.in/Login/appotplogin', user, this.httpOptions)
+    return this.http.post<any>(this.baseurl+'/appotplogin', user, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Add User'))
+      );   
+  }
+  personalloancreate(data: any): Observable<any> {
+    return this.http.post<any>(this.baseurl+'/addpersonalloan', data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Add Persnoal Loan'))
       );   
   }
 

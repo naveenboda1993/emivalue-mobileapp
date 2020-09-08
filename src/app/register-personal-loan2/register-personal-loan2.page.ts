@@ -22,8 +22,9 @@ export class RegisterPersonalLoan2Page implements OnInit {
   image: any = ''
   imageData: any = ''
   data: any;
-  form: FormGroup;
+  registerpersonalform2: FormGroup;
   isMatching: any;
+  ownhouse: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
@@ -64,36 +65,9 @@ export class RegisterPersonalLoan2Page implements OnInit {
 
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      firstname: ['', Validators.compose([Validators.required])],
-      // lastname: ['', Validators.required],
-      email: ['', Validators.required],
-      company: ['', Validators.required],
-      employee: ['', Validators.required],
-      salary: ['', Validators.required],
-      city: ['', Validators.required],
-      dob: ['', Validators.required],
-      experience: ['', Validators.required],
-      material_status: ['', Validators.required],
-      pan_no: ['', Validators.required],
-      state: ['', Validators.required],
-      address: ['', Validators.required],
-      pincode: ['', Validators.required],
-      mobile: ['',Validators.compose([
-        Validators.required,
-        Validators.minLength(10)])],
-
-      // password: ['', Validators.compose([
-      //   Validators.required,
-      //   Validators.minLength(6),
-      //   Validators.maxLength(10)])],
-
-      // confirmpassword: ['', Validators.compose([
-      //   Validators.required,
-      //   Validators.minLength(6),
-      //   Validators.maxLength(10)])]
-    }
-    // {Validators: this.checkPassword}
+    this.registerpersonalform2 = this.formBuilder.group({
+      ownhouse: ['']     
+    }   
     );
     console.log("hello")
   }
@@ -120,11 +94,11 @@ export class RegisterPersonalLoan2Page implements OnInit {
 
 
   onSubmit() {
-    if (!this.form.valid) {
+    if (!this.registerpersonalform2.valid) {
 
       return false;
     } else {
-      console.log(this.form.value)
+      console.log(this.registerpersonalform2.value)
       // this.userAPI.addUser(this.form.value)
       //   .subscribe((res) => {
       //     this.zone.run(() => {
@@ -143,7 +117,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.form.get('image').setValue(file);
+      this.registerpersonalform2.get('image').setValue(file);
     }
   }
   upload() {

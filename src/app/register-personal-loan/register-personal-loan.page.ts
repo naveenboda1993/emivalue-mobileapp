@@ -1,8 +1,8 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { CustomThemeService } from '../services/custom-theme.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { FormGroup, FormBuilder ,Validators} from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class RegisterPersonalLoanPage implements OnInit {
   data: any;
   form: FormGroup;
   isMatching: any;
+  loanid: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
@@ -34,12 +35,13 @@ export class RegisterPersonalLoanPage implements OnInit {
     this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
-   
+    this.loanid = this.service.getLoanid();
+    console.log("Loan id"+this.loanid);
     if (this.data == "neon")//if selected color is blue 
     {
       this.itemColor = ["#03A9F4"];
     }
-    
+
   }
 
   error_messages = {
@@ -78,9 +80,9 @@ export class RegisterPersonalLoanPage implements OnInit {
       state: ['', Validators.required],
       address: ['', Validators.required],
       pincode: ['', Validators.required],
-      mobile: ['',Validators.compose([
-        Validators.required,
-        Validators.minLength(10)])],
+      // mobile: ['',Validators.compose([
+      //   Validators.required,
+      //   Validators.minLength(10)])],
 
       // password: ['', Validators.compose([
       //   Validators.required,
@@ -92,30 +94,30 @@ export class RegisterPersonalLoanPage implements OnInit {
       //   Validators.minLength(6),
       //   Validators.maxLength(10)])]
     }
-    // {Validators: this.checkPassword}
+      // {Validators: this.checkPassword}
     );
     console.log("hello")
   }
 
-  checkPassword(formGroup: FormGroup){
+  checkPassword(formGroup: FormGroup) {
     const { value: password } = formGroup.get('password');
     const { value: confirmpassword } = formGroup.get('confirmpassword');
-    return password == confirmpassword ? null : {passwordDoNotMatch: true};
+    return password == confirmpassword ? null : { passwordDoNotMatch: true };
   }
 
 
   async onToast() {
     const toast = await this.toastCtrl.create({
-        cssClass: 'toastTag',
-        color: "danger",
-        showCloseButton: true,
-        position: 'top',
-        message: "Hello Your Registration is Completeded",
-        closeButtonText: '| Done',
-        duration: 2000,
+      cssClass: 'toastTag',
+      color: "danger",
+      showCloseButton: true,
+      position: 'top',
+      message: "Hello Your Registration is Completeded",
+      closeButtonText: '| Done',
+      duration: 2000,
     });
     toast.present();
-}
+  }
 
 
   onSubmit() {
@@ -203,7 +205,7 @@ export class RegisterPersonalLoanPage implements OnInit {
   }
 
 
-   uploadFile() {
+  uploadFile() {
     // const loading = await this.loadingController.create({
     //   message: 'Uploading...',
     //   });

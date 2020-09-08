@@ -19,7 +19,7 @@
     <br>
     <br> -->
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="personalloanform" (ngSubmit)="onSubmit()">
         <!-- <ion-row>
             <ion-col size="12">
                 <div>
@@ -37,7 +37,7 @@
                 <ion-list>
                     <ion-item>
                         <ion-label> Type Of Loan</ion-label> 
-                        <ion-select placeholder = "personal Loan">
+                        <ion-select placeholder = "personal Loan" formControlName="personalloan">
                             <ion-select-option value ="personal_loan" selected> Personal Loan</ion-select-option>
                             <ion-select-option value ="business_loan"> Business Loan</ion-select-option>
                             <ion-select-option value ="martigage_loan"> Martigage Loan</ion-select-option>
@@ -48,7 +48,7 @@
 
                     <ion-item>
                         <ion-label> Profile Type</ion-label> 
-                        <ion-select placeholder = "Salaried">
+                        <ion-select placeholder = "Salaried" formControlName="salarised">
                             <ion-select-option value ="salaried" selected> Salaried</ion-select-option>
                             <ion-select-option value ="businessman"> Business Man</ion-select-option>
                             <ion-select-option value ="professional"> Professional</ion-select-option>
@@ -56,14 +56,14 @@
                     </ion-item>
                     <ion-item>    
                     <ion-label> Customer Type</ion-label> 
-                    <ion-select placeholder = "Salaried Individual">
+                    <ion-select placeholder = "Salaried Individual" formControlName="salarised_individual">
                         <ion-select-option value ="salaried_individual" selected> Salaried Individual</ion-select-option>
                         <ion-select-option value ="salaried_professional"> Professional Salaried</ion-select-option>
                     </ion-select> 
                     </ion-item>
                         <ion-label>Looking Loan Amount</ion-label>
                     <ion-item>
-                        <ion-input type="text" placeholder="Loan Amount" required>
+                        <ion-input type="text" placeholder="Loan Amount" formControlName="loanamount" required>
                         </ion-input>
                     </ion-item>
                 </ion-list>
