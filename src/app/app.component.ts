@@ -20,7 +20,7 @@ export class AppComponent {
     //    icon: 'home'
     //  },
     {
-      title: 'COMPONENTS',
+      title: 'MENU',
       url: '',
       icon: 'list'
     },

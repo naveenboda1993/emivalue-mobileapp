@@ -25,6 +25,11 @@ export class RegisterPersonalLoan2Page implements OnInit {
   registerpersonalform2: FormGroup;
   isMatching: any;
   ownhouse: any;
+  cibil: any;
+  apply: any;
+  cheque: any;
+  covid: any;
+  banker: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
@@ -47,16 +52,16 @@ export class RegisterPersonalLoan2Page implements OnInit {
 
   ngOnInit() {
     this.registerpersonalform2 = this.formBuilder.group({
-      ownhouse: ['', Validators.required],
+      ownhouse: ['no', Validators.required],
       ownhouse1: ['', Validators.required],
-      cibil: ['', Validators.required],
-      cibil1: ['', Validators.required],
-      apply: ['', Validators.required],
-      apply1: ['', Validators.required],
-      cheque:['', Validators.required],
-      cheque1:['', Validators.required],
-      covid: ['', Validators.required],
-      covid1: ['', Validators.required],
+      cibil: ['no', Validators.required],
+      // cibil1: ['', Validators.required],
+      apply: ['no', Validators.required],
+      // apply1: ['', Validators.required],
+      cheque:['no', Validators.required],
+      // cheque1:['', Validators.required],
+      covid: ['no', Validators.required],
+      // covid1: ['', Validators.required],
       banker: ['', Validators.required]    
     }   
     );
@@ -83,6 +88,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
       return false;
     } else {
       console.log(this.registerpersonalform2.value)
+      this.onToast("sucessfully registerd")
       // this.userAPI.addUser(this.form.value)
       //   .subscribe((res) => {
       //     this.zone.run(() => {
