@@ -14,6 +14,7 @@ import { MenuComponentComponent } from'./components/menu-component/menu-componen
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 @NgModule({
@@ -30,7 +31,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
   providers: [
     StatusBar,
     Camera,FileTransfer,
-    SplashScreen,
+    SplashScreen,HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -174,7 +174,7 @@ export class AppComponent {
 
   goToLoan(i) {
     if (i == 0) {
-      this.navCtrl.navigateForward("personal-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 1) {
       this.navCtrl.navigateForward("business-loan");

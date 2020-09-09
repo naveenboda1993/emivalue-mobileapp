@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { HTTP } from '@ionic-native/http/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +13,9 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  baseurl='http://emivalue.snitchmedia.in/Login'
+  baseurl='http://emivalue.snitchmedia.in/api'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private http2: HTTP) { }
 
   getcategory(): Observable<any> {
     return this.http.get<any>(this.baseurl+'/getcategory', this.httpOptions)
@@ -32,6 +32,21 @@ export class UserService {
 
   }
   addUser(user: any): Observable<any> {
+  //    this.http2.post(this.baseurl+'/appadduser', user, {})
+  //   .then(data => {
+  
+  //     console.log(data.status);
+  //     console.log(data.data); // data received by server
+  //     console.log(data.headers);
+  // return data;
+  //   })
+  //   .catch(error => {
+  
+  //     console.log(error.status);
+  //     console.log(error.error); // error message as string
+  //     console.log(error.headers);
+  
+  //   });
     return this.http.post<any>(this.baseurl+'/appadduser', user, this.httpOptions)
       // return this.http.post<any>('http://emivalue.snitchmedia.in/Crud/test', user, this.httpOptions)
       .pipe(

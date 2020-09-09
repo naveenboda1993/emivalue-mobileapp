@@ -101,22 +101,23 @@ export class FormPersonalLoanPage implements OnInit {
       this.onToast("Please enter the all fields")
       return false;
     } else {
-      this.personalloanform.get("id").setValue(localStorage.getItem('id'));
-      this.personalloanform.get("token").setValue(localStorage.getItem('token'));
-      console.log(this.personalloanform.value)
-      this.userAPI.personalloancreate(this.personalloanform.value)
-      .subscribe((res) => {
-        this.zone.run(() => {
-          console.log(res);
-          if(res.isSuccess){
-            this.onToast("Api success",'green')
-            this.service.setLoanid(res.loan_id);
-              // // this.form.setValue([name,res]);
-              // this.form.reset();
-              this.router.navigate(['/register-personal-loan']);
-            }
-          })
-        });
+      this.router.navigate(['/register-personal-loan']);
+      // this.personalloanform.get("id").setValue(localStorage.getItem('id'));
+      // this.personalloanform.get("token").setValue(localStorage.getItem('token'));
+      // console.log(this.personalloanform.value)
+      // this.userAPI.personalloancreate(this.personalloanform.value)
+      // .subscribe((res) => {
+      //   this.zone.run(() => {
+      //     console.log(res);
+      //     if(res.isSuccess){
+      //       this.onToast("Api success",'green')
+      //       this.service.setLoanid(res.loan_id);
+      //         // // this.form.setValue([name,res]);
+      //         // this.form.reset();
+      //         this.router.navigate(['/register-personal-loan']);
+      //       }
+      //     })
+      //   });
     }
   }
 

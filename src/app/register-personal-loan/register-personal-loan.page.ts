@@ -78,6 +78,7 @@ export class RegisterPersonalLoanPage implements OnInit {
 
 
   onSubmit() {
+            this.router.navigate(['/register-personal-loan2']);
     if (!this.loanregisterform.valid) {
       this.onToast("Please Enter All The Fields")
       return false;
@@ -92,7 +93,6 @@ export class RegisterPersonalLoanPage implements OnInit {
       //       if(res.isSuccess){
       //         // this.form.setValue([name,res]);
       //         this.form.reset();
-      //         this.router.navigate(['/form-login-one']);
       //       }
       //     })
       //   });

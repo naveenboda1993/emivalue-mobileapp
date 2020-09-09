@@ -31,16 +31,16 @@ export class FormRegisterTwoPage implements OnInit {
     if (!this.registerForm.valid) {
       return false;
     } else {
-      this.userAPI.addUser(this.registerForm.value)
-        .subscribe((res) => {
-          this.zone.run(() => {
-            console.log(res)
-            alert(res.key);
-            // this.registerForm.setValue([name,res]);
-            // this.registerForm.reset();
-            // this.router.navigate(['/home']);
-          })
-        });
+      // this.userAPI.addUser(this.registerForm.value)
+      //   .subscribe((res) => {
+      //     this.zone.run(() => {
+      //       console.log(res)
+      //       alert(res.key);
+      //       // this.registerForm.setValue([name,res]);
+      //       // this.registerForm.reset();
+      //       // this.router.navigate(['/home']);
+      //     })
+      //   });
     }
   }
 }

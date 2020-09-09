@@ -24,3 +24,11 @@ ion-content{
         }
     }
 }
+ion-header{
+  ion-segment{
+      --color-checked: white !important;
+  }
+  ion-title{
+      color: blue;
+  }
+}

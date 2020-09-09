@@ -3,5 +3,15 @@
   "integrations": {
     "cordova": {}
   },
+  "proxies": [
+    {
+      "path": "/Login",
+      "proxyUrl": "http://emivalue.snitchmedia.in/Login"
+    }
+    ,{
+      "path": "/api",
+      "proxyUrl": "http://emivalue.snitchmedia.in/api"
+    }
+  ],
   "type": "angular"
 }
