@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>KYC Update Documents</ion-title>
+    <ion-title>Loan File Documents</ion-title>
   </ion-toolbar>
   <!-- segment header button  -->
   <ion-segment [(ngModel)]="segments">
@@ -33,6 +33,12 @@
           <div (click)="openCam($event)">
             <img *ngIf="!isimage" src="assets/images/upload_doc.png" />
             <img *ngIf="isimage" src="{{image}}">
+          </div>
+          <br>
+          <br>
+          <div (click)="openFile($event)">
+            <img  src="assets/images/upload_doc.png" />
+            
           </div>
          
         </ion-col>

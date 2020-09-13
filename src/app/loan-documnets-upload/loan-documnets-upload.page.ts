@@ -10,10 +10,11 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 @Component({
-  selector: 'app-segment-header-text',
-  templateUrl: './segment-header-text.page.html',
-  styleUrls: ['./segment-header-text.page.scss'],
+  selector: 'app-loan-documnets-upload',
+  templateUrl: './loan-documnets-upload.page.html',
+  styleUrls: ['./loan-documnets-upload.page.scss'],
   animations: [
     trigger('itemState', [
       transition('void => *', [
@@ -23,7 +24,7 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
     ])
   ]
 })
-export class SegmentHeaderTextPage implements OnInit {
+export class LoanDocumnetsUploadTextPage implements OnInit {
   segments: any = 'segmentOne';
   sliderConfig = {
     slidesPerView: 2.2,
@@ -47,6 +48,7 @@ export class SegmentHeaderTextPage implements OnInit {
     private service: CustomThemeService,
     private http: HttpClient,
     private toastCtrl: ToastController,
+    private fileChooser: FileChooser,
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];
   }
@@ -60,6 +62,36 @@ export class SegmentHeaderTextPage implements OnInit {
           }
         })
       });
+  }
+  openFile() {
+    this.fileChooser.open({ "mime": "application/pdf" })
+      .then(uri => 
+      {
+        console.log(uri)
+         const fileTransfer: FileTransferObject = this.transfer.create();
+
+
+    // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+      let options1: FileUploadOptions = {
+         fileKey: 'file',
+         fileName: 'name.pdf',
+         headers: {},
+         params: {"app_key":"Testappkey"},
+         chunkedMode : false
+      
+      }
+
+      fileTransfer.upload(uri,  encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
+       .then((data) => {
+       // success
+       alert("success"+JSON.stringify(data));
+       }, (err) => {
+       // error
+       alert("error"+JSON.stringify(err));
+           });
+
+      })
+      .catch(e => console.log(e));
   }
   openCam() {
 

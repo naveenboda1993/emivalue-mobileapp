@@ -12,6 +12,10 @@
       "path": "/api",
       "proxyUrl": "http://emivalue.snitchmedia.in/api"
     }
+    ,{
+      "path": "/api/abc",
+      "proxyUrl": "http://emivalue.snitchmedia.in/api/abc"
+    }
   ],
   "type": "angular"
 }

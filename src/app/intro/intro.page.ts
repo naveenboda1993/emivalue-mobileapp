@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
@@ -17,7 +18,12 @@ export class IntroPage implements OnInit {
     { image: "assets/images/intro/slides_2.gif", title: "Component Details Page", icon: "apps", text: "Cmponent details page contain all 90+ screens of ionic components. You can use them instead of creating them from scratch" },
     { image: "assets/images/intro/slides_3.gif", title: "UI screens", icon: "browsers", text: "Comming Soon" },
   ];
-  constructor(private splashScreen: SplashScreen) {
+  constructor(private splashScreen: SplashScreen, private router: Router,) {
+    if(localStorage.getItem('token')){
+      alert('token '+localStorage.getItem('token'));
+      this.router.navigate(['/home']);
+      // this.router.navigate(['/segment-header-text']);
+    }
   }
   nextSlide() {
     this.autoSlides.slideNext();

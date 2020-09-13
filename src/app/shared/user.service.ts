@@ -13,7 +13,7 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  baseurl='http://emivalue.snitchmedia.in/api'
+  public baseurl='http://emivalue.snitchmedia.in/api'
 
   constructor(private http: HttpClient,private http2: HTTP) { }
 
@@ -77,7 +77,7 @@ export class UserService {
       );   
   }
   personalloancreate(data: any): Observable<any> {
-    return this.http.post<any>(this.baseurl+'/addpersonalloan', data, this.httpOptions)
+    return this.http.post<any>(this.baseurl+'/test1', data, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('Add Persnoal Loan'))
       );   

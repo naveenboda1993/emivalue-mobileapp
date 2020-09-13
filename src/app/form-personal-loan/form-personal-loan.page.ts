@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular'//toastcontroller package
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -29,6 +30,7 @@ export class FormPersonalLoanPage implements OnInit {
     private toastCtrl: ToastController,
     private zone: NgZone,
     private router: Router,
+    private http: HttpClient,
     private service: CustomThemeService,
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
@@ -39,7 +41,6 @@ export class FormPersonalLoanPage implements OnInit {
     {
       this.itemColor = ["#03A9F4"];
     }
-
   }
 
   error_messages = {
@@ -85,7 +86,7 @@ export class FormPersonalLoanPage implements OnInit {
 
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color: color ?  color:"danger",
+      color: color ? color : "danger",
       showCloseButton: true,
       position: 'top',
       message: text,
@@ -101,10 +102,32 @@ export class FormPersonalLoanPage implements OnInit {
       this.onToast("Please enter the all fields")
       return false;
     } else {
-      this.router.navigate(['/register-personal-loan']);
-      // this.personalloanform.get("id").setValue(localStorage.getItem('id'));
-      // this.personalloanform.get("token").setValue(localStorage.getItem('token'));
-      // console.log(this.personalloanform.value)
+      // this.router.navigate(['/register-personal-loan']);
+      this.personalloanform.get("id").setValue(localStorage.getItem('id'));
+      this.personalloanform.get("token").setValue(localStorage.getItem('token'));
+      console.log(this.personalloanform.value)      
+      // this.http.options. { headers: headers }
+      this.http.get( this.service.getBackenEndUrl()+'Login/addpersonalloan/' + localStorage.getItem('id') 
+      + '/' + this.personalloanform.value.salarised_individual
+      + '/' + this.personalloanform.value.salarised
+      + '/' + this.personalloanform.value.personalloan
+      + '/' + this.personalloanform.value.loanamount
+      ).pipe(
+      )
+        .subscribe((res: any) => {
+          this.zone.run(() => {
+            if (res.isSuccess) {
+              this.onToast("Api success", 'green')
+              this.service.setLoanid(res.loan_id);
+              // // this.form.setValue([name,res]);
+              // this.form.reset();
+              this.router.navigate(['/register-personal-loan']);
+
+            } else {
+              this.onToast(res.message);
+            }
+          })
+        });
       // this.userAPI.personalloancreate(this.personalloanform.value)
       // .subscribe((res) => {
       //   this.zone.run(() => {

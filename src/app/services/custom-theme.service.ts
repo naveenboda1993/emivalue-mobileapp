@@ -7,7 +7,15 @@ export class CustomThemeService {
   public color;
   public response;
   public loanid;
+  public baseurl='http://emivalue.snitchmedia.in/api';
+  public backendurl='http://emivalue.snitchmedia.in/';
   constructor() {
+   }
+   public getBaseUrl(){
+     return this.baseurl;
+   }
+   public getBackenEndUrl(){
+     return this.backendurl;
    }
   public setTheme(c){
     this.color = c;
