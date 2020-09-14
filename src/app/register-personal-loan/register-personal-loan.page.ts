@@ -91,8 +91,8 @@ export class RegisterPersonalLoanPage implements OnInit {
       // this.http.options. { headers: headers }
       this.http.get( this.url+'Login/addpersonalloan2/' + localStorage.getItem('id') 
       + '/' + encodeURIComponent(this.loanid)
-      + '/' + encodeURIComponent(this.loanregisterform.value.birth)
       + '/' + encodeURIComponent(this.loanregisterform.value.firstname)
+      + '/' + encodeURIComponent(this.loanregisterform.value.birth)
       + '/' + encodeURIComponent(this.loanregisterform.value.company)
       + '/' + encodeURIComponent(this.loanregisterform.value.employee)
       + '/' + encodeURIComponent(this.loanregisterform.value.email)
