@@ -8,7 +8,7 @@ import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 @Component({
@@ -49,10 +49,25 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
     private http: HttpClient,
     private toastCtrl: ToastController,
     private fileChooser: FileChooser,
+    public alertController: AlertController,
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];
   }
-  ngOnInit() {
+  async ngOnInit() {
+    // ... 
+    const alert = await this.alertController.create({
+      header: 'Upload Digital Copy',
+      message: 'Dear Applicant, do keep the digital copy of following documents handy to avail full benefits Your Loan application .',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
     this.userAPI.getcategory()
       .subscribe((res) => {
         this.zone.run(() => {
@@ -65,30 +80,29 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   }
   openFile() {
     this.fileChooser.open({ "mime": "application/pdf" })
-      .then(uri => 
-      {
+      .then(uri => {
         console.log(uri)
-         const fileTransfer: FileTransferObject = this.transfer.create();
+        const fileTransfer: FileTransferObject = this.transfer.create();
 
 
-    // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
-      let options1: FileUploadOptions = {
-         fileKey: 'file',
-         fileName: 'name.pdf',
-         headers: {},
-         params: {"app_key":"Testappkey"},
-         chunkedMode : false
-      
-      }
+        // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+        let options1: FileUploadOptions = {
+          fileKey: 'file',
+          fileName: 'name.pdf',
+          headers: {},
+          params: { "app_key": "Testappkey" },
+          chunkedMode: false
 
-      fileTransfer.upload(uri,  encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-       .then((data) => {
-       // success
-       alert("success"+JSON.stringify(data));
-       }, (err) => {
-       // error
-       alert("error"+JSON.stringify(err));
-           });
+        }
+
+        fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
+          .then((data) => {
+            // success
+            alert("success" + JSON.stringify(data));
+          }, (err) => {
+            // error
+            alert("error" + JSON.stringify(err));
+          });
 
       })
       .catch(e => console.log(e));
@@ -144,65 +158,215 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
     toast.present();
   }
 
+  nextSlide() {
+    switch (this.segments) {
+      case 'segmentOne':
+        this.segments = 'segmentTwo';
+        break;
+      case 'segmentTwo':
+        this.segments = 'segmentThree';
+        break;
+      case 'segmentThree':
+        this.segments = 'segmentFour';
+        break;
+      case 'segmentFour':
+        this.segments = 'segmentFive';
+        break;
+      case 'segmentFive':
+        this.segments = 'segmentSix';
+        break;
+      case 'segmentSix':
+        this.segments = 'segmentSeven';
+        break;
+      case 'segmentSeven':
+        this.segments = 'segmentEight';
+        break;
+      case 'segmentEight':
+        // this.router.navigate(['/coapplicant-loan-documnets']);
+        // this.segments = 'segmentThree';
+        break;
+
+      default:
+        break;
+    }
+  }
+  swtichcasesegments(segment: any) {
+    switch (segment) {
+      case 'segmentOne':
+        this.segments = 'segmentTwo';
+        break;
+      case 'segmentTwo':
+        this.segments = 'segmentThree';
+        break;
+      case 'segmentThree':
+        this.segments = 'segmentFour';
+        break;
+      case 'segmentFour':
+        this.segments = 'segmentFive';
+        break;
+      case 'segmentFive':
+        this.segments = 'segmentSix';
+        break;
+      case 'segmentSix':
+        this.segments = 'segmentSeven';
+        break;
+      case 'segmentSeven':
+        this.segments = 'segmentEight';
+        break;
+      case 'segmentEight':
+        // this.router.navigate(['/coapplicant-loan-documnets']);
+        // this.segments = 'segmentThree';
+        break;
+
+      default:
+        break;
+    }
+  }
+
   uploadFile() {
     // const loading = await this.loadingController.create({
     //   message: 'Uploading...',
     //   });
     // await loading.present();
+    this.userAPI.showLoader();
     if (this.segments === 'segmentTwo') {
-      var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-addressproof.jpg';
+      var filename = localStorage.getItem('loanid') + '-' + this.addressproof.replace(/\s/g, "") + '-addressproof.jpg';
       var idproof = this.addressproof;
-      var imageData=this.imageData1;
-      this.onToast("addressproof")
-    } else {
-      var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-idproof.jpg';
+      var imageData = this.imageData1;
+    } else if (this.segments === 'segmentOne') {
+      var filename = localStorage.getItem('loanid') + '-' + this.idproof.replace(/\s/g, "") + '-idproof.jpg';
       var idproof = this.idproof;
-      var imageData=this.imageData;
+      var imageData = this.imageData;
       this.onToast("idproof")
     }
-    
+
 
     const fileTransfer: FileTransferObject = this.transfer.create();
     let options1: FileUploadOptions = {
       fileKey: 'file',
       fileName: filename,
       chunkedMode: false,
-      headers: { id: localStorage.getItem('id') },
-      params:{id: localStorage.getItem('id')}
+      headers: { id: localStorage.getItem('id'), src: 'headers' },
+      params: { id: localStorage.getItem('id'), src: 'params' }
     }
 
-    fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-      .then((data) => {
+    fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('id')), options1)
+      .then((data: any) => {
         // success
         // loading.dismiss()
-        alert("success");
-        var formdata = {
-          path: '/assets/img/temp/' + filename,
-          userid: localStorage.getItem('id'),
-          idproof: idproof
-        }
-        this.http.post('http://emivalue.snitchmedia.in/api/test', formdata).pipe(
-        )
-          .subscribe((res: any) => {
-            this.zone.run(() => {
-              if (res.isSuccess) {
-                this.onToast(res.message);
-                this.image = '';
-                this.imageData = '';
-                if (this.segments === 'segmentTwo') {
-                  this.router.navigate(['/home']);
+        this.userAPI.hideLoader();
+        var dataObject;
+        Object.keys(data).map(function (key) {
+          if (key == 'response') {
+            dataObject = JSON.parse(data[key]);
+          }
+          console.log(data[key], key)
+        });
+        console.log(dataObject);
+        alert(dataObject.message);
+
+        if (dataObject.isSuccess) {
+          var formdata = {
+            path: '/assets/img/temp/' + filename,
+            userid: localStorage.getItem('id'),
+            idproof: idproof
+          }
+          this.http.post('http://emivalue.snitchmedia.in/api/test', formdata).pipe(
+          )
+            .subscribe((res: any) => {
+              this.zone.run(() => {
+                if (res.isSuccess) {
+                  this.onToast(res.message);
+                  this.image = '';
+                  this.imageData = '';
+                  if (this.segments === 'segmentTwo') {
+                    // this.router.navigate(['/home']);
+                    this.segments = 'segmentThree';
+                  } else {
+                    this.segments = 'segmentTwo';
+                  }
                 } else {
-                  this.segments = 'segmentTwo';
+                  this.onToast(res.message);
                 }
-              } else {
-                this.onToast(res.message);
-              }
-            })
-          });
+              })
+            });
+        }
       }, (err) => {
         // error
         alert("error" + JSON.stringify(err));
       });
   }
+  async presentAlertPrompt() {
+    const alert = await this.alertController.create({
+      header: 'Prompt!',
+      backdropDismiss: false,
+      message: 'Please fill the required fields',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          placeholder: 'Bank Name'
+        },
 
+        {
+          name: 'From',
+          type: 'date'
+        },
+        {
+          name: 'To',
+          type: 'date'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Select Upload Documnets',
+          handler: () => {
+
+            this.fileChooser.open({ "mime": "application/pdf" })
+              .then(uri => {
+                console.log(uri)
+                const fileTransfer: FileTransferObject = this.transfer.create();
+
+
+                // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+                let options1: FileUploadOptions = {
+                  fileKey: 'file',
+                  fileName: +new Date() + 'name.pdf',
+                  headers: {},
+                  params: { "app_key": "Testappkey" },
+                  chunkedMode: false
+
+                }
+
+                fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
+                  .then((data) => {
+
+                  }, (err) => {
+                    // error
+                  });
+
+              })
+              .catch(e => console.log(e));
+            return false;
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (alertData) => {
+            console.log(alertData.name1);
+            console.log(alertData);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

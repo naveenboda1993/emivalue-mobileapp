@@ -294,9 +294,9 @@ export class HomePage {
   }
   ///////////////////////////////
   public slides = [
-    { image: "assets/images/home-banners/banner1.jpg" },
-    { image: "assets/images/home-banners/banner2.jpg" },
-    { image: "assets/images/home-banners/banner3.jpg" },
+    { image: "assets/images/home-banners/homebanner1.jpeg" },
+    { image: "assets/images/home-banners/homebanner2.jpeg" },
+    { image: "assets/images/home-banners/homebanner3.jpeg" },
   ];
   /////////banner slides autoplay function////////////////
   ionViewDidEnter() {

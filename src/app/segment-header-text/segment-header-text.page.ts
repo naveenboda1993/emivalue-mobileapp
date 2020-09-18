@@ -50,14 +50,16 @@ export class SegmentHeaderTextPage implements OnInit {
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];
   }
-  ngOnInit() {
+ async ngOnInit() {
+    await this.userAPI.showLoader();
     this.userAPI.getcategory()
-      .subscribe((res) => {
-        this.zone.run(() => {
-          console.log(res);
-          if (res.isSuccess) {
-            this.subcategory = res.subcategory;
-          }
+    .subscribe((res) => {
+      this.zone.run(() => {
+        console.log(res);
+        if (res.isSuccess) {
+          this.subcategory = res.subcategory;
+        }
+         this.userAPI.hideLoader();
         })
       });
   }
@@ -117,6 +119,7 @@ export class SegmentHeaderTextPage implements OnInit {
     //   message: 'Uploading...',
     //   });
     // await loading.present();
+    this.userAPI.showLoader();
     if (this.segments === 'segmentTwo') {
       var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-addressproof.jpg';
       var idproof = this.addressproof;
@@ -140,10 +143,14 @@ export class SegmentHeaderTextPage implements OnInit {
     }
 
     fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-      .then((data) => {
+      .then((data:any) => {
         // success
         // loading.dismiss()
-        alert("success");
+        this.userAPI.hideLoader();
+        console.log(data);
+        alert(data);
+        if(data.isSuccess){
+
         var formdata = {
           path: '/assets/img/temp/' + filename,
           userid: localStorage.getItem('id'),
@@ -167,6 +174,8 @@ export class SegmentHeaderTextPage implements OnInit {
               }
             })
           });
+          
+        }
       }, (err) => {
         // error
         alert("error" + JSON.stringify(err));

@@ -20,7 +20,7 @@ export class IntroPage implements OnInit {
   ];
   constructor(private splashScreen: SplashScreen, private router: Router,) {
     if(localStorage.getItem('token')){
-      alert('token '+localStorage.getItem('token'));
+      // alert('token '+localStorage.getItem('token'));
       this.router.navigate(['/home']);
       // this.router.navigate(['/segment-header-text']);
     }

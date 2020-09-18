@@ -3,6 +3,7 @@ import { CustomThemeService } from '../services/custom-theme.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
+// import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-form-login-three',
@@ -17,6 +18,7 @@ export class FormLoginThreePage implements OnInit {
     private formBuilder: FormBuilder,
     private zone: NgZone,
     private router: Router,
+    // public loadingCtrl: LoadingController,
     private service: CustomThemeService,) {
     this.register = this.service.getresponse();
     if (this.register) {
@@ -25,7 +27,18 @@ export class FormLoginThreePage implements OnInit {
       console.log(this.register.data.mobile);
     }
   }
+  // async presentLoadingDefault() {
+  //   let loading = await this.loadingCtrl.create({
+  //     message: 'Please wait...'
+  //   });
 
+  //   await loading.present();
+
+  //   await loading.onDidDismiss();
+  //   setTimeout(() => {
+  //     loading.onDidDismiss();
+  //   }, 5000);
+  // }
   ngOnInit() {
     this.loginform = this.formBuilder.group({
       mobile: [''],
@@ -33,18 +46,19 @@ export class FormLoginThreePage implements OnInit {
     });
   }
   // routerLink="/segment-header-text"
-  onSubmit() {
-   
+  async onSubmit() {
+    this.userAPI.showLoader();
     console.log(this.loginform.value)
     this.userAPI.login(this.loginform.value)
       .subscribe((res) => {
         this.zone.run(() => {
           console.log(res);
+          this.userAPI.hideLoader();
           if (res.isSuccess) {
             localStorage.setItem("token", res.token);
             localStorage.setItem("id", res.id);
             this.router.navigate(['/segment-header-text']);
-          }else{
+          } else {
             alert("Login failed");
           }
         })

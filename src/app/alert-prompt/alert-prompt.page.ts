@@ -16,6 +16,7 @@ export class AlertPromptPage implements OnInit {
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'Prompt!',
+      backdropDismiss: false,
       message: 'Please fill the required fields',
       inputs: [
         {
@@ -32,9 +33,22 @@ export class AlertPromptPage implements OnInit {
         {
           name: 'name5',
           type: 'date'
-        }  
+        } ,
+        {
+          name: 'Upload documnets',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }   
       ],
       buttons: [
+        {
+          text: 'Upload',
+          handler: () => {
+            console.log('Confirm Cancel');
+            return false;
+          }
+        }, 
         {
           text: 'Cancel',
           role: 'cancel',
@@ -42,10 +56,12 @@ export class AlertPromptPage implements OnInit {
           handler: () => {
             console.log('Confirm Cancel');
           }
-        }, {
+        }, 
+        {
           text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
+          handler: (alertData) => {
+            console.log(alertData.name1);
+            console.log(alertData);
           }
         }
       ]

@@ -6,6 +6,9 @@ ion-header{
         color: blue;
     }
 }
+ion-segment-button.segment-button-checked {
+    background: blue;
+}
 ion-content{
     --padding-bottom: 5px;
     --padding-end: 5px;

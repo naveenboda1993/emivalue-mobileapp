@@ -1,10 +1,16 @@
-ion-header{
+.header-color{
     ion-segment{
         --color-checked: white !important;
     }
     ion-title{
         color: blue;
     }
+    ion-button{
+        color: black;
+    }
+}
+ion-segment-button.segment-button-checked {
+    background: blue;
 }
 ion-content{
     --padding-bottom: 5px;
