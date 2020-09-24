@@ -63,6 +63,14 @@ export class SegmentHeaderTextPage implements OnInit {
         })
       });
   }
+  nextpage(){
+    if (this.segments === 'segmentTwo') {
+      this.router.navigate(['/home']);
+    } else {
+      this.segments = 'segmentTwo';
+    }
+
+  }
   openCam() {
 
     const options: CameraOptions = {
