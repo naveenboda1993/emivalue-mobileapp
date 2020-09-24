@@ -494,10 +494,14 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                     console.log(dataObject);
 
                     if (dataObject.isSuccess) {
+                      //  alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
                       var formdata = {
                         path: dataObject.target_path,
                         userid: localStorage.getItem('id'),
                         loanid: localStorage.getItem('loanid'),
+                        bankname: alertData.name1,
+                        from: alertData.From,
+                        to: alertData.To,
                         isLoan: 2,
                         idproof: idproof
                       }
@@ -685,5 +689,10 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
     });
 
     await alert.present();
+  }
+  // success-page
+  finalStageSlide(){
+     // this.router.navigate(['/coapplicant-loan-documnets']);
+     this.router.navigate(['/success-page']);
   }
 }

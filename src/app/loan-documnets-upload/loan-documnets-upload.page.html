@@ -319,9 +319,9 @@
                   <img src="./avatar-finn.png">
                 </ion-avatar> -->
                 <ion-label >
-                  <h2>{{p.bankname}}</h2>
-                  <h3>From: {{p.from}} End :{{p.to}}</h3>
-                  <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                  <h2>{{p.banker}}   {{p.facility}}</h2>
+                  <h3>Tenure: {{p.tenure}} End :{{p.to}}</h3>
+                  <p>{{p.amount}}</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -338,7 +338,7 @@
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-end">
-          <ion-button color="primary" (click)="finalStageSlide()">Upload
+          <ion-button color="primary" (click)="finalStageSlide()">Save Application
           </ion-button>
         </ion-col>
       </ion-row>
