@@ -107,12 +107,12 @@
 
           <ion-item>
             <ion-label>Own House Proof </ion-label>
-            
+
           </ion-item>
 
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
-            <img *ngIf="isimage" src="{{image}}">
+          <div (click)="openCam_Own($event)">
+            <img *ngIf="!isimage_Own" src="assets/images/upload_camera.png" />
+            <img *ngIf="isimage_Own" src="{{image_Own}}">
           </div>
           <br>
           <br>
@@ -143,12 +143,12 @@
 
           <ion-item>
             <ion-label>Company ID Card </ion-label>
-            
+
           </ion-item>
 
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
-            <img *ngIf="isimage" src="{{image}}">
+          <div (click)="openCam_Company($event)">
+            <img *ngIf="!isimage_Company" src="assets/images/upload_camera.png" />
+            <img *ngIf="isimage_Company" src="{{image_Company}}">
           </div>
           <br>
           <br>
@@ -179,12 +179,12 @@
 
           <ion-item>
             <ion-label>Job Experience Certificates </ion-label>
-            
+
           </ion-item>
 
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
-            <img *ngIf="isimage" src="{{image}}">
+          <div (click)="openCam_Job($event)">
+            <img *ngIf="!isimage_Job" src="assets/images/upload_camera.png" />
+            <img *ngIf="isimage_Job" src="{{image_Job}}">
           </div>
           <br>
           <br>
@@ -214,13 +214,13 @@
         <ion-col size="12" style="text-align:center;">
 
           <ion-item>
-            <ion-label>Pay Slips </ion-label>
-            
+            <ion-label> Latest 3 month Pay Slips </ion-label>
+
           </ion-item>
 
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
-            <img *ngIf="isimage" src="{{image}}">
+          <div (click)="openCam_Pay($event)">
+            <img *ngIf="!isimage_Pay" src="assets/images/upload_camera.png" />
+            <img *ngIf="isimage_Pay" src="{{image_Pay}}">
           </div>
           <br>
           <br>
@@ -250,18 +250,32 @@
         <ion-col size="12" style="text-align:center;">
 
           <ion-item>
-            <ion-label>Bank Statement </ion-label>
-            
+            <ion-label>Salary Credited Bank Statement </ion-label>
+
           </ion-item>
 
           <div (click)="presentAlertPrompt()">
-            <p>+Add</p>
+            <ion-button color="success">+ ADD BANK </ion-button>
           </div>
           <br>
           <br>
-          <div (click)="openFile($event)">
-            <img src="assets/images/upload_doc.png" />
+          <div *ngIf="bankStatements.length!=0">
+            <ion-list>
+              <ion-list-header>
+                Bank Statements
+              </ion-list-header>
 
+              <ion-item *ngFor="let p of bankStatements" >
+                <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                <ion-label >
+                  <h2>{{p.bankname}}</h2>
+                  <h3>From: {{p.from}} End :{{p.to}}</h3>
+                  <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </div>
 
         </ion-col>
@@ -275,7 +289,7 @@
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-end">
-          <ion-button color="primary" (click)="uploadFile()">Upload
+          <ion-button color="primary" (click)="nextSlide()">Next
           </ion-button>
         </ion-col>
       </ion-row>
@@ -285,19 +299,32 @@
         <ion-col size="12" style="text-align:center;">
 
           <ion-item>
-            <ion-label>Loan Statements </ion-label>
-            
+            <ion-label>Existing  EMI  Statements </ion-label>
+
           </ion-item>
 
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
-            <img *ngIf="isimage" src="{{image}}">
+          <div (click)="loanstatementsAdd()">
+            <ion-button color="success">+ ADD LOAN </ion-button>
           </div>
           <br>
           <br>
-          <div (click)="openFile($event)">
-            <img src="assets/images/upload_doc.png" />
+          <div *ngIf="emiStatements.length!=0">
+            <ion-list>
+              <ion-list-header>
+                Loan Statements
+              </ion-list-header>
 
+              <ion-item *ngFor="let p of emiStatements" >
+                <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                <ion-label >
+                  <h2>{{p.bankname}}</h2>
+                  <h3>From: {{p.from}} End :{{p.to}}</h3>
+                  <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </div>
 
         </ion-col>
@@ -311,7 +338,7 @@
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-end">
-          <ion-button color="primary" (click)="uploadFile()">Upload
+          <ion-button color="primary" (click)="finalStageSlide()">Upload
           </ion-button>
         </ion-col>
       </ion-row>
