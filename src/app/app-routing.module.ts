@@ -130,7 +130,8 @@ const routes: Routes = [
   { path: 'form-forget-three', loadChildren: './form-forget-three/form-forget-three.module#FormForgetThreePageModule' },
   //
   { path: 'register-personal-loan', loadChildren: './register-personal-loan/register-personal-loan.module#RegisterPersonalLoanPageModule' },
-  { path: 'register-personal-loan2', loadChildren: './register-personal-loan2/register-personal-loan2.module#RegisterPersonalLoan2PageModule' }
+  { path: 'register-personal-loan2', loadChildren: './register-personal-loan2/register-personal-loan2.module#RegisterPersonalLoan2PageModule' },
+  { path: 'success-page', loadChildren: './success-page/success-page.module#SuccessPagePageModule' }
 
 ];
 
