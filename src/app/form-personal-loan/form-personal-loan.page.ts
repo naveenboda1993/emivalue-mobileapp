@@ -33,14 +33,10 @@ export class FormPersonalLoanPage implements OnInit {
     private http: HttpClient,
     private service: CustomThemeService,
     public camera: Camera) {
-    this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
+    // this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
-
-    if (this.data == "neon")//if selected color is blue 
-    {
-      this.itemColor = ["#03A9F4"];
-    }
+    
   }
 
   error_messages = {

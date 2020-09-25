@@ -44,7 +44,6 @@ export class RegisterPersonalLoan2Page implements OnInit {
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
     this.loanid = this.service.getLoanid();
-    alert("Loan id" + this.loanid);
     this.url = this.service.getBackenEndUrl();
     if (this.data == "neon")//if selected color is blue 
     {
@@ -113,7 +112,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
               this.service.setLoanid(res.loan_id);
               // // this.form.setValue([name,res]);
               // this.form.reset();
-              this.router.navigate(['/segment-header-text']);
+              this.router.navigate(['/loan-documnets-upload']);
 
             } else {
               this.onToast(res.message);

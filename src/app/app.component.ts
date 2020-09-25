@@ -756,51 +756,51 @@ export class AppComponent {
     this.itemsForm = [
       { expandedHelp: false },
     ];
-    this.itemColor = ["#F44336"];
-    this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-    this.events.subscribe('icons', (data) => {
-      this.iconColorVar = data;
-      if (data == "autumn") {
-        this.itemColor = ["#F44336"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "night") {
-        this.itemColor = ["#673AB7"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "neon") {
-        this.itemColor = ["#03A9F4"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "orginal") {
-        this.itemColor = ["#4CAF50"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "red") {
-        this.itemColor = ["#9E9E9E"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "purple") {
-        this.itemColor = ["#E91E63"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "Lightblue") {
-        this.itemColor = ["#3F51B5"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "Lightgreen") {
-        this.itemColor = ["#00BCD4"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "Lightgray") {
-        this.itemColor = ["#8BC34A"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-      else if (data == "blue") {
-        this.itemColor = ["#008577"];
-        this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      }
-    });
+    // this.itemColor = ["#03A9F4"];
+    // this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    // this.events.subscribe('icons', (data) => {
+    //   this.iconColorVar = data;
+    //   if (data == "autumn") {
+    //     this.itemColor = ["#F44336"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "night") {
+    //     this.itemColor = ["#673AB7"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "neon") {
+    //     this.itemColor = ["#03A9F4"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "orginal") {
+    //     this.itemColor = ["#4CAF50"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "red") {
+    //     this.itemColor = ["#9E9E9E"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "purple") {
+    //     this.itemColor = ["#E91E63"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "Lightblue") {
+    //     this.itemColor = ["#3F51B5"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "Lightgreen") {
+    //     this.itemColor = ["#00BCD4"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "Lightgray") {
+    //     this.itemColor = ["#8BC34A"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    //   else if (data == "blue") {
+    //     this.itemColor = ["#008577"];
+    //     this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   }
+    // });
   }
 
   ////////

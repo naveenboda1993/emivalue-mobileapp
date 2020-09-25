@@ -127,170 +127,170 @@ export class HomePage {
     private events: Events, public menuCtrl: MenuController, private theme: ThemeService,
     private navCtrl: NavController, private elementRef: ElementRef) {
     this.visiableBtnAutum = true;
-    this.itemColor = "#F44336";
-    this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-    this.theme.setTheme(themes['neon'], 'neon');
-    this.service.setTheme('neon');
+    // this.itemColor = "#F44336";
+    // this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    // this.theme.setTheme(themes['neon'], 'neon');
+    // this.service.setTheme('neon');
   }
   ionViewWillEnter() {
     this.menuCtrl.enable(false, 'Menu2')
     this.menuCtrl.enable(true, 'Menu1')
     this.menuCtrl.open('Menu1');
-    this.theme.getTheme().then((result) => {
-      let val = result;
-      if (val == undefined) {
-        this.theme.setTheme(themes['autumn'], 'autumn');
-      }
-      else {
-        this.changeTheme(val);
-      }
-    });
+    // this.theme.getTheme().then((result) => {
+    //   let val = result;
+    //   if (val == undefined) {
+    //     this.theme.setTheme(themes['autumn'], 'autumn');
+    //   }
+    //   else {
+    //     this.changeTheme(val);
+    //   }
+    // });
   }
   ////////////////////////////////
   changeTheme(name) {
-    this.theme.setTheme(themes['neon'], 'neon');
-    this.service.setTheme('neon');
-    this.events.publish('icons', name);
-    if (name == 'autumn') {
-      this.itemColor = "#F44336";//red
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = true;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'night') {
-      this.itemColor = "#673AB7";//purple
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = true;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'neon') {
-      this.itemColor = "#03A9F4";//blue
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = true;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'orginal') {
-      this.itemColor = "#4CAF50";//green
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = true;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'red') {
-      this.itemColor = "#9E9E9E";//gray
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = true;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'purple') {
-      this.itemColor = "#E91E63";//sharp pink
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = true;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'Lightblue') {
-      this.itemColor = "#3F51B5";//dark blue
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = true;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'Lightgreen') {
-      this.itemColor = "#00BCD4";//light blue
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = true;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'Lightgray') {
-      this.itemColor = "#8BC34A";//light green
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = true;
-      this.visiableBtnBlue = false;
-    }
-    else if (name == 'blue') {
-      this.itemColor = "#008577";//dark green
-      this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
-      this.visiableBtnAutum = false;
-      this.visiableBtnNight = false;
-      this.visiableBtnNeon = false;
-      this.visiableBtnOriginal = false;
-      this.visiableBtnRed = false;
-      this.visiableBtnPurple = false;
-      this.visiableBtnLightblue = false;
-      this.visiableBtnLightgreen = false;
-      this.visiableBtnLightgray = false;
-      this.visiableBtnBlue = true;
-    }
+    // this.theme.setTheme(themes['neon'], 'neon');
+    // this.service.setTheme('neon');
+    // this.events.publish('icons', name);
+    // if (name == 'autumn') {
+    //   this.itemColor = "#F44336";//red
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = true;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'night') {
+    //   this.itemColor = "#673AB7";//purple
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = true;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'neon') {
+    //   this.itemColor = "#03A9F4";//blue
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = true;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'orginal') {
+    //   this.itemColor = "#4CAF50";//green
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = true;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'red') {
+    //   this.itemColor = "#9E9E9E";//gray
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = true;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'purple') {
+    //   this.itemColor = "#E91E63";//sharp pink
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = true;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'Lightblue') {
+    //   this.itemColor = "#3F51B5";//dark blue
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = true;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'Lightgreen') {
+    //   this.itemColor = "#00BCD4";//light blue
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = true;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'Lightgray') {
+    //   this.itemColor = "#8BC34A";//light green
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = true;
+    //   this.visiableBtnBlue = false;
+    // }
+    // else if (name == 'blue') {
+    //   this.itemColor = "#008577";//dark green
+    //   this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
+    //   this.visiableBtnAutum = false;
+    //   this.visiableBtnNight = false;
+    //   this.visiableBtnNeon = false;
+    //   this.visiableBtnOriginal = false;
+    //   this.visiableBtnRed = false;
+    //   this.visiableBtnPurple = false;
+    //   this.visiableBtnLightblue = false;
+    //   this.visiableBtnLightgreen = false;
+    //   this.visiableBtnLightgray = false;
+    //   this.visiableBtnBlue = true;
+    // }
   }
   ///////////////////////////////
   public slides = [
