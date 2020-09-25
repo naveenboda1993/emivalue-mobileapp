@@ -233,13 +233,13 @@ export class AppComponent {
 
    public myAccount = [];
    goToMyAccount(i) {
-    if (i == 0) {
-      this.navCtrl.navigateForward("how-work");
+     if(i==0){
+      this.navCtrl.navigateForward("myaccount");
     }
   }
 
 
-   //////
+   //
   public listView = [
     { name: "Infinite Scroll" },
     { name: "Refresher" },
@@ -924,7 +924,7 @@ export class AppComponent {
     }
   }
 
-  expandMyAccount(item): void{
+  expandItemMyAccount(item): void{
     this.visibleMyAccount = !this.visibleMyAccount;
     if(item.expandedHelp) {
       item.expandedHelp = false;
@@ -1394,4 +1394,34 @@ export class AppComponent {
       this.navCtrl.navigateForward("form-forget-three");
     }
   }
+  /* public home = []; */
+   goToHome(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+   goToOurChannelPartners(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+  share(){
+
+  }
+
+  expandItemHowItWorks(){
+    
+  }
+  expandItemHome(){
+
+  }
+
+  expandItemOurChannelPartners(){
+
+  }
+  expandItemContactUs(){
+
+  }
+
+
 }

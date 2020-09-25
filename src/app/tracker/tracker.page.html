@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: blue;">Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="button">
+  <ion-button [routerLink]="['/myaccount']">My Account</ion-button>
+</div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Loan Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+           <h4>Loan Type</h4>
+           <h6>Personal Loan</h6> 
+          </ion-col>
+          <ion-col>
+            <h4>Amount</h4>
+            <h6>1,00,000/-</h6>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Applied On</h4>
+            <h6>01/09/2020, Friday</h6>
+          </ion-col>
+          <ion-col>
+            <h4>Status</h4>
+            <h6 style="color:#f7a40a;">Pending</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Loan Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+           <h4>Loan Type</h4>
+           <h6>Personal Loan</h6> 
+          </ion-col>
+          <ion-col>
+            <h4>Amount</h4>
+            <h6>3,00,000/-</h6>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Applied On</h4>
+            <h6>20/08/2020, Monday</h6>
+          </ion-col>
+          <ion-col>
+            <h4>Status</h4>
+            <h6 style="color: green;">Completed</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Loan Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+           <h4>Loan Type</h4>
+           <h6>Business Loan</h6> 
+          </ion-col>
+          <ion-col>
+            <h4>Amount</h4>
+            <h6>10,00,000/-</h6>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Applied On</h4>
+            <h6>12/08/2020, Friday</h6>
+          </ion-col>
+          <ion-col>
+            <h4>Status</h4>
+            <h6 style="color: red;">Rejected</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
