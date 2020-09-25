@@ -50,18 +50,26 @@ export class SegmentHeaderTextPage implements OnInit {
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];
   }
- async ngOnInit() {
+  async ngOnInit() {
     await this.userAPI.showLoader();
     this.userAPI.getcategory()
-    .subscribe((res) => {
-      this.zone.run(() => {
-        console.log(res);
-        if (res.isSuccess) {
-          this.subcategory = res.subcategory;
-        }
-         this.userAPI.hideLoader();
+      .subscribe((res) => {
+        this.zone.run(() => {
+          console.log(res);
+          if (res.isSuccess) {
+            this.subcategory = res.subcategory;
+          }
+          this.userAPI.hideLoader();
         })
       });
+  }
+  nextpage() {
+    if (this.segments === 'segmentTwo') {
+      this.router.navigate(['/home']);
+    } else {
+      this.segments = 'segmentTwo';
+    }
+
   }
   openCam() {
 
@@ -114,72 +122,90 @@ export class SegmentHeaderTextPage implements OnInit {
     toast.present();
   }
 
-  uploadFile() {
+  async uploadFile() {
     // const loading = await this.loadingController.create({
     //   message: 'Uploading...',
     //   });
     // await loading.present();
-    this.userAPI.showLoader();
+    var isId = true;
+
     if (this.segments === 'segmentTwo') {
-      var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-addressproof.jpg';
-      var idproof = this.addressproof;
-      var imageData=this.imageData1;
-      this.onToast("addressproof")
+      if (!this.addressproof) {
+        isId = false;
+      } else {
+        var filename = localStorage.getItem('id') + '-' + this.addressproof.replace(/\s/g, "") + '-addressproof.jpg';
+        var idproof = this.addressproof;
+        var imageData = this.imageData1;
+        this.onToast("addressproof")
+      }
     } else {
-      var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-idproof.jpg';
-      var idproof = this.idproof;
-      var imageData=this.imageData;
-      this.onToast("idproof")
+      if (!this.idproof) {
+        isId = false;
+      } else {
+        var filename = localStorage.getItem('id') + '-' + this.idproof.replace(/\s/g, "") + '-idproof.jpg';
+        var idproof = this.idproof;
+        var imageData = this.imageData;
+        this.onToast("idproof")
+      }
     }
-    
+    if (isId) {
+      await this.userAPI.showLoader();
+      this.userAPI.showLoader();
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      let options1: FileUploadOptions = {
+        fileKey: 'file',
+        fileName: filename,
+        chunkedMode: false,
+        headers: { id: localStorage.getItem('id') },
+        params: { id: localStorage.getItem('id') }
+      }
 
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    let options1: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: filename,
-      chunkedMode: false,
-      headers: { id: localStorage.getItem('id') },
-      params:{id: localStorage.getItem('id')}
+      fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
+        .then((data: any) => {
+          // success
+          // loading.dismiss()
+          this.userAPI.hideLoader();
+          console.log(data);
+          alert(data);
+          if (data.isSuccess) {
+            var formdata = {
+              path: '/assets/img/temp/' + filename,
+              userid: localStorage.getItem('id'),
+              loanid: '',
+              isLoan: 0,
+              idproof: idproof
+            }
+            this.http.post('http://emivalue.snitchmedia.in/api/test', formdata).pipe(
+            )
+              .subscribe((res: any) => {
+                this.zone.run(() => {
+                  if (res.isSuccess) {
+                    this.onToast(res.message);
+                    this.image = '';
+                    this.imageData = '';
+                    if (this.segments === 'segmentTwo') {
+                      this.router.navigate(['/home']);
+                    } else {
+                      this.segments = 'segmentTwo';
+                    }
+
+                  } else {
+                    this.onToast(res.message);
+                  }
+                  this.userAPI.hideLoader();
+                })
+              });
+
+          } else {
+            this.userAPI.hideLoader();
+          }
+        }, (err) => {
+          // error
+          alert("error" + JSON.stringify(err));
+        });
+    } else {
+      alert('Please select id proof')
     }
-
-    fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-      .then((data:any) => {
-        // success
-        // loading.dismiss()
-        this.userAPI.hideLoader();
-        console.log(data);
-        alert(data);
-        if(data.isSuccess){
-
-        var formdata = {
-          path: '/assets/img/temp/' + filename,
-          userid: localStorage.getItem('id'),
-          idproof: idproof
-        }
-        this.http.post('http://emivalue.snitchmedia.in/api/test', formdata).pipe(
-        )
-          .subscribe((res: any) => {
-            this.zone.run(() => {
-              if (res.isSuccess) {
-                this.onToast(res.message);
-                this.image = '';
-                this.imageData = '';
-                if (this.segments === 'segmentTwo') {
-                  this.router.navigate(['/home']);
-                } else {
-                  this.segments = 'segmentTwo';
-                }
-              } else {
-                this.onToast(res.message);
-              }
-            })
-          });
-          
-        }
-      }, (err) => {
-        // error
-        alert("error" + JSON.stringify(err));
-      });
   }
 
 }

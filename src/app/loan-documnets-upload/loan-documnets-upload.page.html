@@ -81,6 +81,10 @@
             <img *ngIf="!isimage1" src="assets/images/upload_doc.png" />
             <img *ngIf="isimage1" src="{{image1}}">
           </div>
+          <div (click)="openFile($event)">
+            <img src="assets/images/upload_doc.png" />
+
+          </div>
 
         </ion-col>
       </ion-row>
@@ -319,9 +323,9 @@
                   <img src="./avatar-finn.png">
                 </ion-avatar> -->
                 <ion-label >
-                  <h2>{{p.bankname}}</h2>
-                  <h3>From: {{p.from}} End :{{p.to}}</h3>
-                  <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                  <h2>{{p.banker}}   {{p.facility}}</h2>
+                  <h3>Tenure: {{p.tenure}} End :{{p.to}}</h3>
+                  <p>{{p.amount}}</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -338,7 +342,7 @@
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-end">
-          <ion-button color="primary" (click)="finalStageSlide()">Upload
+          <ion-button color="primary" (click)="finalStageSlide()">Save Application
           </ion-button>
         </ion-col>
       </ion-row>

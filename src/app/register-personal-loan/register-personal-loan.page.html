@@ -41,6 +41,7 @@
                        <span class="error-msg" *ngIf = "!loanregisterform.controls['firstname'].valid && loanregisterform.controls['firstname'].touched">Full Name is Required</span>
                     </ion-item>
                     <ion-item>
+                        <ion-label>Date of Birth</ion-label>
                         <ion-input type= "date" class="formGroup" placeholder = "Date of Birth" formControlName = "birth" required>
                         </ion-input>
                         <span class="error-msg" *ngIf = "!loanregisterform.controls['birth'].valid && loanregisterform.controls['birth'].touched"> Date of Birth is Required</span>
@@ -98,12 +99,7 @@
                         </ion-input>
                         <span class="error-msg" *ngIf = "!loanregisterform.controls['pincode'].valid && loanregisterform.controls['pincode'].touched"></span>
                      </ion-item>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
+               
                     </ion-list>
             </ion-col>
         </ion-row>
@@ -112,5 +108,16 @@
                 <ion-button expand="block" type="submit" (click) = "onToast()">Save</ion-button>
             </ion-col>
         </ion-row>
+        <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br><br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
     </form>
 </ion-content>

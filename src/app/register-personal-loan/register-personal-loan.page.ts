@@ -38,7 +38,6 @@ export class RegisterPersonalLoanPage implements OnInit {
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
     this.loanid = this.service.getLoanid();
-    alert("Loan id"+this.loanid);
     if (this.data == "neon")//if selected color is blue 
     {
       this.itemColor = ["#03A9F4"];

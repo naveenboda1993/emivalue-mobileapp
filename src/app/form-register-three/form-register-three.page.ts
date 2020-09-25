@@ -95,11 +95,7 @@ export class FormRegisterThreePage implements OnInit {
     console.log("hello")
   }
 
-  // Missmatch(formGroup: FormGroup){
-  //   const { value: password } = formGroup.get('password');
-  //   const { value: confirmpassword } = formGroup.get('confirmpassword');
-  //   return password == confirmpassword ? null : {passwordDoNotMatch: true};
-  // }
+
 
 
   async onToast(text:any) {
@@ -155,94 +151,5 @@ export class FormRegisterThreePage implements OnInit {
     // }
   }
 
-  onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('image').setValue(file);
-    }
-  }
-  upload() {
 
-    let options = {
-
-      quality: 100
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-
-      const fileTransfer: FileTransferObject = this.transfer.create();
-
-      let options1: FileUploadOptions = {
-        chunkedMode: false,
-        fileKey: 'file',
-        fileName: 'name.jpg',
-        headers: {}
-      }
-
-      fileTransfer.upload(imageData, 'http://emivalue.snitchmedia.in/Login/appupload', options1)
-        .then((data) => {
-          // success
-          alert("success");
-        }, (err) => {
-          // error
-          alert("error" + JSON.stringify(err));
-        });
-
-
-    });
-
-
-  }
-  openCam() {
-
-    const options: CameraOptions = {
-      quality: 20,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      //alert(imageData)
-      this.imageData = imageData;
-      // this.imageData = 'data:image/jpeg;base64,' + imageData
-      this.image = (<any>window).Ionic.WebView.convertFileSrc(imageData);
-    }, (err) => {
-      // Handle error
-      alert("error " + JSON.stringify(err))
-    });
-
-  }
-
-
-  uploadFile() {
-    // const loading = await this.loadingController.create({
-    //   message: 'Uploading...',
-    //   });
-    // await loading.present();
-
-    const fileTransfer: FileTransferObject = this.transfer.create();
-
-    let options1: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: 'name.jpg',
-      chunkedMode: false,
-      headers: {}
-
-    }
-
-    fileTransfer.upload(this.imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-      .then((data) => {
-        // success
-        // loading.dismiss()
-        alert("success");
-      }, (err) => {
-        // error
-        alert("error" + JSON.stringify(err));
-      });
-  }
 }
