@@ -109,7 +109,6 @@ export class RegisterPersonalLoan2Page implements OnInit {
           this.zone.run(() => {
             if (res.isSuccess) {
               this.onToast("Api success", 'green')
-              this.service.setLoanid(res.loan_id);
               // // this.form.setValue([name,res]);
               // this.form.reset();
               this.router.navigate(['/loan-documnets-upload']);

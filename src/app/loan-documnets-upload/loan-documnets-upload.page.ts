@@ -8,9 +8,11 @@ import { UserService } from '../shared/user.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { isEmpty } from 'rxjs/operators';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 type objbankstatements = {
   bankname?: any,
   from?: any,
@@ -68,11 +70,14 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   image_Job: any = '';
   imageData_Pay: any = '';
   isimage_Pay: boolean = false;
+  isFolder: boolean = true;
   image_Pay: any = '';
   bankStatements: Array<objbankstatements> = [];
   emiStatements: Array<objEmistatements> = [];
   imageData: any = '';
+  uploadPercent: number;
   constructor(private userAPI: UserService,
+    public loadingController: LoadingController,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
     private zone: NgZone,
@@ -116,7 +121,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         console.log(uri);
         this.isFileUpload = true;
         this.UriFileUpload = uri;
-
+        this.uploadFile();
       })
       .catch(e => console.log(e));
   }
@@ -133,6 +138,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData = imageData;
       this.image = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -152,6 +158,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData1 = imageData;
       this.image1 = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage1 = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -171,6 +178,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData_Own = imageData;
       this.image_Own = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage_Own = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -190,6 +198,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData_Company = imageData;
       this.image_Company = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage_Company = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -209,6 +218,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData_Job = imageData;
       this.image_Job = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage_Job = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -228,6 +238,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       this.imageData_Pay = imageData;
       this.image_Pay = (<any>window).Ionic.WebView.convertFileSrc(imageData);
       this.isimage_Pay = true;
+      this.isFolder = false;
     }, (err) => {
       // Handle error
       alert("error " + JSON.stringify(err))
@@ -237,7 +248,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   async onToast(text: any) {
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color: "danger",
+      color: "success",
       showCloseButton: true,
       position: 'top',
       message: text,
@@ -371,7 +382,11 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         break;
     }
     if (isId) {
-      this.userAPI.showLoader();
+      this.loadingController.create({
+        message: 'Uploading... ' + this.uploadPercent + '% '
+      }).then((res) => {
+        res.present();
+      });
 
       const fileTransfer: FileTransferObject = this.transfer.create();
       let options1: FileUploadOptions;
@@ -404,12 +419,24 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         }
 
       }
+      // fileTransfer.onProgress = function (progressEvent) {
+      //   console.log('progress');
+      //   console.log(progressEvent);
+      //   if (progressEvent) {
+      //     this.downloadProgress = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
+      //     this.episodeDownloadProgress[feedId].progress = this.downloadProgress;
+      //   }
+      // };
+      fileTransfer.onProgress((data) => {
+        this.uploadPercent = Math.round((data.loaded / data.total) * 100);
+      });
+
 
       fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
         .then((data: any) => {
           // success
           // loading.dismiss()
-          this.userAPI.hideLoader();
+
           var dataObject;
           Object.keys(data).map(function (key) {
             if (key == 'response') {
@@ -431,6 +458,11 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
             this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
             )
               .subscribe((res: any) => {
+                this.isFileUpload = false;
+                this.isFolder = true;
+                this.UriFileUpload = '';
+                this.loadingController.dismiss(null, 'cancel');
+
                 this.zone.run(() => {
                   if (res.isSuccess) {
                     this.onToast(res.message);
@@ -443,6 +475,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
           }
         }, (err) => {
           // error
+          this.loadingController.dismiss(null, 'cancel');
           alert("error" + JSON.stringify(err));
         });
 
@@ -481,76 +514,80 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         {
           text: 'Select Upload Documnets',
           handler: (alertData) => {
+            if (alertData.name1.length == 0 || alertData.From.length == 0 || alertData.To.length == 0) {
+              this.onToast('please fill all the details')
+              return false;
+            } else {
+              this.fileChooser.open({ "mime": "application/pdf" })
+                .then(uri => {
+                  console.log(uri)
+                  const fileTransfer: FileTransferObject = this.transfer.create();
+                  var filename = +new Date() + localStorage.getItem('loanid') + '-BankStatement';
+                  var idproof: any = "BankStatement :" + alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
 
-            this.fileChooser.open({ "mime": "application/pdf" })
-              .then(uri => {
-                console.log(uri)
-                const fileTransfer: FileTransferObject = this.transfer.create();
-                var filename = +new Date() + localStorage.getItem('loanid') + '-BankStatement';
-                var idproof: any = "BankStatement :" + alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
+                  // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+                  let options1: FileUploadOptions = {
+                    fileKey: 'file',
+                    fileName: filename + '.pdf',
+                    headers: {},
+                    params: { "app_key": "Testappkey" },
+                    chunkedMode: false
 
-                // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
-                let options1: FileUploadOptions = {
-                  fileKey: 'file',
-                  fileName: filename + '.pdf',
-                  headers: {},
-                  params: { "app_key": "Testappkey" },
-                  chunkedMode: false
+                  }
 
-                }
+                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+                    .then((data: any) => {
+                      // success
+                      // loading.dismiss()
+                      this.userAPI.hideLoader();
+                      var dataObject;
+                      Object.keys(data).map(function (key) {
+                        if (key == 'response') {
+                          dataObject = JSON.parse(data[key]);
+                        }
+                        console.log(data[key], key)
+                      });
+                      console.log(dataObject);
 
-                fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
-                  .then((data: any) => {
-                    // success
-                    // loading.dismiss()
-                    this.userAPI.hideLoader();
-                    var dataObject;
-                    Object.keys(data).map(function (key) {
-                      if (key == 'response') {
-                        dataObject = JSON.parse(data[key]);
+                      if (dataObject.isSuccess) {
+                        //  alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
+                        var formdata = {
+                          path: dataObject.target_path,
+                          userid: localStorage.getItem('id'),
+                          loanid: localStorage.getItem('loanid'),
+                          bankname: alertData.name1,
+                          from: alertData.From,
+                          to: alertData.To,
+                          isLoan: 2,
+                          idproof: idproof
+                        }
+                        this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
+                        )
+                          .subscribe((res: any) => {
+                            this.zone.run(() => {
+                              if (res.isSuccess) {
+                                this.onToast(res.message);
+                                var obj: objbankstatements = { bankname: alertData.name1 };
+                                obj.from = alertData.From;
+                                obj.bankname = alertData.name1;
+                                obj.to = alertData.To;
+                                this.bankStatements.push(obj);
+                              } else {
+                                this.onToast(res.message);
+                              }
+                            })
+                          });
                       }
-                      console.log(data[key], key)
+                    }, (err) => {
+                      // error
+
                     });
-                    console.log(dataObject);
-
-                    if (dataObject.isSuccess) {
-                      //  alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
-                      var formdata = {
-                        path: dataObject.target_path,
-                        userid: localStorage.getItem('id'),
-                        loanid: localStorage.getItem('loanid'),
-                        bankname: alertData.name1,
-                        from: alertData.From,
-                        to: alertData.To,
-                        isLoan: 2,
-                        idproof: idproof
-                      }
-                      this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
-                      )
-                        .subscribe((res: any) => {
-                          this.zone.run(() => {
-                            if (res.isSuccess) {
-                              this.onToast(res.message);
-                              var obj: objbankstatements = { bankname: alertData.name1 };
-                              obj.from = alertData.From;
-                              obj.bankname = alertData.name1;
-                              obj.to = alertData.To;
-                              this.bankStatements.push(obj);
-                            } else {
-                              this.onToast(res.message);
-                            }
-                          })
-                        });
-                    }
-                  }, (err) => {
-                    // error
-
-                  });
 
 
-              })
-              .catch(e => console.log(e));
-            // return false;
+                })
+                .catch(e => console.log(e));
+              // return false;
+            }
           }
         },
         {
@@ -618,92 +655,117 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         {
           text: 'Emi Debited Bank Statement',
           handler: (alertData) => {
+            if (alertData.facility.length == 0 || alertData.banker.length == 0 || alertData.amount.length == 0 || alertData.tenure.length == 0 || alertData.outstanding.length == 0 || alertData.emi.length == 0) {
+              this.onToast('please fill all the details')
+              return false;
+            } else {
+              this.fileChooser.open({ "mime": "application/pdf" })
+                .then(uri => {
+                  console.log(uri)
+                  const fileTransfer: FileTransferObject = this.transfer.create();
+                  var filename = +new Date() + localStorage.getItem('loanid') + '-EMIDebitedBankStatement';
+                  var idproof: any = "EMIDebitedBankStatement facility:" + alertData.facility + " banker:" + alertData.banker + "amount:" + alertData.amount + " tenure:" + alertData.tenure + "emi:" + alertData.emi + "outstanding:" + alertData.outstanding;
 
-            this.fileChooser.open({ "mime": "application/pdf" })
-              .then(uri => {
-                console.log(uri)
-                const fileTransfer: FileTransferObject = this.transfer.create();
-                var filename = +new Date() + localStorage.getItem('loanid') + '-EMIDebitedBankStatement';
-                var idproof: any = "EMIDebitedBankStatement facility:" + alertData.facility + " banker:" + alertData.banker + "amount:" + alertData.amount + " tenure:" + alertData.tenure + "emi:" + alertData.emi + "outstanding:" + alertData.outstanding;
+                  // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+                  let options1: FileUploadOptions = {
+                    fileKey: 'file',
+                    fileName: filename + '.pdf',
+                    headers: {},
+                    params: { "app_key": "Testappkey" },
+                    chunkedMode: false
 
-                // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
-                let options1: FileUploadOptions = {
-                  fileKey: 'file',
-                  fileName: filename + '.pdf',
-                  headers: {},
-                  params: { "app_key": "Testappkey" },
-                  chunkedMode: false
+                  }
 
-                }
+                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+                    .then((data: any) => {
+                      // success
+                      // loading.dismiss()
+                      this.userAPI.hideLoader();
+                      var dataObject;
+                      Object.keys(data).map(function (key) {
+                        if (key == 'response') {
+                          dataObject = JSON.parse(data[key]);
+                        }
+                        console.log(data[key], key)
+                      });
+                      console.log(dataObject);
 
-                fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
-                  .then((data: any) => {
-                    // success
-                    // loading.dismiss()
-                    this.userAPI.hideLoader();
-                    var dataObject;
-                    Object.keys(data).map(function (key) {
-                      if (key == 'response') {
-                        dataObject = JSON.parse(data[key]);
+                      if (dataObject.isSuccess) {
+                        // "EMIDebitedBankStatement facility:" + alertData.facility + " banker:" + alertData.banker + "amount:" + alertData.amount + " tenure:" + alertData.tenure + "emi:" + alertData.tenure+ "outstanding:" + alertData.outstanding;
+                        var formdata = {
+                          path: dataObject.target_path,
+                          userid: localStorage.getItem('id'),
+                          loanid: localStorage.getItem('loanid'),
+                          facility: alertData.facility,
+                          banker: alertData.banker,
+                          amount: alertData.amount,
+                          tenure: alertData.tenure,
+                          emi: alertData.emi,
+                          outstanding: alertData.outstanding,
+                          isLoan: 3,
+                          idproof: idproof
+                        }
+                        this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
+                        )
+                          .subscribe((res: any) => {
+                            this.zone.run(() => {
+                              if (res.isSuccess) {
+                                this.onToast(res.message);
+                                var obj: objEmistatements = { facility: alertData.facility };
+                                obj.facility = alertData.facility;
+                                obj.banker = alertData.banker;
+                                obj.amount = alertData.amount;
+                                obj.tenure = alertData.tenure;
+                                obj.outstanding = alertData.outstanding;
+                                obj.emi = alertData.emi;
+                                this.emiStatements.push(obj);
+                              } else {
+                                this.onToast(res.message);
+                              }
+                            })
+                          });
                       }
-                      console.log(data[key], key)
+                    }, (err) => {
+                      // error
+
                     });
-                    console.log(dataObject);
-
-                    if (dataObject.isSuccess) {
-                      // "EMIDebitedBankStatement facility:" + alertData.facility + " banker:" + alertData.banker + "amount:" + alertData.amount + " tenure:" + alertData.tenure + "emi:" + alertData.tenure+ "outstanding:" + alertData.outstanding;
-                      var formdata = {
-                        path: dataObject.target_path,
-                        userid: localStorage.getItem('id'),
-                        loanid: localStorage.getItem('loanid'),
-                        facility: alertData.facility,
-                        banker: alertData.banker,
-                        amount: alertData.amount,
-                        tenure: alertData.tenure,
-                        emi: alertData.emi,
-                        outstanding: alertData.outstanding,
-                        isLoan: 3,
-                        idproof: idproof
-                      }
-                      this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
-                      )
-                        .subscribe((res: any) => {
-                          this.zone.run(() => {
-                            if (res.isSuccess) {
-                              this.onToast(res.message);
-                              var obj: objEmistatements;
-                              obj.facility = alertData.facility;
-                              obj.banker = alertData.banker;
-                              obj.amount = alertData.amount;
-                              obj.tenure = alertData.tenure;
-                              obj.outstanding = alertData.outstanding;
-                              obj.emi = alertData.emi;
-                              this.emiStatements.push(obj);
-                            } else {
-                              this.onToast(res.message);
-                            }
-                          })
-                        });
-                    }
-                  }, (err) => {
-                    // error
-
-                  });
 
 
-              })
-              .catch(e => console.log(e));
-            // return false;
+                })
+                .catch(e => console.log(e));
+              // return false;
+            }
           }
         },
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Cancel');
+
           }
         },
+        // {
+        //   text: 'Ok',
+        //   handler: (alertData) => {
+        //     console.log(alertData);
+        //     if (alertData.facility.length == 0 || alertData.banker.length == 0 || alertData.amount.length == 0 || alertData.tenure.length == 0 || alertData.outstanding.length == 0 || alertData.emi.length == 0) {
+        //       this.onToast('please fill all the details')
+        //       return false;
+        //     } else {
+        //       var obj: objEmistatements = { facility: alertData.facility };
+        //       obj.banker = alertData.banker;
+        //       obj.amount = alertData.amount;
+        //       obj.tenure = alertData.tenure;
+        //       obj.outstanding = alertData.outstanding;
+        //       obj.emi = alertData.emi;
+        //       this.emiStatements.push(obj);
+        //     }
+
+
+        //   }
+        // }
 
       ]
     });

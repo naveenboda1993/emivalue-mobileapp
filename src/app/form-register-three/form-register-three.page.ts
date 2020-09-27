@@ -101,7 +101,7 @@ export class FormRegisterThreePage implements OnInit {
   async onToast(text:any) {
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color: "danger",
+      color: "success",
       showCloseButton: true,
       position: 'top',
       message: text,

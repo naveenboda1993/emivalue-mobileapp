@@ -94,7 +94,7 @@ export class UserService {
     };
   }
   // Show the loader for infinite time
-  showLoader() {
+  showLoader(text?:any) {
 
     this.loadingController.create({
       message: 'Please wait...'

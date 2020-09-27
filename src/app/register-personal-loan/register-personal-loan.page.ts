@@ -68,7 +68,7 @@ export class RegisterPersonalLoanPage implements OnInit {
   async onToast(text: any, color? : any) {
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color: color? color: "danger",
+      color:  "success",
       showCloseButton: true,
       position: 'top',
       message: text,

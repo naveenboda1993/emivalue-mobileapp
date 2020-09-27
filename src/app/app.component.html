@@ -216,7 +216,7 @@
             </ion-grid>
           </ion-item>
 
-          <ion-item no-padding lines="full" (click)="expandItemMyAccount(item)" class="listItem"
+          <ion-item no-padding lines="full" (click)="goToMyAccount(0)" class="listItem "
             *ngFor="let item of itemsMyAccount">
             <ion-grid no-padding class="listGrid">
               <ion-row>
@@ -239,7 +239,7 @@
               <ion-menu-toggle auto-hide="true" no-padding>
                 <app-menu-component expandHeight="650px" class="expandMyAccount" [expanded]="item.expanded" no-padding>
                   <ion-item lines="full" class="listHelpItem" *ngFor="let list of myAccount;"
-                    (click)="goToMyAccount()">
+                    (click)="goToMyAccount(0)">
                     <!-- <p class="parainnerList">{{list.name}}</p> -->
                   </ion-item>
                 </app-menu-component>
