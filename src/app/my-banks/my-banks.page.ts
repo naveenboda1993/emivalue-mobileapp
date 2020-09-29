@@ -59,8 +59,8 @@ export class MyBanksPage implements OnInit {
               this.onToast('please fill all the details')
               return false;
             } else {
-              console.log(this.alertData.valuew)
-              this.addBankAlrertPrompt
+              // console.log(alertData)
+              // this.addBankAlrertPrompt
             }
           }
         },
