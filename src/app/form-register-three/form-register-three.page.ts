@@ -21,6 +21,8 @@ import { HttpClient } from '@angular/common/http';
 export class FormRegisterThreePage implements OnInit {
   public itemColor = [];
   public iconColorVar = "";
+  submitted:any;
+  f:any;
   image: any = ''
   imageData: any = ''
   data: any;
