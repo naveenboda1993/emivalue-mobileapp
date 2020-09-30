@@ -111,6 +111,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
               this.onToast("Api success", 'green')
               // // this.form.setValue([name,res]);
               // this.form.reset();
+              this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
               this.router.navigate(['/loan-documnets-upload']);
 
             } else {

@@ -14,12 +14,20 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  public baseurl = 'http://emivalue.snitchmedia.in/api'
+  public baseurl = 'http://emivalue.snitchmedia.in/api';
+  public baseloginurl = 'http://emivalue.snitchmedia.in/Login';
 
   constructor(private http: HttpClient, private http2: HTTP, public loadingController: LoadingController) { }
 
   getcategory(): Observable<any> {
     return this.http.get<any>(this.baseurl + '/getcategory', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getUserLoans(userid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getuserloans/'+userid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );

@@ -57,6 +57,7 @@ export class FormLoginThreePage implements OnInit {
           if (res.isSuccess) {
             localStorage.setItem("token", res.token);
             localStorage.setItem("id", res.id);
+            localStorage.setItem("user",JSON.stringify(res.user));
             this.router.navigate(['/segment-header-text']);
           } else {
             alert("Login failed");

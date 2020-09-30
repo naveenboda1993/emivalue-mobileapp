@@ -36,7 +36,13 @@ export class FormPersonalLoanPage implements OnInit {
     // this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
-    
+    // applyloan
+    var loan:any = this.service.getLoanpage();
+    if (loan != null) {
+      loan=JSON.parse(loan);
+      this.router.navigate([loan.step]);
+      console.log(loan);
+    }
   }
 
   error_messages = {
@@ -94,6 +100,7 @@ export class FormPersonalLoanPage implements OnInit {
 
 
   onSubmit() {
+    
     if (!this.personalloanform.valid) {
       this.onToast("Please enter the all fields")
       return false;
@@ -101,13 +108,13 @@ export class FormPersonalLoanPage implements OnInit {
       // this.router.navigate(['/register-personal-loan']);
       this.personalloanform.get("id").setValue(localStorage.getItem('id'));
       this.personalloanform.get("token").setValue(localStorage.getItem('token'));
-      console.log(this.personalloanform.value)      
+      console.log(this.personalloanform.value)
       // this.http.options. { headers: headers }
-      this.http.get( this.service.getBackenEndUrl()+'Login/addpersonalloan/' + localStorage.getItem('id') 
-      + '/' + this.personalloanform.value.salarised_individual
-      + '/' + this.personalloanform.value.salarised
-      + '/' + this.personalloanform.value.personalloan
-      + '/' + this.personalloanform.value.loanamount
+      this.http.get(this.service.getBackenEndUrl() + 'Login/addpersonalloan/' + localStorage.getItem('id')
+        + '/' + this.personalloanform.value.salarised_individual
+        + '/' + this.personalloanform.value.salarised
+        + '/' + this.personalloanform.value.personalloan
+        + '/' + this.personalloanform.value.loanamount
       ).pipe(
       )
         .subscribe((res: any) => {
@@ -115,6 +122,7 @@ export class FormPersonalLoanPage implements OnInit {
             if (res.isSuccess) {
               this.onToast("Api success", 'green')
               this.service.setLoanid(res.loan_id);
+              this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step2',redirectto:false }))
               // // this.form.setValue([name,res]);
               // this.form.reset();
               this.router.navigate(['/register-personal-loan']);

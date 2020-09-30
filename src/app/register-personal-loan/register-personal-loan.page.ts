@@ -26,6 +26,7 @@ export class RegisterPersonalLoanPage implements OnInit {
   isMatching: any;
   loanid: any;
   url: any;
+  savedLoan:any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
@@ -41,6 +42,10 @@ export class RegisterPersonalLoanPage implements OnInit {
     if (this.data == "neon")//if selected color is blue 
     {
       this.itemColor = ["#03A9F4"];
+    }
+    this.savedLoan = this.service.getLoanpage();
+    if (this.savedLoan != null) {
+      this.savedLoan=JSON.parse(this.savedLoan);
     }
 
   }
@@ -112,6 +117,7 @@ export class RegisterPersonalLoanPage implements OnInit {
               // this.service.setLoanid(res.loan_id);
               // // this.form.setValue([name,res]);
               // this.form.reset();
+              this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3',redirectto:false }))
               this.router.navigate(['/register-personal-loan2']);
 
             } else {

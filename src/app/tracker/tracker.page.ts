@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { CustomThemeService } from '../services/custom-theme.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-tracker',
@@ -10,7 +12,20 @@ export class TrackerPage implements OnInit {
   loanamount:any;
   status:any;
   updatedon:any;
-  constructor() { }
+  user:any;
+  loans:any;
+  constructor( private service: CustomThemeService,private userAPI: UserService,private zone: NgZone,) {
+     this.user=this.service.getUser();
+     this.userAPI.getUserLoans(this.user.id).subscribe((res) => {
+      this.zone.run(() => {
+        console.log(res);
+        if (res.isSuccess) {
+         this.loans=res.loans;
+        }
+        this.userAPI.hideLoader();
+      })
+    });
+   }
 
   ngOnInit() {
     this.loantype=''

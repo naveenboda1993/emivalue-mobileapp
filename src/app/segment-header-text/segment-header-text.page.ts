@@ -165,9 +165,16 @@ export class SegmentHeaderTextPage implements OnInit {
           // success
           // loading.dismiss()
           this.userAPI.hideLoader();
-          console.log(data);
-          alert(data);
-          if (data.isSuccess) {
+          var dataObject;
+          Object.keys(data).map(function (key) {
+            if (key == 'response') {
+              dataObject = JSON.parse(data[key]);
+            }
+            console.log(data[key], key)
+          });
+          console.log(dataObject);
+          alert(dataObject.message);
+          if (dataObject.isSuccess) {
             var formdata = {
               path: '/assets/img/temp/' + filename,
               userid: localStorage.getItem('id'),

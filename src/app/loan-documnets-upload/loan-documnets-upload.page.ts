@@ -261,24 +261,31 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   nextSlide() {
     switch (this.segments) {
       case 'segmentOne':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTwo', redirectto: false }))
         this.segments = 'segmentTwo';
         break;
       case 'segmentTwo':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentThree', redirectto: false }))
         this.segments = 'segmentThree';
         break;
       case 'segmentThree':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
         this.segments = 'segmentFour';
         break;
       case 'segmentFour':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFive', redirectto: false }))
         this.segments = 'segmentFive';
         break;
       case 'segmentFive':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSix', redirectto: false }))
         this.segments = 'segmentSix';
         break;
       case 'segmentSix':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSeven', redirectto: false }))
         this.segments = 'segmentSeven';
         break;
       case 'segmentSeven':
+        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentEight', redirectto: false }))
         this.segments = 'segmentEight';
         break;
       case 'segmentEight':
@@ -775,6 +782,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   // success-page
   finalStageSlide() {
     // this.router.navigate(['/coapplicant-loan-documnets']);
+    this.service.setLoanPage(JSON.stringify({ step: '/success-page', status: 'complete', msg: 'Please complete the previous loan', action: 'success', redirectto: false }))
     this.router.navigate(['/success-page']);
   }
 }

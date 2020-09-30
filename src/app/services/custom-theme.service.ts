@@ -37,4 +37,13 @@ export class CustomThemeService {
     this.loanid = localStorage.getItem("loanid");
     return this.loanid;
   }
+  public setLoanPage(c) {
+    localStorage.setItem("applyloan", c);
+  }
+  public getLoanpage() {
+    return localStorage.getItem("applyloan");
+  }
+  public getUser() {
+    return JSON.parse(localStorage.getItem("user"));
+  }
 }
