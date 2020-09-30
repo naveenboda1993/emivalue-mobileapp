@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { Platform, Events, NavController, ModalController, MenuController } from '@ionic/angular';
+import { Platform, Events, NavController, ModalController, MenuController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { Network } from '@ionic-native/network/ngx';
+declare var navigator; 
+declare var window; 
+declare var Connection; 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -132,12 +135,12 @@ export class AppComponent {
   public itemsShop: any = [];
 
   /// finanacial appa
-  public itemsLoan: any =[];
-  public itemsReferralWallet: any =[];
-  public itemsHowItWorks: any =[];
-  public itemsOurChannelPartners: any =[];
-  public itemsContactUs: any =[];
-  public itemsMyAccount: any =[];
+  public itemsLoan: any = [];
+  public itemsReferralWallet: any = [];
+  public itemsHowItWorks: any = [];
+  public itemsOurChannelPartners: any = [];
+  public itemsContactUs: any = [];
+  public itemsMyAccount: any = [];
 
   //////
   public itemsList: any = [];
@@ -163,13 +166,13 @@ export class AppComponent {
   //// financial app
   public home = [];
 
-  public loan =[
-    {name:"Personal Loan"},
-    {name: "Business Loan"},
-    {name: "Home Loan"},
-    {name: "Martigage Loan"},
-    {name: "Professional Loan"},
-    {name: "Vehicle Loan"}
+  public loan = [
+    { name: "Personal Loan" },
+    { name: "Business Loan" },
+    { name: "Home Loan" },
+    { name: "Martigage Loan" },
+    { name: "Professional Loan" },
+    { name: "Vehicle Loan" }
   ];
 
   goToLoan(i) {
@@ -192,11 +195,11 @@ export class AppComponent {
       this.navCtrl.navigateForward("vehicle-loan");
     }
   }
-  
+
   public referralWallet = [
-    {name: "Refer Now"},
-    {name: "My Referrals"},
-    {name: "Refer & Earn"}
+    { name: "Refer Now" },
+    { name: "My Referrals" },
+    { name: "Refer & Earn" }
   ];
 
   goToReferralWallet(i) {
@@ -211,35 +214,35 @@ export class AppComponent {
     }
   }
 
-   public howItWorks = [];
-   goToHowItWorks(i) {
+  public howItWorks = [];
+  goToHowItWorks(i) {
     if (i == 0) {
       this.navCtrl.navigateForward("how-work");
     }
   }
-   public ourChannelPartners = [];
-   goToOurChannelWorks(i) {
-    if (i == 0) {
-      this.navCtrl.navigateForward("how-work");
-    }
-  }
-
-   public contactUs = [];
-   goToContactUs(i) {
+  public ourChannelPartners = [];
+  goToOurChannelWorks(i) {
     if (i == 0) {
       this.navCtrl.navigateForward("how-work");
     }
   }
 
-   public myAccount = [];
-   goToMyAccount(i) {
-     if(i==0){
+  public contactUs = [];
+  goToContactUs(i) {
+    if (i == 0) {
+      this.navCtrl.navigateForward("how-work");
+    }
+  }
+
+  public myAccount = [];
+  goToMyAccount(i) {
+    if (i == 0) {
       this.navCtrl.navigateForward("myaccount");
     }
   }
 
 
-   //
+  //
   public listView = [
     { name: "Infinite Scroll" },
     { name: "Refresher" },
@@ -669,9 +672,12 @@ export class AppComponent {
     private navCtrl: NavController,
     private events: Events,
     public statusbar: StatusBar,
+    private network: Network,
+    public alertController: AlertController,
     private elementRef: ElementRef
   ) {
     //for status bar
+
     this.initializeApp();
     this.itemsHome = [
       { expandedHome: false },
@@ -924,15 +930,15 @@ export class AppComponent {
     }
   }
 
-  expandItemMyAccount(item): void{
+  expandItemMyAccount(item): void {
     this.visibleMyAccount = !this.visibleMyAccount;
-    if(item.expandedHelp) {
+    if (item.expandedHelp) {
       item.expandedHelp = false;
-    }else{
-      this.itemsMyAccount.map(listItem =>{
-        if(item == listItem){
+    } else {
+      this.itemsMyAccount.map(listItem => {
+        if (item == listItem) {
           listItem.expanded = !listItem.expanded;
-        }else{
+        } else {
           listItem.expanded = false;
         }
         return listItem;
@@ -1243,10 +1249,55 @@ export class AppComponent {
   ngOnInit() {
     this.menuCtrl.enable(true, 'Menu1')
   }
+  
   initializeApp() {
     this.platform.ready().then(() => {
+      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+        alert('network was disconnected :-(');
+      });
+
+      // stop disconnect watch
+      disconnectSubscription.unsubscribe();
+      if (window.Connection) {
+        if (navigator.connection.type == Connection.NONE) {
+          alert("there is no internet");
+          navigator['app'].exitApp();
+        }
+      }
       this.statusBar.hide();
     });
+    this.platform.backButton.subscribeWithPriority(5, () => {
+      // alert('Handler called to force close!');
+      this.presentAlertConfirm();
+      
+    });
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      // alert(' 1000 Handler called to force close!');
+      this.presentAlertConfirm();
+      
+    });
+  }
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'App Termination!',
+      message: 'Do you want to close the app?',
+      buttons: [
+        {
+          text: 'STAY',
+          role: 'STAY',
+          cssClass: 'secondary',
+          handler: (blah) => {
+           
+          }
+        }, {
+          text: 'EXIT',
+          handler: () => {
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   // For Expandable Function
@@ -1395,31 +1446,31 @@ export class AppComponent {
     }
   }
   /* public home = []; */
-   goToHome(i) {
+  goToHome(i) {
     if (i == 0) {
       this.navCtrl.navigateForward("how-work");
     }
   }
-   goToOurChannelPartners(i) {
+  goToOurChannelPartners(i) {
     if (i == 0) {
       this.navCtrl.navigateForward("how-work");
     }
   }
-  share(){
+  share() {
 
   }
 
-  expandItemHowItWorks(){
-    
+  expandItemHowItWorks() {
+
   }
-  expandItemHome(){
+  expandItemHome() {
 
   }
 
-  expandItemOurChannelPartners(){
+  expandItemOurChannelPartners() {
 
   }
-  expandItemContactUs(){
+  expandItemContactUs() {
 
   }
 

@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { CustomThemeService } from '../services/custom-theme.service';
 import { UserService } from '../shared/user.service';
 
@@ -8,36 +9,68 @@ import { UserService } from '../shared/user.service';
   styleUrls: ['./tracker.page.scss'],
 })
 export class TrackerPage implements OnInit {
-  loantype:any;
-  loanamount:any;
-  status:any;
-  updatedon:any;
-  user:any;
-  loans:any;
-  constructor( private service: CustomThemeService,private userAPI: UserService,private zone: NgZone,) {
-     this.user=this.service.getUser();
-     this.userAPI.getUserLoans(this.user.id).subscribe((res) => {
+  loantype: any;
+  loanamount: any;
+  status: any;
+  updatedon: any;
+  user: any;
+  loans: any;
+  constructor(private service: CustomThemeService, private userAPI: UserService, private zone: NgZone,public alertController: AlertController) {
+    this.user = this.service.getUser();
+   this.GetLoans();
+  }
+  
+  ngOnInit() {
+    this.loantype = ''
+    this.loanamount = ''
+    this.status = ''
+    this.updatedon = ''
+    
+    this.GetLoans();
+  }
+
+  GetLoans() {
+    this.userAPI.getUserLoans(this.user.id).subscribe((res) => {
       this.zone.run(() => {
         console.log(res);
         if (res.isSuccess) {
-         this.loans=res.loans;
+          this.loans = res.loans;
         }
         this.userAPI.hideLoader();
       })
     });
-   }
-
-  ngOnInit() {
-    this.loantype=''
-    this.loanamount=''
-    this.status=''
-    this.updatedon=''
-
-    this.GetLoans();
   }
-
-  GetLoans(){
-    
+  async deleteLoan(loan: any) {
+    console.log(loan)
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Are you sure delete Loan <strong>L'+loan.id+'</strong> !!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.userAPI.deleteUserloan(loan.id).subscribe((res) => {
+              this.zone.run(() => {
+                console.log(res);
+                if (res.isSuccess) {
+                  this.GetLoans();
+                }
+                this.userAPI.hideLoader();
+              })
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }
