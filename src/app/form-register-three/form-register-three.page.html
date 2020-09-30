@@ -79,7 +79,7 @@
 
                     <ion-item>
                         <ion-input type="password" class="formGroup" placeholder="Confirm Password"
-                            formControlName="confirmpassword" required [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors }">
+                            formControlName="confirmpassword" required [ngClass]="{'is-invalid': submitted && f.confirmpassword.errors }">
                         </ion-input>
                         <div *ngIf="submitted && f.confirmpassword.errors">
                             <div *ngIf="f.confirmpassword.errors.required">Confirm Password is required</div>
