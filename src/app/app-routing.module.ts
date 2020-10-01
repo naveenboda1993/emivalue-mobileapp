@@ -135,7 +135,8 @@ const routes: Routes = [
   { path: 'tracker', loadChildren: './tracker/tracker.module#TrackerPageModule' },
   { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyaccountPageModule' },
   { path: 'my-details', loadChildren: './my-details/my-details.module#MyDetailsPageModule' },
-  { path: 'my-banks', loadChildren: './my-banks/my-banks.module#MyBanksPageModule' }
+  { path: 'my-banks', loadChildren: './my-banks/my-banks.module#MyBanksPageModule' },
+  { path: 'list-of-upload-files', loadChildren: './list-of-upload-files/list-of-upload-files.module#ListOfUploadFilesPageModule' }
 
 ];
 
