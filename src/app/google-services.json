@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "469086294940",
+    "firebase_url": "https://emivalue-df40d.firebaseio.com",
+    "project_id": "emivalue-df40d",
+    "storage_bucket": "emivalue-df40d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469086294940:android:56d439f0130214b3bc6e59",
+        "android_client_info": {
+          "package_name": "com.naveenboda.emivalue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469086294940-qt2ip50c1qb3vah1nfkre97q6fvurnop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_QaWf27EYlWMulhLkhk58y557b2RoEZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469086294940-qt2ip50c1qb3vah1nfkre97q6fvurnop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

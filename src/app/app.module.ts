@@ -19,6 +19,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
+// import { MiAccordionComponent } from './components/mi-accordion/mi-accordion.component';
 @NgModule({
   declarations: [AppComponent, MenuComponentComponent],
   entryComponents: [],
@@ -33,7 +35,7 @@ import { Network } from '@ionic-native/network/ngx';
   providers: [
     StatusBar,
     Camera,FileTransfer,FileChooser,
-    SplashScreen,HTTP,Network,
+    SplashScreen,HTTP,Network,FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

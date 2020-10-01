@@ -10,7 +10,7 @@
         <!-- form with input text and submit buttons -->
         <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
             <ion-item>
-                <ion-input type="text" placeholder="Phone number" formControlName="mobile" required>
+                <ion-input type="text" placeholder="Mobile number" formControlName="mobile" required>
                 </ion-input>
             </ion-item>
             <ion-item *ngIf="!isOtp" >
@@ -34,7 +34,7 @@
             </ion-col>
             <ion-col size="12" >
                 <!-- form-register-three -->
-                <ion-button fill="outline" routerLink="/form-register-three" routerDirection="forward" expand="block" type="submit">Register</ion-button>
+                <ion-button fill="outline" routerLink="/form-register-three" routerDirection="forward" expand="block" type="submit">Register Now</ion-button>
             </ion-col>
             <!-- <ion-col size="12">
                 <ion-button expand="block" color="danger" type="submit">Login with

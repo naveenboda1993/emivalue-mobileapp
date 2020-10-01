@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Refer Earn</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- form with input text and submit buttons -->
+
+
+    <!-- <ion-button (click)="openCam()" >Take Photo</ion-button>
+  <ion-button (click)="uploadFile()" >Upload</ion-button>
+  <img src="{{image}}">
+  <br>
+  <br> -->
+    <ion-card class="card">
+        <ion-card-header>
+            <h2 style="text-align: center;">Refer Earn</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col class="header-content" size="6">
+                    <h3>Welcome</h3>
+                    <h4>to Emi Value</h4>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <p><b>HOW WORKS REFER WALLET? </b> </p>
+                <p>
+                    1. Register as a Channel Partner, via app.</p>
+                <p>
+                    2. Refer details of customers who are looking for a loan.</p>
+                <p>
+                    3. We will work out the best solution for your customer.</p>
+                <p>
+                    4. Track your customer's application anytime.</p>
+                <p>
+                    5. Start earning handsome rewards.
+
+                </p>
+            </ion-row>
+            <br>
+            <app-accordion *ngFor="let technology of technologies" name="{{ technology.name }}"
+                description="{{ technology.description }}" image="{{ technology.image }}"
+                (change)="captureName($event)"></app-accordion>
+            <h2>FAQ'S?</h2>
+            <app-accordion *ngFor="let faq of referfaqs" name="{{ faq.name }}"
+            description="{{ faq.description }}" image="{{ faq.image }}"
+            (change)="captureName($event)"></app-accordion>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

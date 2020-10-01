@@ -121,12 +121,14 @@ export class HomePage {
   visiableBtnLightgray = false;
   visiableBtnBlue = false;
   visiableBtn = false;
+  user: any;
   itemColor = "#03A9F4";//blue
   @ViewChild(IonSlides) autoSlides: IonSlides;
   constructor(private service: CustomThemeService,
     private events: Events, public menuCtrl: MenuController, private theme: ThemeService,
     private navCtrl: NavController, private elementRef: ElementRef) {
     this.visiableBtnAutum = true;
+    this.user = this.service.getUser();
     // this.itemColor = "#F44336";
     // this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
     // this.theme.setTheme(themes['neon'], 'neon');
@@ -299,15 +301,15 @@ export class HomePage {
     { image: "assets/images/home-banners/homebanner3.jpeg" },
   ];
   /////////banner slides autoplay function////////////////
-  ionViewDidEnter() {
-    this.autoSlides.startAutoplay();
-  }
-  /////////banner slides previous function///////////////////
-  prevSlide() {
-    this.autoSlides.slidePrev();
-  }
-  /////////////banner slides next function///////////////
-  nextSlide() {
-    this.autoSlides.slideNext();
-  }
+  // ionViewDidEnter() {
+  //   this.autoSlides.startAutoplay();
+  // }
+  // /////////banner slides previous function///////////////////
+  // prevSlide() {
+  //   this.autoSlides.slidePrev();
+  // }
+  // /////////////banner slides next function///////////////
+  // nextSlide() {
+  //   this.autoSlides.slideNext();
+  // }
 }

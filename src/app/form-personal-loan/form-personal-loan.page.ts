@@ -38,7 +38,7 @@ export class FormPersonalLoanPage implements OnInit {
     this.iconColorVar = this.data;
     // applyloan
     var loan:any = this.service.getLoanpage();
-    if (loan != null) {
+    if (loan != null && loan != '') {
       loan=JSON.parse(loan);
       this.router.navigate([loan.step]);
       console.log(loan);

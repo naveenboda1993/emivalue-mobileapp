@@ -92,7 +92,7 @@
       </ion-col>
     </ion-row> -->
     <!-- banners -->
-    <ion-row no-padding>
+    <!-- <ion-row no-padding>
       <ion-col no-padding>
         <ion-item class="itemSlider">
           <ion-button type="submit" fill="clear" color="light" class="swiper-button-prev swiper-button-white prevBtn"
@@ -108,19 +108,72 @@
             (click)="nextSlide()"></ion-button>
         </ion-item>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" style="text-align: center;">
-        <!-- <ion-icon name="person" style=" zoom: 3.8; padding: 5px;"></ion-icon> -->
-        <ion-text>
-          <h1>Welcome,
-            <br> Naveen Boda</h1>
-        </ion-text>
+    </ion-row> -->
+    <ion-row style="    padding: 0 25px;">
+      <ion-col class="header-content" size="8">
+        <h1 style="text-transform: capitalize;">Welcome,
+          <br> {{user.full_name}} {{user.last_name}}</h1>
+      </ion-col>
+      <ion-col size="4">
+        <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
       </ion-col>
     </ion-row>
+    <ion-row>
+      
+      <ion-col size="6" class="text-center">
+        <!-- simple card with icon and text -->
+        <ion-card color="success" routerLink="/myaccount" routerDirection="forward">
+          <ion-icon name="settings" class="zoom-padd"></ion-icon>
+          <ion-text>
+            <h2>My Account</h2>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" class="text-center">
+        <!-- simple card with icon and text -->
+        <ion-card color="tertiary" routerLink="/form-personal-loan" routerDirection="forward">
+          <ion-icon class="zoom-padd" name="add"></ion-icon>
+          <ion-text>
+            <h2>Apply A Loan</h2>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" class="text-center">
+        <!-- simple card with icon and text -->
+        <ion-card color="secondary" routerLink="/tracker" routerDirection="forward">
+          <ion-icon class="zoom-padd" name="list"></ion-icon>
+          <ion-text>
+            <h2>Tracker</h2>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" class="text-center">
+        <!-- simple card with icon and text -->
+        <ion-card color="danger" routerLink="/wallet" routerDirection="forward">
+          <ion-icon style=" zoom: 3.8;" name="people"></ion-icon>
+          <ion-text>
+            <p>Bonus Cash Award 2,500/-</p>
+            <h2>EMI Wallet</h2>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+      <ion-col size="6" class="text-center">
+        <!-- simple card with icon and text -->
+        <ion-card color="warning" routerLink="/refer" routerDirection="forward">
+          <ion-icon class="zoom-padd" name="share"></ion-icon>
+          <ion-text>
+            <h2>Refer A Loan</h2>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+
+    </ion-row>
 
 
-    <ion-row class="" padding>
+    <!-- <ion-row class="" padding>
       <ion-col class="tagCol" size="12" no-padding>
         <ion-row class="rowtag" justify-content-center no-padding>
           <ion-col class="col1Tag" no-padding size="4">
@@ -143,7 +196,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row class="rowComp" padding>
       <ion-col class="colComp" size="12" no-padding>

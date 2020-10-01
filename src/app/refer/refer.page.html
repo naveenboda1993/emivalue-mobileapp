@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+              <ion-icon name="arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>Refer A Loan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- form with input text and submit buttons -->
+
+
+  <!-- <ion-button (click)="openCam()" >Take Photo</ion-button>
+  <ion-button (click)="uploadFile()" >Upload</ion-button>
+  <img src="{{image}}">
+  <br>
+  <br> -->
+  <ion-card class="card">
+      <ion-card-header>
+          <h2 style="text-align: center;">Refer A Loan</h2>
+      </ion-card-header>
+      <ion-card-content>
+          <ion-row>
+              <ion-col class="header-content" size="6">
+                  <h3>Welcome</h3><h4>to Emi Value</h4>
+              </ion-col>
+              <ion-col size="6">
+                  <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <h4>This is the one time registration process and should not take more than a few minutes</h4>
+          </ion-row>
+          <br>
+          <form [formGroup]="referloanform" (ngSubmit)="onSubmit()">
+              <ion-row>
+                  <ion-col size="12">
+                      <ion-list>
+                          <!-- <ion-item row>
+                              <ion-label col="4"> Type Of Loan</ion-label>
+                              <ion-select placeholder="Personal Loan" formControlName="loantype" col="8">
+                                  <ion-select-option value="personal_loan" selected> Personal Loan</ion-select-option>
+                                  <ion-select-option value="business_loan"> Business Loan</ion-select-option>
+                                  <ion-select-option value="martigage_loan"> Martigage Loan</ion-select-option>
+                                  <ion-select-option value="home_loan"> Home Loan</ion-select-option>
+                                  <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option>
+                              </ion-select>
+                          </ion-item>
+                          
+                          <br>
+                          <br> -->
+                          <!-- <ion-label>Looking Loan Amount</ion-label> -->
+                          <ion-item>
+                              <ion-input type="text" placeholder="Refer Name" formControlName="refername"
+                                  required>
+                              </ion-input>
+                          </ion-item>
+                          <br>
+                          <br>
+                          <!-- <ion-label>Looking Loan Amount</ion-label> -->
+                          <ion-item>
+                              <ion-input type="number" placeholder="Mobile Number" formControlName="mobilenumber"
+                                  required>
+                              </ion-input>
+                          </ion-item>
+                          <br>
+                          <br>
+                          <!-- <ion-label>Looking Loan Amount</ion-label> -->
+                          <ion-item>
+                              <ion-input type="email" placeholder="Email Address" formControlName="email"
+                                  >
+                              </ion-input>
+                          </ion-item>
+                          <br>
+                          <br>
+                          <!-- <ion-label>Looking Loan Amount</ion-label> -->
+                          <ion-item>
+                              <ion-input type="number" placeholder="Loan Amount" formControlName="loanamount"
+                                  required>
+                              </ion-input>
+                          </ion-item>
+                      </ion-list>
+                  </ion-col>
+              </ion-row>
+              <br>
+              <br>
+              <ion-button  expand="block" type="submit">Refer</ion-button>
+              <ion-row>
+                  <ion-col size="12">
+                  </ion-col>
+              </ion-row>
+          </form>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

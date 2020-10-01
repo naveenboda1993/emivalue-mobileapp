@@ -33,11 +33,14 @@
         <ion-row>
           <ion-col>
             <h4>Applied On</h4>
-            <h6>{{item.created_on | date:mediumDate}}</h6>
+            <h6>{{item.created_on }}</h6>
+            <!-- <h6>{{item.created_on | date:mediumDate}}</h6> -->
           </ion-col>
           <ion-col>
             <h4>Status</h4>
-            <h6 style="color:#f7a40a;">{{item.status}}</h6>
+            <h6 style="color:#f7a40a;" *ngIf="item.status=='init'">{{item.status}}</h6>
+            <h6 style="color:red;" *ngIf="item.status=='failed'">{{item.status}}</h6>
+            <h6 style="color:green;" *ngIf="item.status=='success'">{{item.status}}</h6>
           </ion-col>
         </ion-row>
       </ion-grid>

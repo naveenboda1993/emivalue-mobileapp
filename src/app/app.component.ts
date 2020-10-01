@@ -4,6 +4,7 @@ import { Platform, Events, NavController, ModalController, MenuController, Alert
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 declare var navigator; 
 declare var window; 
 declare var Connection; 
@@ -204,7 +205,7 @@ export class AppComponent {
 
   goToReferralWallet(i) {
     if (i == 0) {
-      this.navCtrl.navigateForward("refer-now");
+      this.navCtrl.navigateForward("refer");
     }
     if (i == 1) {
       this.navCtrl.navigateForward("my-referrals");
@@ -673,6 +674,7 @@ export class AppComponent {
     private events: Events,
     public statusbar: StatusBar,
     private network: Network,
+    private fcm: FCM,
     public alertController: AlertController,
     private elementRef: ElementRef
   ) {
@@ -1265,6 +1267,33 @@ export class AppComponent {
         }
       }
       this.statusBar.hide();
+      // subscribe to a topic
+      // this.fcm.subscribeToTopic('Deals');
+
+      // get FCM token
+      this.fcm.getToken().then(token => {
+        localStorage.setItem('fcmtoken',token);
+        console.log(token);
+      });
+      
+      // ionic push notification example
+      this.fcm.onNotification().subscribe(data => {
+        console.log(data);
+        if (data.wasTapped) {
+          console.log('Received in background');
+        } else {
+          console.log('Received in foreground');
+        }
+      });      
+      
+      // refresh the FCM token
+      this.fcm.onTokenRefresh().subscribe(token => {
+        localStorage.setItem('fcmtoken',token);
+        console.log(token);
+      });
+
+      // unsubscribe from a topic
+      // this.fcm.unsubscribeFromTopic('offers');
     });
     this.platform.backButton.subscribeWithPriority(5, () => {
       // alert('Handler called to force close!');
@@ -1276,6 +1305,8 @@ export class AppComponent {
       this.presentAlertConfirm();
       
     });
+
+    
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
