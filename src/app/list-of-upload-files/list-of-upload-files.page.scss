@@ -1,0 +1,17 @@
+// .content{
+//   background: linear-gradient(to bottom, #3893f1 0%, #3893f1 0%, white 50%, white 100%);
+// }
+h6, p {
+    text-align: center;
+    margin: 10px;
+}
+
+ion-content{
+
+    
+    --ion-background-color: linear-gradient(to bottom, #3893f1 0%, #3893f1 0%, white 50%, white 100%);
+    
+}
+.info{
+    margin-left: 20px;
+}
