@@ -33,6 +33,13 @@ export class UserService {
       );
 
   }
+  deleteUserloan(loanid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/deleteuserloan/'+loanid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   uploadFile(data: any): Observable<any> {
     return this.http.post<any>(this.baseurl + '/appupload', data, this.httpOptions)
       .pipe(

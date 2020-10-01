@@ -18,6 +18,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { Network } from '@ionic-native/network/ngx';
 @NgModule({
   declarations: [AppComponent, MenuComponentComponent],
   entryComponents: [],
@@ -32,7 +33,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
   providers: [
     StatusBar,
     Camera,FileTransfer,FileChooser,
-    SplashScreen,HTTP,
+    SplashScreen,HTTP,Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
