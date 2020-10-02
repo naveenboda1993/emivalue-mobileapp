@@ -4,11 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CustomThemeService {
+
   public color;
   public response;
   public loanid;
   public baseurl = 'http://emivalue.snitchmedia.in/api';
   public backendurl = 'http://emivalue.snitchmedia.in/';
+  loantype: any;
   constructor() {
   }
   public getBaseUrl() {
@@ -45,5 +47,11 @@ export class CustomThemeService {
   }
   public getUser() {
     return JSON.parse(localStorage.getItem("user"));
+  }
+  public setLoantype(personalloan: any) {
+    this.loantype = personalloan;
+  }
+  public getLoanType() {
+    return this.loantype;
   }
 }

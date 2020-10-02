@@ -147,7 +147,12 @@ export class RegisterPersonalLoanPage implements OnInit {
               // // this.form.setValue([name,res]);
               // this.form.reset();
               this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3',redirectto:false }))
-              this.router.navigate(['/register-personal-loan2']);
+              if(this.service.getLoanType()=='personal_loan'){
+                this.router.navigate(['/register-personal-loan2']);
+              }
+              else{
+                this.router.navigate(['success-page'])
+              }
 
             } else {
               this.onToast(res.message);

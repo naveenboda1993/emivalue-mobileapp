@@ -122,6 +122,7 @@ export class FormPersonalLoanPage implements OnInit {
             if (res.isSuccess) {
               this.onToast("Api success", 'green')
               this.service.setLoanid(res.loan_id);
+              this.service.setLoantype(this.personalloanform.value.personalloan);
               this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step2',redirectto:false }))
               // // this.form.setValue([name,res]);
               // this.form.reset();

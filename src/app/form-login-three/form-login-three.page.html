@@ -1,42 +1,63 @@
 <ion-header>
-        <ion-toolbar>
-            
-            <ion-title>Login </ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ion-content padding>
-        <ion-img src="assets/images/logo.png"></ion-img>
-        <!-- form with input text and submit buttons -->
-        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
-            <ion-item>
-                <ion-input type="text" placeholder="Mobile number" formControlName="mobile" required>
-                </ion-input>
-            </ion-item>
-            <ion-item *ngIf="!isOtp" >
-                <ion-input type="password" placeholder="Password" formControlName="password" >
-                </ion-input>
-            </ion-item>
-            <ion-item *ngIf="isOtp" >
-                <ion-input type="number" placeholder="OTP" formControlName="otp" >
-                </ion-input>
-            </ion-item>
-            <ion-col size="12">
-                <ion-button expand="block" type="submit" >Login</ion-button>
-            </ion-col>
-        </form>
-        <ion-row *ngIf="!isOtp">
-            <ion-col size="12" >
-                <ion-button expand="block" fill="clear">
-                    <b>Get OTP ?</b>
-                    <!-- <b>I've Forgotten My Password?</b> -->
-                </ion-button>
-            </ion-col>
-            <ion-col size="12" >
-                <!-- form-register-three -->
-                <ion-button fill="outline" routerLink="/form-register-three" routerDirection="forward" expand="block" type="submit">Register Now</ion-button>
-            </ion-col>
-            <!-- <ion-col size="12">
+    <ion-toolbar>
+
+        <ion-title>Login </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- <ion-img src="assets/images/logo.png"></ion-img> -->
+    <ion-card class="card" style="    margin: 0px;">
+        <ion-card-header>
+            <h2  class="h2c" style="text-align: center;">Login</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col class="header-content" size="6">
+                    <h3 class="h3c">Welcome</h3>
+                    <h4>to Emi Value</h4>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <h4>This is the one time registration process and should not take more than a few minutes</h4>
+            </ion-row>
+            <br>
+            <!-- form with input text and submit buttons -->
+            <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+                <ion-item>
+                    <ion-input type="text" placeholder="Mobile number" formControlName="mobile" required>
+                    </ion-input>
+                </ion-item>
+                <br>
+                <ion-item *ngIf="!isOtp">
+                    <ion-input type="password" placeholder="Password" formControlName="password">
+                    </ion-input>
+                </ion-item>
+                <ion-item *ngIf="isOtp">
+                    <ion-input type="number" placeholder="OTP" formControlName="otp">
+                    </ion-input>
+                </ion-item>
+                <ion-col size="12">
+                    <ion-button expand="block" type="submit">Login</ion-button>
+                </ion-col>
+            </form>
+            <ion-row *ngIf="!isOtp">
+                <ion-col size="12">
+                    <ion-button expand="block" fill="clear">
+                        <!-- <b>Get OTP ?</b> -->
+                        <b>I've Forgotten My Password?</b>
+                    </ion-button>
+                </ion-col>
+                <ion-col size="12">
+                    <!-- form-register-three -->
+                    <ion-button fill="outline" routerLink="/form-register-three" routerDirection="forward"
+                        expand="block" type="submit">Register Now</ion-button>
+                </ion-col>
+
+                <!-- <ion-col size="12">
                 <ion-button expand="block" color="danger" type="submit">Login with
                     <ion-icon name="logo-google"></ion-icon>
                 </ion-button>
@@ -46,5 +67,15 @@
                     <ion-icon name="logo-facebook"></ion-icon>
                 </ion-button>
             </ion-col> -->
-        </ion-row>
-      </ion-content>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col>
+            <p><b>Get free Rs.2500/- Bonus Cash Money while Easy Register/sign Up.</b> </p>
+            <p>T&C : Use's Of Bonus cash Money While Refering of Two successful Qualified Loan Disbursal Leads.</p>
+        </ion-col>
+    </ion-row>
+</ion-footer>
