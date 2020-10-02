@@ -26,7 +26,11 @@ export class RegisterPersonalLoanPage implements OnInit {
   isMatching: any;
   loanid: any;
   url: any;
-  savedLoan:any;
+  savedLoan: any;
+  emptype: any;
+  marialstaus: any;
+  states: any;
+  cities: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
@@ -34,7 +38,7 @@ export class RegisterPersonalLoanPage implements OnInit {
     private router: Router,
     private service: CustomThemeService,
     private http: HttpClient,
-    ) {
+  ) {
     this.itemColor = ["#03A9F4"];//to get the coloe from custom-theme service
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
@@ -44,19 +48,46 @@ export class RegisterPersonalLoanPage implements OnInit {
       this.itemColor = ["#03A9F4"];
     }
     this.savedLoan = this.service.getLoanpage();
-    if (this.savedLoan != null) {
-      this.savedLoan=JSON.parse(this.savedLoan);
+    if (this.savedLoan != null && this.savedLoan != '') {
+      this.savedLoan = JSON.parse(this.savedLoan);
     }
+    this.getcities();
 
   }
 
+  async getcities() {
+    await this.userAPI.showLoader();
+    this.userAPI.getcitiesstates()
+      .subscribe((res) => {
+        this.zone.run(() => {
+          console.log(res);
+          if (res.isSuccess) {
+            this.emptype = res.emptype;
+            this.marialstaus = res.marialstaus;
+            this.states = res.states;
+          }
+          this.userAPI.hideLoader();
+        })
+      });
+  }
+  yourFunction(event) {
+    this.loanregisterform.value.city = '';
+    this.states.forEach(element => {
+      if (element.name == this.loanregisterform.value.state) {
+        this.cities = element.cities;
+      }
+    });
+  }
   ngOnInit() {
+
+    // + '/' + encodeURIComponent(this.loanregisterform.value.email)
+
+    // email: ['', Validators.required],
     this.loanregisterform = this.formBuilder.group({
       firstname: ['', Validators.required],
       birth: ['', Validators.required],
       company: ['', Validators.required],
       employee: ['', Validators.required],
-      email: ['', Validators.required],
       salary: ['', Validators.required],
       experience: ['', Validators.required],
       pan_no: ['', Validators.required],
@@ -66,14 +97,14 @@ export class RegisterPersonalLoanPage implements OnInit {
       state: ['', Validators.required],
       pincode: ['', Validators.required],
     });
-    console.log(this.service.getBackenEndUrl())   ; 
-    this.url=this.service.getBackenEndUrl()    ;
+    console.log(this.service.getBackenEndUrl());
+    this.url = this.service.getBackenEndUrl();
   }
 
-  async onToast(text: any, color? : any) {
+  async onToast(text: any, color?: any) {
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color:  "success",
+      color: "success",
       showCloseButton: true,
       position: 'top',
       message: text,
@@ -85,21 +116,19 @@ export class RegisterPersonalLoanPage implements OnInit {
 
 
   onSubmit() {
-            
+
     if (!this.loanregisterform.valid) {
       this.onToast("Please Fill All The Fields")
       return false;
     } else {
-      
-      console.log(this.loanregisterform.value)     
-      // this.http.options. { headers: headers }
+
+      console.log(this.loanregisterform.value)
       this.http.get( this.url+'Login/addpersonalloan2/' + localStorage.getItem('id') 
       + '/' + encodeURIComponent(this.loanid)
       + '/' + encodeURIComponent(this.loanregisterform.value.firstname)
       + '/' + encodeURIComponent(this.loanregisterform.value.birth)
       + '/' + encodeURIComponent(this.loanregisterform.value.company)
       + '/' + encodeURIComponent(this.loanregisterform.value.employee)
-      + '/' + encodeURIComponent(this.loanregisterform.value.email)
       + '/' + encodeURIComponent(this.loanregisterform.value.salary)
       + '/' + encodeURIComponent(this.loanregisterform.value.experience)
       + '/' + encodeURIComponent(this.loanregisterform.value.pan_no)

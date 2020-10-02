@@ -135,6 +135,7 @@ const routes: Routes = [
   { path: 'tracker', loadChildren: './tracker/tracker.module#TrackerPageModule' },
   { path: 'refer', loadChildren: './refer/refer.module#ReferPageModule' },
   { path: 'refer-earn', loadChildren: './refer-earn/refer-earn.module#ReferEarnPageModule' },
+  { path: 'my-referrals', loadChildren: './my-referrals/my-referrals.module#MyReferralsPageModule' },
   { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyaccountPageModule' },
   { path: 'my-details', loadChildren: './my-details/my-details.module#MyDetailsPageModule' },
   { path: 'my-banks', loadChildren: './my-banks/my-banks.module#MyBanksPageModule' },

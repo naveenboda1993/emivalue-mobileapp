@@ -16,11 +16,19 @@ export class UserService {
   };
   public baseurl = 'http://emivalue.snitchmedia.in/api';
   public baseloginurl = 'http://emivalue.snitchmedia.in/Login';
+  public baseloanurl = 'http://emivalue.snitchmedia.in/Loan';
 
   constructor(private http: HttpClient, private http2: HTTP, public loadingController: LoadingController) { }
 
   getcategory(): Observable<any> {
     return this.http.get<any>(this.baseurl + '/getcategory', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getcitiesstates(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/getcountrieslist', this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
@@ -33,8 +41,22 @@ export class UserService {
       );
 
   }
+  getUserReferrals(userid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getuserreferrals/'+userid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   deleteUserloan(loanid): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/deleteuserloan/'+loanid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  deleteUserrefer(referid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/deleteuserrefer/'+referid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
