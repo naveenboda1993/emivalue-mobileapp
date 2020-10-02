@@ -133,6 +133,7 @@ const routes: Routes = [
   { path: 'register-personal-loan2', loadChildren: './register-personal-loan2/register-personal-loan2.module#RegisterPersonalLoan2PageModule' },
   { path: 'success-page', loadChildren: './success-page/success-page.module#SuccessPagePageModule' },
   { path: 'tracker', loadChildren: './tracker/tracker.module#TrackerPageModule' },
+  { path: 'tracker-view', loadChildren: './tracker-view/tracker-view.module#TrackerViewPageModule' },
   { path: 'refer', loadChildren: './refer/refer.module#ReferPageModule' },
   { path: 'refer-earn', loadChildren: './refer-earn/refer-earn.module#ReferEarnPageModule' },
   { path: 'my-referrals', loadChildren: './my-referrals/my-referrals.module#MyReferralsPageModule' },
