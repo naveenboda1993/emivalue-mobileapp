@@ -96,6 +96,10 @@ export class ReferEarnPage implements OnInit {
     toast.present();
   }
 
+  captureName(e){
+
+  }
+
 
 
 }

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/home" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    </ion-buttons>
+    <ion-title>How It Works</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+  <ion-card-header>
+      <h2 style="text-align: center;">How It Works </h2>
+  </ion-card-header>
+  <ion-card-content>
+      <ion-row>
+          <ion-col class="header-content" size="6">
+              <h3>Welcome</h3>
+              <h4>to Emi Value</h4>
+          </ion-col>
+          <ion-col size="6">
+              <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <p><b>HOW IT WORKS</b></p>
+      </ion-row>
+      <br>
+      <app-accordion *ngFor="let work of works" name="{{ work.name }}"
+          description="{{ work.description }}" image="{{ work.image }}"
+          (change)="captureName($event)">
+        </app-accordion>
+        <br>
+      <h2>FAQ'S?</h2>
+      <app-accordion *ngFor="let faq of faqs" name="{{ faq.name }}"
+      description="{{ faq.description }}" image="{{ faq.image }}"
+      (change)="captureName($event)"></app-accordion>
+  </ion-card-content>
+</ion-card>
+</ion-content>
