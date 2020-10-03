@@ -30,8 +30,8 @@
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-item no-padding lines="full" (click)="expandItemHome(item)" class="listItem"
-            *ngFor="let item of itemsHome">
+          <ion-item no-padding lines="full" (click)="expandItemHome()" class="listItem"
+            >
             <ion-grid no-padding class="listGrid">
               <ion-row>
                 <ion-col size="2">
@@ -43,21 +43,21 @@
                   </p>
                 </ion-col>
 
-                <ion-col size="2">
+                <!-- <ion-col size="2">
                   <div class="div-badge">
                     <ion-badge fill="outline" class="buttonList"></ion-badge>
                   </div>
-                </ion-col>
+                </ion-col> -->
               </ion-row>
 
-              <ion-menu-toggle auto-hide="true" no-padding>
+              <!-- <ion-menu-toggle auto-hide="true" no-padding>
                 <app-menu-component expandHeight="650px" class="expandHome" [expanded]="item.expanded" no-padding>
                   <ion-item lines="full" class="listHelpItem" *ngFor="let list of home;let i = index"
                     (click)="goToHome(i)">
-                    <!-- <p class="parainnerList">{{list.name}}</p> -->
+                    <p class="parainnerList">{{list.name}}</p>
                   </ion-item>
                 </app-menu-component>
-              </ion-menu-toggle>
+              </ion-menu-toggle> -->
             </ion-grid>
           </ion-item>
 
@@ -123,8 +123,8 @@
             </ion-grid>
           </ion-item>
 
-          <ion-item no-padding lines="full" (click)="expandItemHowItWorks(item)" class="listItem"
-            *ngFor="let item of itemsHowItWorks">
+          <ion-item no-padding lines="full" (click)="goToHowItWorks(0)" class="listItem"
+            >
             <ion-grid no-padding class="listGrid">
               <ion-row>
                 <ion-col size="2">
@@ -136,21 +136,21 @@
                   </p>
                 </ion-col>
 
-                <ion-col size="2">
+                <!-- <ion-col size="2">
                   <div class="div-badge">
                     <ion-badge fill="outline" class="buttonList"></ion-badge>
                   </div>
-                </ion-col>
+                </ion-col> -->
               </ion-row>
 
-              <ion-menu-toggle auto-hide="true" no-padding>
+              <!-- <ion-menu-toggle auto-hide="true" no-padding>
                 <app-menu-component expandHeight="650px" class="expandHowItWorks" [expanded]="item.expanded" no-padding>
                   <ion-item lines="full" class="listHelpItem" *ngFor="let list of howItWorks;let i = index"
                     (click)="goToHowItWorks(i)">
-                    <!-- <p class="parainnerList">{{list.name}}</p> -->
+                    <p class="parainnerList">{{list.name}}</p>
                   </ion-item>
                 </app-menu-component>
-              </ion-menu-toggle>
+              </ion-menu-toggle> -->
             </ion-grid>
           </ion-item>
 
@@ -185,8 +185,7 @@
             </ion-grid>
           </ion-item>
 
-          <ion-item no-padding lines="full" (click)="expandItemContactUs(item)" class="listItem"
-            *ngFor="let item of itemsContactUs">
+          <ion-item no-padding lines="full" (click)="expandItemContactUs()" class="listItem">
             <ion-grid no-padding class="listGrid">
               <ion-row>
                 <ion-col size="2">
@@ -198,26 +197,26 @@
                   </p>
                 </ion-col>
 
-                <ion-col size="2">
+                <!-- <ion-col size="2">
                   <div class="div-badge">
                     <ion-badge fill="outline" class="buttonList"></ion-badge>
                   </div>
-                </ion-col>
+                </ion-col> -->
               </ion-row>
 
-              <ion-menu-toggle auto-hide="true" no-padding>
+              <!-- <ion-menu-toggle auto-hide="true" no-padding>
                 <app-menu-component expandHeight="650px" class="expandContactUs" [expanded]="item.expanded" no-padding>
                   <ion-item lines="full" class="listHelpItem" *ngFor="let list of contactUs;let i = index"
                     (click)="goToContactUs(i)">
-                    <!-- <p class="parainnerList">{{list.name}}</p> -->
+                    <p class="parainnerList">{{list.name}}</p>
                   </ion-item>
                 </app-menu-component>
-              </ion-menu-toggle>
+              </ion-menu-toggle> -->
             </ion-grid>
           </ion-item>
 
           <ion-item no-padding lines="full" (click)="goToMyAccount(0)" class="listItem "
-            *ngFor="let item of itemsMyAccount">
+            >
             <ion-grid no-padding class="listGrid">
               <ion-row>
                 <ion-col size="2">
@@ -229,21 +228,21 @@
                   </p>
                 </ion-col>
 
-                <ion-col size="2">
+                <!-- <ion-col size="2">
                   <div class="div-badge">
                     <ion-badge fill="outline" class="buttonList"></ion-badge>
                   </div>
-                </ion-col>
+                </ion-col> -->
               </ion-row>
 
-              <ion-menu-toggle auto-hide="true" no-padding>
+              <!-- <ion-menu-toggle auto-hide="true" no-padding>
                 <app-menu-component expandHeight="650px" class="expandMyAccount" [expanded]="item.expanded" no-padding>
                   <ion-item lines="full" class="listHelpItem" *ngFor="let list of myAccount;"
                     (click)="goToMyAccount(0)">
-                    <!-- <p class="parainnerList">{{list.name}}</p> -->
+                    <p class="parainnerList">{{list.name}}</p>
                   </ion-item>
                 </app-menu-component>
-              </ion-menu-toggle>
+              </ion-menu-toggle> -->
             </ion-grid>
           </ion-item>
 

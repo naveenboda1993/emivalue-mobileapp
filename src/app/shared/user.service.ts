@@ -11,6 +11,7 @@ import { LoadingController } from '@ionic/angular';
 
 export class UserService {
 
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -43,6 +44,20 @@ export class UserService {
   }
   getUserReferrals(userid): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/getuserreferrals/'+userid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getLoansTracker(loanid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getloantracker/'+loanid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getvalidateloan(loanid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getvalidateloan/'+loanid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );

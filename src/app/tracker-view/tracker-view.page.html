@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: blue;">Tracker ID : L{{loanid}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="button">
+    <ion-button [routerLink]="['/myaccount']">My Account</ion-button>
+  </div> loans-->
+  <!-- <ion-card *ngFor="let item of loans"> -->
+  <ion-card>
+    <ion-card-header style="border-bottom: 1px solid blue;">
+      <ion-card-title>
+        Basic Details
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon *ngIf="loans?.basic=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.basic!='true'" name="close-circle"></ion-icon>
+          <ion-label>Basic Details  </ion-label>
+          <ion-button (click)="gotopage('basic',loans.basic)" *ngIf="loans?.basic!='true'" size="small" color="primary"
+            fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.questioner=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.questioner!='true'" name="close-circle"></ion-icon>
+          <ion-label>Questioner</ion-label>
+          <ion-button *ngIf="loans?.questioner!='true'" (click)="gotopage('questioner',loans.questioner)" size="small"
+            color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.idproof=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.idproof!='true'" name="close-circle"></ion-icon>
+          <ion-label>Id Proof</ion-label>
+          <ion-button *ngIf="loans?.idproof!='true'" (click)="gotopage('idproof',loans.idproof)" size="small"
+            color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.addressproof=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.addressproof!='true'" name="close-circle"></ion-icon>
+          <ion-label>Address Proof</ion-label>
+          <ion-button *ngIf="loans?.addressproof!='true'" (click)="gotopage('addressproof',loans.addressproof)"
+            size="small" color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.ownhouseproof=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.ownhouseproof!='true'" name="close-circle"></ion-icon>
+          <ion-label>Own House Proof</ion-label>
+          <ion-button *ngIf="loans?.ownhouseproof!='true'" (click)="gotopage('ownhouseproof',loans.ownhouseproof)"
+            size="small" color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.companyidproof=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.companyidproof!='true'" name="close-circle"></ion-icon>
+          <ion-label>Company Id Proof</ion-label>
+          <ion-button *ngIf="loans?.companyidproof!='true'" (click)="gotopage('companyidproof',loans.companyidproof)"
+            size="small" color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.jobexpcertifcates=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.jobexpcertifcates!='true'" name="close-circle"></ion-icon>
+          <ion-label>Job Expcertifcates</ion-label>
+          <ion-button *ngIf="loans?.jobexpcertifcates!='true'"
+            (click)="gotopage('jobexpcertifcates',loans.jobexpcertifcates)" size="small" color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.payslips=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.payslips!='true'" name="close-circle"></ion-icon>
+          <ion-label>Payslips</ion-label>
+          <ion-button *ngIf="loans?.payslips!='true'" (click)="gotopage('payslips',loans.payslips)" size="small"
+            color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.satements=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.satements!='true'" name="close-circle"></ion-icon>
+          <ion-label>Satements</ion-label>
+          <ion-button *ngIf="loans?.satements!='true'" (click)="gotopage('satements',loans.satements)" size="small"
+            color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon *ngIf="loans?.emisatements=='true'" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="loans?.emisatements!='true'" name="close-circle"></ion-icon>
+          <ion-label>Emisatements</ion-label>
+          <ion-button *ngIf="loans?.emisatements!='true'" (click)="gotopage('emisatements',loans.emisatements)"
+            size="small" color="primary" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+            Goto
+          </ion-button>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

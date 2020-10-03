@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HowItWorksPage } from './how-it-works.page';
-import { MiAccordionPageModule } from '../components/mi-accordion/mi-accordion.module';
+import { TrackerViewPage } from './tracker-view.page';
+
 const routes: Routes = [
   {
     path: '',
-    component: HowItWorksPage
+    component: TrackerViewPage
   }
 ];
 
@@ -18,9 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule, MiAccordionPageModule,
+    IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HowItWorksPage]
+  declarations: [TrackerViewPage]
 })
-export class HowItWorksPageModule { }
+export class TrackerViewPageModule {}

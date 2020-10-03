@@ -11,6 +11,7 @@ export class CustomThemeService {
   public baseurl = 'http://emivalue.snitchmedia.in/api';
   public backendurl = 'http://emivalue.snitchmedia.in/';
   loantype: any;
+  savedloanid: any;
   constructor() {
   }
   public getBaseUrl() {
@@ -53,5 +54,11 @@ export class CustomThemeService {
   }
   public getLoanType() {
     return this.loantype;
+  }
+  public setSavedloanid(savedloanid: any) {
+    this.savedloanid = savedloanid;
+  }
+  public getSavedloanid() {
+    return this.savedloanid;
   }
 }

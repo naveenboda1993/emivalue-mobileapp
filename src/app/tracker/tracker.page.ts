@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CustomThemeService } from '../services/custom-theme.service';
 import { UserService } from '../shared/user.service';
@@ -15,7 +16,7 @@ export class TrackerPage implements OnInit {
   updatedon: any;
   user: any;
   loans: any;
-  constructor(private service: CustomThemeService, private userAPI: UserService, private zone: NgZone,public alertController: AlertController) {
+  constructor(private service: CustomThemeService,private router: Router, private userAPI: UserService, private zone: NgZone,public alertController: AlertController) {
     this.user = this.service.getUser();
    this.GetLoans();
   }
@@ -40,8 +41,12 @@ export class TrackerPage implements OnInit {
       })
     });
   }
-  async deleteLoan(loan: any) {
+  viewLoan(loan:any){
     console.log(loan)
+    this.service.setSavedloanid(loan.id);
+    this.router.navigate(['/tracker-view']);
+  }
+  async deleteLoan(loan: any) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
       message: 'Are you sure delete Loan <strong>L'+loan.id+'</strong> !!!',

@@ -50,6 +50,9 @@ export class RegisterPersonalLoanPage implements OnInit {
     this.savedLoan = this.service.getLoanpage();
     if (this.savedLoan != null && this.savedLoan != '') {
       this.savedLoan = JSON.parse(this.savedLoan);
+      if(this.savedLoan.redirectto){
+        this.loanid=this.savedLoan.loanid;
+      }
     }
     this.getcities();
 
@@ -145,13 +148,19 @@ export class RegisterPersonalLoanPage implements OnInit {
               this.onToast("Api success", 'green')
               // this.service.setLoanid(res.loan_id);
               // // this.form.setValue([name,res]);
-              // this.form.reset();
-              this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3',redirectto:false }))
-              if(this.service.getLoanType()=='personal_loan'){
-                this.router.navigate(['/register-personal-loan2']);
-              }
-              else{
-                this.router.navigate(['success-page'])
+              // this.form.reset();success-page
+              if(this.savedLoan.redirectto){
+                this.router.navigate(['tracker'])
+              }else{
+                
+                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3',redirectto:false }))
+                
+                if(this.service.getLoanType()=='personal_loan'){
+                  this.router.navigate(['/register-personal-loan2']);
+                }
+                else {
+                  this.router.navigate(['success-page'])
+                }
               }
 
             } else {

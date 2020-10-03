@@ -24,6 +24,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
 @NgModule({
   declarations: [AppComponent, MenuComponentComponent],
   entryComponents: [],
+  // exports:[MiAccordionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

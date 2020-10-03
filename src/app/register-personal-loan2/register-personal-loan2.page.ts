@@ -33,6 +33,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
   banker: any;
   loanid: any;
   url: any;
+  savedLoan: any;
   constructor(
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
@@ -49,7 +50,13 @@ export class RegisterPersonalLoan2Page implements OnInit {
     {
       this.itemColor = ["#03A9F4"];
     }
-
+    this.savedLoan = this.service.getLoanpage();
+    if (this.savedLoan != null && this.savedLoan != '') {
+      this.savedLoan = JSON.parse(this.savedLoan);
+      if(this.savedLoan.redirectto){
+        this.loanid=this.savedLoan.loanid;
+      }
+    }
   }
 
 
@@ -111,8 +118,12 @@ export class RegisterPersonalLoan2Page implements OnInit {
               this.onToast("Api success", 'green')
               // // this.form.setValue([name,res]);
               // this.form.reset();
-              this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
-              this.router.navigate(['/loan-documnets-upload']);
+              if(this.savedLoan.redirectto){
+                this.router.navigate(['tracker']);
+              }else{
+                this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
+                this.router.navigate(['/loan-documnets-upload']);
+              }             
 
             } else {
               this.onToast(res.message);

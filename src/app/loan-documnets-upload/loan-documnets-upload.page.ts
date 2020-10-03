@@ -70,12 +70,15 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   image_Job: any = '';
   imageData_Pay: any = '';
   isimage_Pay: boolean = false;
+  isSkipbutton: boolean = true;
   isFolder: boolean = true;
   image_Pay: any = '';
   bankStatements: Array<objbankstatements> = [];
   emiStatements: Array<objEmistatements> = [];
   imageData: any = '';
   uploadPercent: number;
+  savedLoan: any;
+  loanid: any;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -89,6 +92,19 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
     public alertController: AlertController,
     public camera: Camera) {
     this.itemColor = ["#03A9F4"];
+    this.loanid = this.service.getLoanid();
+    this.savedLoan = this.service.getLoanpage();
+    if (this.savedLoan != null && this.savedLoan != '') {
+      this.savedLoan = JSON.parse(this.savedLoan);
+      if (this.savedLoan.step === '/loan-documnets-upload') {
+        this.segments = this.savedLoan.action;
+      }
+      if (this.savedLoan.redirectto) {
+        this.isSkipbutton = false;
+        this.loanid = this.savedLoan.loanid;
+      }
+      // this.router.navigate([loan.step]);
+    }
   }
   async ngOnInit() {
     // ... 
@@ -261,31 +277,31 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   nextSlide() {
     switch (this.segments) {
       case 'segmentOne':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTwo', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTwo', redirectto: false }))
         this.segments = 'segmentTwo';
         break;
       case 'segmentTwo':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentThree', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentThree', redirectto: false }))
         this.segments = 'segmentThree';
         break;
       case 'segmentThree':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
         this.segments = 'segmentFour';
         break;
       case 'segmentFour':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFive', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFive', redirectto: false }))
         this.segments = 'segmentFive';
         break;
       case 'segmentFive':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSix', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSix', redirectto: false }))
         this.segments = 'segmentSix';
         break;
       case 'segmentSix':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSeven', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentSeven', redirectto: false }))
         this.segments = 'segmentSeven';
         break;
       case 'segmentSeven':
-        this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentEight', redirectto: false }))
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentEight', redirectto: false }))
         this.segments = 'segmentEight';
         break;
       case 'segmentEight':
@@ -337,7 +353,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         if (!this.idproof) {
           isId = false;
         } else {
-          var filename = +new Date() + localStorage.getItem('loanid') + '-' + this.idproof.replace(/\s/g, "") + '-idproof';
+          var filename = +new Date() + this.loanid + '-' + this.idproof.replace(/\s/g, "") + '-idproof';
           var idproof = this.idproof;
           var imageData = this.imageData;
         }
@@ -347,7 +363,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         if (!this.addressproof) {
           isId = false;
         } else {
-          var filename = +new Date() + localStorage.getItem('loanid') + '-' + this.addressproof.replace(/\s/g, "") + '-addressproof';
+          var filename = +new Date() + this.loanid + '-' + this.addressproof.replace(/\s/g, "") + '-addressproof';
           var idproof = this.addressproof;
           var imageData = this.imageData1;
         }
@@ -355,25 +371,25 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         break;
       case 'segmentThree':
         // _Own
-        var filename = +new Date() + localStorage.getItem('loanid') + '-OwnHouseProof';
+        var filename = +new Date() + this.loanid + '-OwnHouseProof';
         var idproof: any = "OwnHouseProof";
         var imageData = this.imageData_Own;
         break;
       case 'segmentFour':
         // _Company
-        var filename = +new Date() + localStorage.getItem('loanid') + '-CompanyIDCard';
+        var filename = +new Date() + this.loanid + '-CompanyIDCard';
         var idproof: any = "CompanyIDCard";
         var imageData = this.imageData_Company;
         break;
       case 'segmentFive':
         // _Job
-        var filename = +new Date() + localStorage.getItem('loanid') + '-JobExperienceCertificates';
+        var filename = +new Date() + this.loanid + '-JobExperienceCertificates';
         var idproof: any = "JobExperienceCertificates";
         var imageData = this.imageData_Job;
         break;
       case 'segmentSix':
         // _Pay
-        var filename = +new Date() + localStorage.getItem('loanid') + '-PaySlips';
+        var filename = +new Date() + this.loanid + '-PaySlips';
         var idproof: any = "PaySlips";
         var imageData = this.imageData_Pay;
         break;
@@ -408,7 +424,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
         }
         imageData = this.UriFileUpload;
-        // fileTransfer.upload(this.UriFileUpload, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+        // fileTransfer.upload(this.UriFileUpload, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
         //   .then((data) => {
         //     // success
         //     alert("success" + JSON.stringify(data));
@@ -439,7 +455,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       });
 
 
-      fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+      fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
         .then((data: any) => {
           // success
           // loading.dismiss()
@@ -458,7 +474,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
             var formdata = {
               path: dataObject.target_path,
               userid: localStorage.getItem('id'),
-              loanid: localStorage.getItem('loanid'),
+              loanid: this.loanid,
               isLoan: 1,
               idproof: idproof
             }
@@ -473,7 +489,12 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                 this.zone.run(() => {
                   if (res.isSuccess) {
                     this.onToast(res.message);
-                    this.nextSlide();
+                    if (this.savedLoan.redirectto) {
+                      this.router.navigate(['tracker']);
+                    } else {
+
+                      this.nextSlide();
+                    }
                   } else {
                     this.onToast(res.message);
                   }
@@ -529,7 +550,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                 .then(uri => {
                   console.log(uri)
                   const fileTransfer: FileTransferObject = this.transfer.create();
-                  var filename = +new Date() + localStorage.getItem('loanid') + '-BankStatement';
+                  var filename = +new Date() + this.loanid + '-BankStatement';
                   var idproof: any = "BankStatement :" + alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
 
                   // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
@@ -542,7 +563,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
                   }
 
-                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
@@ -561,7 +582,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                         var formdata = {
                           path: dataObject.target_path,
                           userid: localStorage.getItem('id'),
-                          loanid: localStorage.getItem('loanid'),
+                          loanid: this.loanid,
                           bankname: alertData.name1,
                           from: alertData.From,
                           to: alertData.To,
@@ -670,7 +691,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                 .then(uri => {
                   console.log(uri)
                   const fileTransfer: FileTransferObject = this.transfer.create();
-                  var filename = +new Date() + localStorage.getItem('loanid') + '-EMIDebitedBankStatement';
+                  var filename = +new Date() + this.loanid + '-EMIDebitedBankStatement';
                   var idproof: any = "EMIDebitedBankStatement facility:" + alertData.facility + " banker:" + alertData.banker + "amount:" + alertData.amount + " tenure:" + alertData.tenure + "emi:" + alertData.emi + "outstanding:" + alertData.outstanding;
 
                   // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
@@ -683,7 +704,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
                   }
 
-                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + localStorage.getItem('loanid')), options1)
+                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
@@ -702,7 +723,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                         var formdata = {
                           path: dataObject.target_path,
                           userid: localStorage.getItem('id'),
-                          loanid: localStorage.getItem('loanid'),
+                          loanid: this.loanid,
                           facility: alertData.facility,
                           banker: alertData.banker,
                           amount: alertData.amount,

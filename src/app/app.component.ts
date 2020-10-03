@@ -215,10 +215,10 @@ export class AppComponent {
     }
   }
 
-  public howItWorks = [];
+  public howItWorks = [{ name: "How Its Work" }];
   goToHowItWorks(i) {
     if (i == 0) {
-      this.navCtrl.navigateForward("how-work");
+      this.navCtrl.navigateForward("how-it-works");
     }
   }
   public ourChannelPartners = [];
@@ -1495,14 +1495,15 @@ export class AppComponent {
 
   }
   expandItemHome() {
-
+    console.log('home')
+    this.navCtrl.navigateForward("home");
   }
 
   expandItemOurChannelPartners() {
 
   }
   expandItemContactUs() {
-
+    this.navCtrl.navigateForward("contact-us");
   }
 
 

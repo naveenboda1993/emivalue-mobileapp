@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ReferEarnPage } from './refer-earn.page';
-import { MiAccordionComponent } from '../components/mi-accordion/mi-accordion.component';
+import { MiAccordionPageModule } from '../components/mi-accordion/mi-accordion.module';
 
 const routes: Routes = [
   {
@@ -20,9 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule,
+    IonicModule, MiAccordionPageModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ReferEarnPage,MiAccordionComponent]
+  declarations: [ReferEarnPage]
 })
-export class ReferEarnPageModule {}
+export class ReferEarnPageModule { }
