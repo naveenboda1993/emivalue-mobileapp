@@ -55,7 +55,7 @@ export class FormLoginOnePage implements OnInit {
           if (res.isSuccess) {
             localStorage.setItem("token", res.token);
             localStorage.setItem("id", res.id);
-            this.router.navigate(['/segment-header-text']);
+            this.router.navigate(['/home']);
           } else {
             alert("OTP is invalid");
           }

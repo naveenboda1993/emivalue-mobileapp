@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -8,14 +9,22 @@ import { MenuController } from '@ionic/angular';
 })
 export class MyaccountPage implements OnInit {
 
-  constructor( public menuCtrl: MenuController,) { 
+  constructor(public menuCtrl: MenuController, private router: Router,) {
     this.menuCtrl.close('Menu1');
     this.menuCtrl.close('Menu2');
   }
-  
+
   ngOnInit() {
     this.menuCtrl.close('Menu1');
     this.menuCtrl.close('Menu2');
+  }
+  logout() {
+    localStorage.removeItem("loanid");
+    localStorage.removeItem("id");
+    localStorage.removeItem("applyloan");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    this.router.navigate(['form-login-three']);
   }
 
 }
