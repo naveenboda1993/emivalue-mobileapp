@@ -13,46 +13,86 @@
   <ion-card class="card">
     <ion-card-header>
       <h2 style="text-align: center;">Contact Us </h2>
-  </ion-card-header>
+    </ion-card-header>
     <ion-card-content>
       <ion-row>
         <ion-col class="header-content" size="6">
-            <h3>Welcome</h3>
-            <h4>to Emi Value</h4>
+          <h3>Welcome</h3>
+          <h4>to Emi Value</h4>
         </ion-col>
         <ion-col size="6">
-            <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
         </ion-col>
-    </ion-row>
-    <ion-row>
-      <p><b>Contact Us</b></p>
-   </ion-row>
-<form>
-   <ion-item lines="none">
-     <ion-input type="text" placeholder="Owner Full Name"></ion-input>
-   </ion-item>
-   <ion-item lines="none">
-     <ion-input type="number" placeholder="Owner Number"></ion-input>
-   </ion-item>
-   <ion-item lines="none">
-     <ion-input type="email" placeholder="Owner email"></ion-input>
-   </ion-item>
-  <br>
-   <h6>Queris If Any</h6>
-    <ion-item lines="none">
-     <ion-input type="email" placeholder="Customer E-mails"></ion-input>
-   </ion-item>
-    <ion-item lines="none">
-     <ion-input type="text" placeholder="Application ID (If Avaliable)"></ion-input>
-   </ion-item>
-    <ion-item lines="none">
-     <ion-input type="text-area" placeholder="Enter Your Queris"></ion-input>
-   </ion-item>
-  </form>
- 
-    <ion-button type="submit">
-      Submit
-    </ion-button>
+      </ion-row>
+      <ion-row>
+        <p><b>Contact Us</b></p>
+      </ion-row>
+      <!-- <form>
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Owner Full Name"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input type="number" placeholder="Owner Number"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input type="email" placeholder="Owner email"></ion-input>
+        </ion-item>
+        <br>
+        <h6>Queris If Any</h6>
+        <ion-item lines="none">
+          <ion-input type="email" placeholder="Customer E-mails"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Application ID (If Avaliable)"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input type="text-area" placeholder="Enter Your Queris"></ion-input>
+        </ion-item>
+      </form> -->
+      <form [formGroup]="constactusform" (ngSubmit)="onSubmit()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-input type="text" placeholder="Full Name" formControlName="name" required>
+                </ion-input>
+              </ion-item>
+              <br>
+              <br>
+              <ion-item>
+                <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required>
+                </ion-input>
+              </ion-item>
+              <br>
+              <br>
+              <ion-item>
+                <ion-input type="text" placeholder="Email" formControlName="email" required>
+                </ion-input>
+              </ion-item>
+              <br>
+              <br>
+              <!-- <ion-label>Looking Loan Amount</ion-label> -->
+              <ion-item>
+                <ion-input type="text" placeholder="Application Id (Optional)" formControlName="appid" >
+                </ion-input>
+              </ion-item>
+              <br>
+              <br>
+              <ion-item>
+                <ion-input type="text" placeholder="You’re Query" formControlName="query" required>
+                </ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <br>
+        <br>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button style="margin-left: 220px;" type="submit">Save</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
 
     </ion-card-content>
   </ion-card>

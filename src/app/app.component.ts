@@ -5,9 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
-declare var navigator; 
-declare var window; 
-declare var Connection; 
+declare var navigator;
+declare var window;
+declare var Connection;
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -1251,7 +1251,7 @@ export class AppComponent {
   ngOnInit() {
     this.menuCtrl.enable(true, 'Menu1')
   }
-  
+
   initializeApp() {
     this.platform.ready().then(() => {
       let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
@@ -1272,10 +1272,10 @@ export class AppComponent {
 
       // get FCM token
       this.fcm.getToken().then(token => {
-        localStorage.setItem('fcmtoken',token);
+        localStorage.setItem('fcmtoken', token);
         console.log(token);
       });
-      
+
       // ionic push notification example
       this.fcm.onNotification().subscribe(data => {
         console.log(data);
@@ -1284,11 +1284,11 @@ export class AppComponent {
         } else {
           console.log('Received in foreground');
         }
-      });      
-      
+      });
+
       // refresh the FCM token
       this.fcm.onTokenRefresh().subscribe(token => {
-        localStorage.setItem('fcmtoken',token);
+        localStorage.setItem('fcmtoken', token);
         console.log(token);
       });
 
@@ -1298,15 +1298,15 @@ export class AppComponent {
     this.platform.backButton.subscribeWithPriority(5, () => {
       // alert('Handler called to force close!');
       this.presentAlertConfirm();
-      
+
     });
     this.platform.backButton.subscribeWithPriority(10, () => {
       // alert(' 1000 Handler called to force close!');
       this.presentAlertConfirm();
-      
+
     });
 
-    
+
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -1318,7 +1318,7 @@ export class AppComponent {
           role: 'STAY',
           cssClass: 'secondary',
           handler: (blah) => {
-           
+
           }
         }, {
           text: 'EXIT',
@@ -1495,12 +1495,12 @@ export class AppComponent {
 
   }
   expandItemHome() {
-    console.log('home')
     this.navCtrl.navigateForward("home");
   }
 
   expandItemOurChannelPartners() {
 
+    this.navCtrl.navigateForward("our-channel-partners");
   }
   expandItemContactUs() {
     this.navCtrl.navigateForward("contact-us");

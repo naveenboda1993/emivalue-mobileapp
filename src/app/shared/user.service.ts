@@ -63,6 +63,13 @@ export class UserService {
       );
 
   }
+  getchannel(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/channelpartenrs/', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   deleteUserloan(loanid): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/deleteuserloan/'+loanid, this.httpOptions)
       .pipe(
