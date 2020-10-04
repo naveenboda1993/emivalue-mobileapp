@@ -143,7 +143,8 @@ const routes: Routes = [
   { path: 'my-banks', loadChildren: './my-banks/my-banks.module#MyBanksPageModule' },
   { path: 'list-of-upload-files', loadChildren: './list-of-upload-files/list-of-upload-files.module#ListOfUploadFilesPageModule' },
   { path: 'how-it-works', loadChildren: './how-it-works/how-it-works.module#HowItWorksPageModule' },
-  { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' }
+  { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' },
+  { path: 'add-documents', loadChildren: './add-documents/add-documents.module#AddDocumentsPageModule' }
 
 ];
 

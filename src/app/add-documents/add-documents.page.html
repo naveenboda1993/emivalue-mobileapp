@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="home">  
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Documents</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-info">
+
+    <div class="title">
+      <ion-item lines="none">
+        <ion-label style="text-align: center;"> Ttile </ion-label>
+        <ion-select>
+          <ion-select-option value="aadhaar_card"> Aadhaar Card</ion-select-option>
+          <ion-select-option value="pan_card"> Pan Card</ion-select-option>
+          <ion-select-option value="bank"> Bank Passbook</ion-select-option>
+          <ion-select-option value="statement"> Bank Statement</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <ion-label style="text-align: center;"> Attach Documents</ion-label>
+    <br>
+    <div class="box">
+      <ion-icon name="cloud-upload" class="icon"></ion-icon>
+      <h5>Camera</h5>
+      <br />OR <br />
+      <h4>Browse Files</h4>
+    </div>
+    <h6>Attached File Types: .jpeg and .pdf only  <ion-icon name="lock"> Secure</ion-icon></h6>
+   
+    <ion-button type="submit" expand="block"> Upload </ion-button>
+  </div>
+</ion-content>
