@@ -55,6 +55,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
       this.savedLoan = JSON.parse(this.savedLoan);
       if(this.savedLoan.redirectto){
         this.loanid=this.savedLoan.loanid;
+        this.onToast(this.savedLoan.msg)
       }
     }
   }

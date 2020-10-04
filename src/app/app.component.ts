@@ -181,19 +181,19 @@ export class AppComponent {
       this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 1) {
-      this.navCtrl.navigateForward("business-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 2) {
-      this.navCtrl.navigateForward("home-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 3) {
-      this.navCtrl.navigateForward("martigage-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 4) {
-      this.navCtrl.navigateForward("professional-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
     if (i == 5) {
-      this.navCtrl.navigateForward("vehicle-loan");
+      this.navCtrl.navigateForward("form-personal-loan");
     }
   }
 

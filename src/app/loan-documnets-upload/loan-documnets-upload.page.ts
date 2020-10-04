@@ -102,6 +102,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       if (this.savedLoan.redirectto) {
         this.isSkipbutton = false;
         this.loanid = this.savedLoan.loanid;
+        this.onToast(this.savedLoan.msg)
       }
       // this.router.navigate([loan.step]);
     }

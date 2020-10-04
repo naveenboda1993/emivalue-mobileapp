@@ -52,6 +52,7 @@ export class RegisterPersonalLoanPage implements OnInit {
       this.savedLoan = JSON.parse(this.savedLoan);
       if(this.savedLoan.redirectto){
         this.loanid=this.savedLoan.loanid;
+        this.onToast(this.savedLoan.msg)
       }
     }
     this.getcities();

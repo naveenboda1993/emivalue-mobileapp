@@ -28,6 +28,20 @@ export class UserService {
       );
 
   }
+  gethowitworks(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/gethowitworks', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getfaqlist(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/getfaqlist', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   getcitiesstates(): Observable<any> {
     return this.http.get<any>(this.baseloanurl + '/getcountrieslist', this.httpOptions)
       .pipe(
