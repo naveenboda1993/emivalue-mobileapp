@@ -1,14 +1,85 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button defaultHref="/my-account"></ion-back-button>
+      <ion-back-button defaultHref="myaccount"></ion-back-button>
     </ion-buttons>
-    <ion-title>my-banks</ion-title>
+    <ion-title>My Banks</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div (click)="addBankAlrertPrompt()">
-  <ion-button expand="block"> Add Bank</ion-button>
-</div>
+  <ion-card class="card">
+    <ion-card-header>
+      <h2 style="text-align: center;">My Banks</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="header-content" size="6">
+          <h3>Welcome</h3>
+          <h4>to Emi Value</h4>
+        </ion-col>
+        <ion-col size="6">
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <p>Add your bank details information</p>
+      </ion-row>
+      <div (click)="addBankAlrertPrompt()">
+        <ion-button expand="block"> + Add Bank</ion-button>
+      </div>
+      <div>
+        <ion-card *ngIf="banks?.length==0">
+          <ion-card-header>
+            <ion-card-title>
+              No banks are found
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+        <ion-card *ngFor="let item of banks">
+          <ion-card-header style="border-bottom: 1px solid blue;">
+            <ion-card-title>
+              Bank Name : {{item.bankname}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+
+                <ion-col>
+                  <h4>Ifsccode</h4>
+                  <h6>{{item.ifsccode}}</h6>
+                </ion-col>
+                <ion-col>
+                  <h4>Branch</h4>
+                  <h6>{{item.branch}}</h6>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <h4>Account Number</h4>
+                  <h6>{{item.accountnumber }}</h6>
+                </ion-col>
+                <ion-col>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+          <ion-row>
+            <ion-col size="7"></ion-col>
+            <ion-col size="5" no-padding>
+              <ion-button color="primary" size="small" fill="clear" (click)="deleteBank(item)">
+                <ion-icon name='trash'></ion-icon>
+                Delete
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+        </ion-card>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

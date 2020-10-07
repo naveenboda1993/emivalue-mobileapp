@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button defaultHref="home">  
+      <ion-back-button defaultHref="home">
       </ion-back-button>
     </ion-buttons>
     <ion-title>Add Documents</ion-title>
@@ -10,10 +10,48 @@
 
 <ion-content>
   <div class="content-info">
+    <div>
+      <nav class="slidemenu">
+
+        <!-- Item 1 -->
+        <!-- <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked /> -->
+        <label for="slide-item-1" style="opacity: 1;">
+          <p class="icon"><ion-icon name="card"></ion-icon></p><span>ID Documents</span>
+        </label>
+
+        <!-- Item 2 -->
+        <!-- <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" /> -->
+        <label for="slide-item-2" >
+          <p class="icon"><ion-icon name="images"></ion-icon></p><span>Address Proof</span>
+        </label>
+
+        <!-- Item 3 -->
+        <!-- <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle" />
+        <label for="slide-item-3">
+          <p class="icon">✈</p><span>Folio</span>
+        </label>
+
+       
+        <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle" />
+        <label for="slide-item-4">
+          <p class="icon">✎</p><span>Blog</span>
+        </label> -->
+
+        <div class="clear"></div>
+
+        <!-- Bar -->
+        <div class="slider">
+          <div class="bar"></div>
+        </div>
+
+      </nav>
+
+
+    </div>
 
     <div class="title">
       <ion-item lines="none">
-        <ion-label style="text-align: center;"> Ttile </ion-label>
+        <ion-label> ID Proof </ion-label>
         <ion-select>
           <ion-select-option value="aadhaar_card"> Aadhaar Card</ion-select-option>
           <ion-select-option value="pan_card"> Pan Card</ion-select-option>
@@ -31,8 +69,12 @@
       <br />OR <br />
       <h4>Browse Files</h4>
     </div>
-    <h6>Attached File Types: .jpeg and .pdf only  <ion-icon name="lock"> Secure</ion-icon></h6>
-   
-    <ion-button type="submit" expand="block"> Upload </ion-button>
+    <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock"> Secure</ion-icon>
+    </h6>
+
   </div>
 </ion-content>
+<ion-footer>
+
+  <ion-button type="submit" expand="block"> Upload </ion-button>
+</ion-footer>

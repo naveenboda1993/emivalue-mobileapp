@@ -50,28 +50,28 @@ export class UserService {
 
   }
   getUserLoans(userid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/getuserloans/'+userid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/getuserloans/' + userid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
 
   }
   getUserReferrals(userid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/getuserreferrals/'+userid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/getuserreferrals/' + userid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
 
   }
   getLoansTracker(loanid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/getloantracker/'+loanid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/getloantracker/' + loanid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
 
   }
   getvalidateloan(loanid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/getvalidateloan/'+loanid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/getvalidateloan/' + loanid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
@@ -84,15 +84,29 @@ export class UserService {
       );
 
   }
+  getuserbanks(id): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getuserbanks/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  deleteuserbank(id): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/deleteuserbank/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   deleteUserloan(loanid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/deleteuserloan/'+loanid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/deleteuserloan/' + loanid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
 
   }
   deleteUserrefer(referid): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/deleteuserrefer/'+referid, this.httpOptions)
+    return this.http.get<any>(this.baseloginurl + '/deleteuserrefer/' + referid, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );
@@ -167,7 +181,7 @@ export class UserService {
     };
   }
   // Show the loader for infinite time
-  showLoader(text?:any) {
+  showLoader(text?: any) {
 
     this.loadingController.create({
       message: 'Please wait...'
