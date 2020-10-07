@@ -20,6 +20,13 @@ type objbankstatements = {
   path?: any,
   id?: any,
 };
+type objbankpayslips = {
+  monthname?: any,
+  from?: any,
+  to?: any,
+  path?: any,
+  id?: any,
+};
 type objEmistatements = {
   facility?: any,
   banker?: any,
@@ -74,6 +81,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   isFolder: boolean = true;
   image_Pay: any = '';
   bankStatements: Array<objbankstatements> = [];
+  bankpayslips: Array<objbankpayslips> = [];
   emiStatements: Array<objEmistatements> = [];
   imageData: any = '';
   uploadPercent: number;
@@ -110,8 +118,8 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   async ngOnInit() {
     // ... 
     const alert = await this.alertController.create({
-      header: 'Upload Digital Copy',
-      message: 'Dear Applicant, do keep the digital copy of following documents handy to avail full benefits Your Loan application .',
+      header: 'Upload Digital Documents',
+      message: 'Dear Applicant, do keep the digital copy of following documents handy to avail full benefits Your Loan application .<br>1.Id proof <br>2.Address proof<br>3.Own House Proof<br>4.Company ID Card<br>5.Job Experience Certificates<br>6.Latest 3 month Pay Slips<br>7.Salary Credited Bank Statement<br>8.Existing EMI Statements<br>',
       buttons: [
         {
           text: 'Okay',
@@ -276,6 +284,10 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   }
 
   nextSlide() {
+    if (!this.isSkipbutton) {
+      this.service.setLoanPage('');
+      this.router.navigate(['tracker']);
+    }
     switch (this.segments) {
       case 'segmentOne':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTwo', redirectto: false }))
@@ -390,9 +402,9 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         break;
       case 'segmentSix':
         // _Pay
-        var filename = +new Date() + this.loanid + '-PaySlips';
-        var idproof: any = "PaySlips";
-        var imageData = this.imageData_Pay;
+        // var filename = +new Date() + this.loanid + '-PaySlips';
+        // var idproof: any = "PaySlips";
+        // var imageData = this.imageData_Pay;
         break;
       case 'segmentSeven':
         // this.segments = 'segmentEight';
@@ -563,12 +575,12 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                     chunkedMode: false
 
                   }
-
+                  this.userAPI.showLoader();
                   fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
-                      this.userAPI.hideLoader();
+
                       var dataObject;
                       Object.keys(data).map(function (key) {
                         if (key == 'response') {
@@ -594,6 +606,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                         )
                           .subscribe((res: any) => {
                             this.zone.run(() => {
+                              this.userAPI.hideLoader();
                               if (res.isSuccess) {
                                 this.onToast(res.message);
                                 var obj: objbankstatements = { bankname: alertData.name1 };
@@ -601,6 +614,134 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                                 obj.bankname = alertData.name1;
                                 obj.to = alertData.To;
                                 this.bankStatements.push(obj);
+                              } else {
+                                this.onToast(res.message);
+                              }
+                            })
+                          });
+                      }
+                    }, (err) => {
+                      // error
+
+                    });
+
+
+                })
+                .catch(e => console.log(e));
+              // return false;
+            }
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        },
+        // {
+        //   text: 'Ok',
+        //   handler: (alertData) => {
+        //     console.log(alertData.From);
+        //     console.log(alertData);
+        //     console.log("BankStatement-"+alertData.name1+": FromDate-"+alertData.From+": EndDate-"+alertData.To);
+
+        //   }
+        // }
+      ]
+    });
+
+    await alert.present();
+  }
+  async addingpayslips() {
+    const alert = await this.alertController.create({
+      header: 'Latest three months payslips!',
+      backdropDismiss: false,
+      message: 'Please fill the required fields',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          placeholder: 'Month Name'
+        },
+
+        {
+          name: 'From',
+          type: 'date',
+          placeholder: 'From Date',
+          label: 'From Date'
+        },
+        {
+          name: 'To',
+          type: 'date',
+          placeholder: 'To Date',
+          label: 'To Date'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Select Upload Documnets',
+          handler: (alertData) => {
+            if (alertData.name1.length == 0 || alertData.From.length == 0 || alertData.To.length == 0) {
+              this.onToast('please fill all the details')
+              return false;
+            } else {
+              this.fileChooser.open({ "mime": "application/pdf" })
+                .then(uri => {
+                  console.log(uri)
+                  const fileTransfer: FileTransferObject = this.transfer.create();
+                  var filename = +new Date() + this.loanid + '-payslips';
+                  var idproof: any = "payslips :" + alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
+
+                  // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+                  let options1: FileUploadOptions = {
+                    fileKey: 'file',
+                    fileName: filename + '.pdf',
+                    headers: {},
+                    params: { "app_key": "Testappkey" },
+                    chunkedMode: false
+
+                  }
+                  this.userAPI.showLoader();
+                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+                    .then((data: any) => {
+                      // success
+                      // loading.dismiss()
+
+                      var dataObject;
+                      Object.keys(data).map(function (key) {
+                        if (key == 'response') {
+                          dataObject = JSON.parse(data[key]);
+                        }
+                        console.log(data[key], key)
+                      });
+                      console.log(dataObject);
+
+                      if (dataObject.isSuccess) {
+                        //  alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
+                        var formdata = {
+                          path: dataObject.target_path,
+                          userid: localStorage.getItem('id'),
+                          loanid: this.loanid,
+                          monthname: alertData.name1,
+                          from: alertData.From,
+                          to: alertData.To,
+                          isLoan: 4,
+                          idproof: idproof
+                        }
+                        this.http.post(this.service.getBackenEndUrl() + 'api/test', formdata).pipe(
+                        )
+                          .subscribe((res: any) => {
+                            this.zone.run(() => {
+                              this.userAPI.hideLoader();
+                              if (res.isSuccess) {
+                                this.onToast(res.message);
+                                var obj: objbankpayslips = { monthname: alertData.name1 };
+                                obj.from = alertData.From;
+                                obj.monthname = alertData.name1;
+                                obj.to = alertData.To;
+                                this.bankpayslips.push(obj);
                               } else {
                                 this.onToast(res.message);
                               }

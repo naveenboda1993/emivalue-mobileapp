@@ -120,6 +120,7 @@ export class RegisterPersonalLoan2Page implements OnInit {
               // // this.form.setValue([name,res]);
               // this.form.reset();
               if(this.savedLoan.redirectto){
+                this.service.setLoanPage('')
                 this.router.navigate(['tracker']);
               }else{
                 this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))

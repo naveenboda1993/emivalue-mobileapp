@@ -151,6 +151,7 @@ export class RegisterPersonalLoanPage implements OnInit {
               // // this.form.setValue([name,res]);
               // this.form.reset();success-page
               if(this.savedLoan.redirectto){
+                this.service.setLoanPage('')
                 this.router.navigate(['tracker'])
               }else{
                 
