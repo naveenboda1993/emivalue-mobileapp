@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'card-shoping-slider', loadChildren: './card-shoping-slider/card-shoping-slider.module#CardShopingSliderPageModule' },
   // { path: 'card-timeline-theme-one', loadChildren: './card-timeline-theme-one/card-timeline-theme-one.module#CardTimelineThemeOnePageModule' },
   // { path: 'card-timeline-theme-two', loadChildren: './card-timeline-theme-two/card-timeline-theme-two.module#CardTimelineThemeTwoPageModule' },
-  { path: 'card-timeline-theme-three', loadChildren: './card-timeline-theme-three/card-timeline-theme-three.module#CardTimelineThemeThreePageModule' },
+  // { path: 'card-timeline-theme-three', loadChildren: './card-timeline-theme-three/card-timeline-theme-three.module#CardTimelineThemeThreePageModule' },
   // { path: 'card-images', loadChildren: './card-images/card-images.module#CardImagesPageModule' },
   { path: 'slider-simple', loadChildren: './slider-simple/slider-simple.module#SliderSimplePageModule' },
   // { path: 'slider-images', loadChildren: './slider-images/slider-images.module#SliderImagesPageModule' },

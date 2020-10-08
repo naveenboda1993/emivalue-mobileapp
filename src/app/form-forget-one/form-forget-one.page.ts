@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { CustomThemeService } from '../services/custom-theme.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-form-forget-one',
@@ -9,52 +13,89 @@ import { CustomThemeService } from '../services/custom-theme.service';
 export class FormForgetOnePage implements OnInit {
   public itemColor = [];
   public iconColorVar = "";
-  data:any;
-  constructor( private service: CustomThemeService) {
+  data: any;
+  register: any;
+  isOtp: boolean = false;
+  isPassword: boolean = false;
+  forgotform: FormGroup;
+  otp: any;
+  constructor(private userAPI: UserService,
+    private formBuilder: FormBuilder,
+    private zone: NgZone,
+    private router: Router, private toastCtrl: ToastController,
+    // public loadingCtrl: LoadingController,
+    private service: CustomThemeService,) {
     this.itemColor = ["#F44336"];//to get the coloe from custom-theme service
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
-    //for the selection of colors
-    if (this.data == "autumn")//if selected color is red 
-    {
-      this.itemColor = ["#F44336"];
+
+  }
+  ngOnInit() {
+    this.forgotform = this.formBuilder.group({
+      mobile: [''],
+      password: [''],
+      otp: [''],
+      cpassword: ['']
+    });
+  }
+  async onToast(text: any, color?: any) {
+
+    const toast = await this.toastCtrl.create({
+      cssClass: 'toastTag',
+      color: "danger",
+      showCloseButton: true,
+      position: 'top',
+      message: text,
+      closeButtonText: '| Done',
+      duration: 2000,
+    });
+    toast.present();
+  }
+  getOtp() {
+    if (this.forgotform.value.mobile.length < 9) {
+      this.onToast("Please enter the mobile number")
+      return false;
+    } else {
+      this.userAPI.getmobileotp(this.forgotform.value.mobile).subscribe((res: any) => {
+        this.zone.run(() => {
+          if (res.isSuccess) {
+            this.isOtp = true;
+            this.isPassword = true;
+            this.otp = res.data.confirm_code;
+            // this.ourchannelpartners = res.data;
+          } else {
+            this.onToast(res.message);
+          }
+          // this.userAPI.hideLoader();
+        })
+      });
     }
-    else if (this.data == "night")//if selected color is purple 
-    {
-      this.itemColor = ["#673AB7"];
+  }
+  changepassword() {
+    if (this.forgotform.value.otp.length == 0) {
+      this.onToast("Please enter the OTP ")
+      return false;
+    } else if (this.forgotform.value.otp != this.otp) {
+      this.onToast("Please enter the OTP is wrong ")
+      return false;
+    } else if (this.forgotform.value.password.length == 0 || this.forgotform.value.cpassword.length == 0) {
+      this.onToast("Please enter the password fields ")
+      return false;
+    } else if (this.forgotform.value.password != this.forgotform.value.cpassword) {
+      this.onToast("Please enter the password and confirm password as matched ")
+      return false;
+    } else {
+      this.userAPI.changepassword(this.forgotform.value.mobile,this.forgotform.value.otp, encodeURIComponent(this.forgotform.value.password)).subscribe((res: any) => {
+        this.zone.run(() => {
+          if (res.isSuccess) {
+            this.router.navigate(['/form-login-three']);
+            // this.ourchannelpartners = res.data;
+          } else {
+            this.onToast(res.message);
+          }
+          // this.userAPI.hideLoader();
+        })
+      });
     }
-    else if (this.data == "neon")//if selected color is blue 
-    {
-      this.itemColor = ["#03A9F4"];
-    }
-    else if (this.data == "orginal")//if selected color is green
-    {
-      this.itemColor = ["#4CAF50"];
-    }
-    else if (this.data == "red")//if selected color is gray
-    {
-      this.itemColor = ["#9E9E9E"];
-    }
-    else if (this.data == "purple")//if selected color is sharp pink
-    {
-      this.itemColor = ["#E91E63"];
-    }
-    else if (this.data == "Lightblue")//if selected color is dark blue
-    {
-      this.itemColor = ["#3F51B5"];
-    }
-    else if (this.data == "Lightgreen")//if selected color is light blue
-    {
-      this.itemColor = ["#00BCD4"];
-    }
-    else if (this.data == "Lightgray")//if selected color is light green
-    {
-      this.itemColor = ["#8BC34A"];
-    }
-    else if (this.data == "blue")//if selected color is dark green 
-    {
-      this.itemColor = ["#008577"];
-    }
-   }
-  ngOnInit() {}
+  }
 }

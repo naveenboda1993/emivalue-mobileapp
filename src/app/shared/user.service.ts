@@ -91,6 +91,20 @@ export class UserService {
       );
 
   }
+  getmobileotp(number): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getmobileotp/' + number, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  changepassword(number,otp, passowrd): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/changepassword/' + number + '/' + otp+'/' + passowrd, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   deleteuserbank(id): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/deleteuserbank/' + id, this.httpOptions)
       .pipe(
