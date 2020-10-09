@@ -3,6 +3,7 @@ import { CustomThemeService } from '../services/custom-theme.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
+import { FCM } from '@ionic-native/fcm/ngx';
 // import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -18,6 +19,7 @@ export class FormLoginThreePage implements OnInit {
     private formBuilder: FormBuilder,
     private zone: NgZone,
     private router: Router,
+    private fcm: FCM,
     // public loadingCtrl: LoadingController,
     private service: CustomThemeService,) {
     this.register = this.service.getresponse();
@@ -42,12 +44,25 @@ export class FormLoginThreePage implements OnInit {
   ngOnInit() {
     this.loginform = this.formBuilder.group({
       mobile: [''],
-      password: ['']
+      password: [''],
+      fcmtoken: [''],
+    });
+   
+    this.fcm.getToken().then(token => {
+      localStorage.setItem('fcmtoken', token);
+      console.log(token);
+      alert(token)
     });
   }
-  // routerLink="/segment-header-text"
+  // routerLink="/segment-header-text" fcmtoken
   async onSubmit() {
     this.userAPI.showLoader();
+    if (localStorage.getItem("fcmtoken")) {
+      this.loginform.setValue({
+        fcmtoken: localStorage.getItem("fcmtoken"),
+      });
+
+    }
     console.log(this.loginform.value)
     this.userAPI.login(this.loginform.value)
       .subscribe((res) => {
@@ -57,7 +72,7 @@ export class FormLoginThreePage implements OnInit {
           if (res.isSuccess) {
             localStorage.setItem("token", res.token);
             localStorage.setItem("id", res.id);
-            localStorage.setItem("user",JSON.stringify(res.user));
+            localStorage.setItem("user", JSON.stringify(res.user));
             this.router.navigate(['/home']);
           } else {
             alert("Login failed");

@@ -98,12 +98,7 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-filechooser": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-fcm-with-dependecy-updated": {
-        "ANDROID_FCM_VERSION": "19.0.0",
-        "ANDROID_GRADLE_TOOLS_VERSION": "3.5.3",
-        "ANDROID_GOOGLE_SERVICES_VERSION": "4.3.3",
-        "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher"
-      },
+      "cordova-plugin-fcm-with-dependecy-updated": {},
       "cordova-plugin-androidx-adapter": {}
     },
     "platforms": [

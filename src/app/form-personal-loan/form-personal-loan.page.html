@@ -32,7 +32,7 @@
                 </ion-col>
             </ion-row>
             <ion-row>
-                <h4>This is the one time registration process and should not take more than a few minutes</h4>
+                <h4>Create a loan with loan type and profile type</h4>
             </ion-row>
             <br>
             <form [formGroup]="personalloanform" (ngSubmit)="onSubmit()">
@@ -78,6 +78,10 @@
                                     required>
                                 </ion-input>
                             </ion-item>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                         </ion-list>
                     </ion-col>
                 </ion-row>
@@ -85,7 +89,7 @@
                 <br>
                 <ion-row>
                     <ion-col size="12">
-                        <ion-button  style="margin-left: 220px;" type="submit">Save</ion-button>
+                        <ion-button expand="block"  type="submit">Save</ion-button>
                     </ion-col>
                 </ion-row>
             </form>

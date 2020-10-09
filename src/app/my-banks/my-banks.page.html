@@ -23,8 +23,9 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <p>Add your bank details information</p>
+        <p>ADD Your Bank Details Here to get Refer award to Direct your Bank A/c.</p>
       </ion-row>
+      <br>
       <div (click)="addBankAlrertPrompt()">
         <ion-button expand="block"> + Add Bank</ion-button>
       </div>
@@ -39,7 +40,7 @@
         <ion-card *ngFor="let item of banks">
           <ion-card-header style="border-bottom: 1px solid blue;">
             <ion-card-title>
-              Bank Name : {{item.bankname}}
+              Beneficiary Bank Name : {{item.bankname}}
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
@@ -47,11 +48,11 @@
               <ion-row>
 
                 <ion-col>
-                  <h4>Ifsccode</h4>
+                  <h4>Beneficiary IFSC Code</h4>
                   <h6>{{item.ifsccode}}</h6>
                 </ion-col>
                 <ion-col>
-                  <h4>Branch</h4>
+                  <h4>Bank Branch</h4>
                   <h6>{{item.branch}}</h6>
                 </ion-col>
               </ion-row>

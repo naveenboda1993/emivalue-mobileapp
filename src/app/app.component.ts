@@ -1291,7 +1291,11 @@ export class AppComponent {
         localStorage.setItem('fcmtoken', token);
         console.log(token);
       });
-
+      if (this.platform.is('android')) {
+        var token:any =  this.fcm.getToken();
+        localStorage.setItem('fcmtoken', token);
+        console.log(token);
+      }
       // unsubscribe from a topic
       // this.fcm.unsubscribeFromTopic('offers');
     });
