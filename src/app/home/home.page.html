@@ -92,7 +92,7 @@
       </ion-col>
     </ion-row> -->
     <!-- banners -->
-    <!-- <ion-row no-padding>
+    <ion-row no-padding *ngIf="slides.length!=0">
       <ion-col no-padding>
         <ion-item class="itemSlider">
           <ion-button type="submit" fill="clear" color="light" class="swiper-button-prev swiper-button-white prevBtn"
@@ -100,7 +100,7 @@
           <ion-slides pager="true" class="slides" #IonSlides loop="true">
             <ion-slide *ngFor="let slide of slides; let i=index" class="slide" no-padding>
               <div class="sliderImg">
-                <img src="{{slide.image}}" alt="Slide Images" class="img">
+                <img src="{{slide}}" alt="Slide Images" class="img">
               </div>
             </ion-slide>
           </ion-slides>
@@ -108,7 +108,7 @@
             (click)="nextSlide()"></ion-button>
         </ion-item>
       </ion-col>
-    </ion-row> -->
+    </ion-row>
     <ion-row style="    padding: 0 25px;">
       <ion-col class="header-content" size="8">
         <h1 style="text-transform: capitalize;">Welcome,

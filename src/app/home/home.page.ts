@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { MenuController, ModalController, NavController, IonSlides, Events } from '@ionic/angular';
 import { ThemeService } from '../services/theme.service';
 import { ViewChild } from '@angular/core';
 import { CustomThemeService } from '../services/custom-theme.service';
 import { ElementRef } from '@angular/core';
+import { UserService } from '../shared/user.service';
 
 const themes = {
   //red color o.k
@@ -122,9 +123,10 @@ export class HomePage {
   visiableBtnBlue = false;
   visiableBtn = false;
   user: any;
+  public slides = [  ];
   itemColor = "#03A9F4";//blue
   @ViewChild(IonSlides) autoSlides: IonSlides;
-  constructor(private service: CustomThemeService,
+  constructor(private service: CustomThemeService,private userAPI: UserService,private zone: NgZone,
     private events: Events, public menuCtrl: MenuController, private theme: ThemeService,
     private navCtrl: NavController, private elementRef: ElementRef) {
     this.visiableBtnAutum = true;
@@ -133,6 +135,14 @@ export class HomePage {
     // this.elementRef.nativeElement.style.setProperty('--my-var', this.itemColor);
     // this.theme.setTheme(themes['neon'], 'neon');
     // this.service.setTheme('neon');
+    this.userAPI.getbanners().subscribe((res: any) => {
+      this.zone.run(() => {
+        if (res.isSuccess) {         
+          this.slides = res.homebannerimages;
+        }
+        // this.userAPI.hideLoader();
+      })
+    });
   }
   ionViewWillEnter() {
     this.menuCtrl.enable(false, 'Menu2')
@@ -295,11 +305,7 @@ export class HomePage {
     // }
   }
   ///////////////////////////////
-  public slides = [
-    { image: "assets/images/home-banners/homebanner1.jpeg" },
-    { image: "assets/images/home-banners/homebanner2.jpeg" },
-    { image: "assets/images/home-banners/homebanner3.jpeg" },
-  ];
+ 
   /////////banner slides autoplay function////////////////
   // ionViewDidEnter() {
   //   this.autoSlides.startAutoplay();

@@ -84,6 +84,20 @@ export class UserService {
       );
 
   }
+  intro(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/intro/', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
+  getbanners(): Observable<any> {
+    return this.http.get<any>(this.baseloanurl + '/baners/', this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   getuserbanks(id): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/getuserbanks/' + id, this.httpOptions)
       .pipe(
