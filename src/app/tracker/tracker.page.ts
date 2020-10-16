@@ -44,6 +44,7 @@ export class TrackerPage implements OnInit {
   viewLoan(loan:any){
     console.log(loan)
     this.service.setSavedloanid(loan.id);
+    this.service.setloanprofile(loan.profile_type);
     this.router.navigate(['/tracker-view']);
   }
   async deleteLoan(loan: any) {

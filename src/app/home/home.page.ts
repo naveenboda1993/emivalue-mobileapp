@@ -307,15 +307,15 @@ export class HomePage {
   ///////////////////////////////
  
   /////////banner slides autoplay function////////////////
-  // ionViewDidEnter() {
-  //   this.autoSlides.startAutoplay();
-  // }
-  // /////////banner slides previous function///////////////////
-  // prevSlide() {
-  //   this.autoSlides.slidePrev();
-  // }
-  // /////////////banner slides next function///////////////
-  // nextSlide() {
-  //   this.autoSlides.slideNext();
-  // }
+  ionViewDidEnter() {
+    this.autoSlides.startAutoplay();
+  }
+  /////////banner slides previous function///////////////////
+  prevSlide() {
+    this.autoSlides.slidePrev();
+  }
+  /////////////banner slides next function///////////////
+  nextSlide() {
+    this.autoSlides.slideNext();
+  }
 }

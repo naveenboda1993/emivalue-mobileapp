@@ -80,9 +80,25 @@
                                     *ngIf="!loanregisterform.controls['company'].valid && loanregisterform.controls['company'].touched">
                                     Company Name is Required</span>
                             </ion-item>
-                            <ion-item>
-                                <!-- <ion-input type= "text" class="formGroup" placeholder = "Employee Type" formControlName = "employee" required>
-                        </ion-input> -->
+                            <ion-item *ngIf="isprofession">                              
+                                <ion-label>Profession</ion-label>
+                                <ion-select class="formGroup" formControlName="profession" (ionChange)="isProfession($event)" >
+                                    <ion-select-option *ngFor="let sub of professions" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>                                
+                            </ion-item>
+                            <ion-item *ngIf="isdoctor">                              
+                                <ion-label>Specialization</ion-label>
+                                <ion-select class="formGroup" formControlName="specialization" required>
+                                    <ion-select-option *ngFor="let sub of specialization" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterform.controls['employee'].valid && loanregisterform.controls['employee'].touched"></span>
+                            </ion-item>
+                            <ion-item>                              
                                 <ion-label>Employee Type</ion-label>
                                 <ion-select class="formGroup" formControlName="employee" required>
                                     <ion-select-option *ngFor="let sub of emptype" value="{{sub}}">{{sub}}

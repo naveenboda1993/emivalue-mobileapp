@@ -81,7 +81,7 @@ export class TrackerViewPage implements OnInit {
     if (value === 'false') {
       switch (segments) {
         case 'basic':
-          this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'failed', msg: 'Please complete the previous loan', action: 'step', redirectto: true, loanid: this.loanid }))
+          this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'failed', msg: 'Please complete the previous loan', action: this.service.getloanprofile(), redirectto: true, loanid: this.loanid }))
           this.router.navigate(['/register-personal-loan']);
           break;
         case 'questioner':

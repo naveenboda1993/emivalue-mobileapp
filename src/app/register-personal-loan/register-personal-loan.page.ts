@@ -31,6 +31,10 @@ export class RegisterPersonalLoanPage implements OnInit {
   marialstaus: any;
   states: any;
   cities: any;
+  isprofession: any = false;
+  isdoctor: any = false;
+  professions: any;
+  specialization: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
@@ -50,9 +54,12 @@ export class RegisterPersonalLoanPage implements OnInit {
     this.savedLoan = this.service.getLoanpage();
     if (this.savedLoan != null && this.savedLoan != '') {
       this.savedLoan = JSON.parse(this.savedLoan);
-      if(this.savedLoan.redirectto){
-        this.loanid=this.savedLoan.loanid;
+      if (this.savedLoan.redirectto) {
+        this.loanid = this.savedLoan.loanid;
         this.onToast(this.savedLoan.msg)
+      }
+      if (this.savedLoan.action == 'professional') {
+        this.isprofession = true;
       }
     }
     this.getcities();
@@ -67,6 +74,8 @@ export class RegisterPersonalLoanPage implements OnInit {
           console.log(res);
           if (res.isSuccess) {
             this.emptype = res.emptype;
+            this.professions = res.professions;
+            this.specialization = res.specialization;
             this.marialstaus = res.marialstaus;
             this.states = res.states;
           }
@@ -100,6 +109,8 @@ export class RegisterPersonalLoanPage implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       pincode: ['', Validators.required],
+      specialization: [''],
+      profession: [''],
     });
     console.log(this.service.getBackenEndUrl());
     this.url = this.service.getBackenEndUrl();
@@ -118,6 +129,14 @@ export class RegisterPersonalLoanPage implements OnInit {
     toast.present();
   }
 
+  isProfession(event) {
+    if (event.detail.value == 'Doctor') {
+      this.isdoctor = true;
+    } else {
+      this.isdoctor = false;
+    }
+    console.log(event)
+  }
 
   onSubmit() {
 
@@ -127,20 +146,20 @@ export class RegisterPersonalLoanPage implements OnInit {
     } else {
 
       console.log(this.loanregisterform.value)
-      this.http.get( this.url+'Login/addpersonalloan2/' + localStorage.getItem('id') 
-      + '/' + encodeURIComponent(this.loanid)
-      + '/' + encodeURIComponent(this.loanregisterform.value.firstname)
-      + '/' + encodeURIComponent(this.loanregisterform.value.birth)
-      + '/' + encodeURIComponent(this.loanregisterform.value.company)
-      + '/' + encodeURIComponent(this.loanregisterform.value.employee)
-      + '/' + encodeURIComponent(this.loanregisterform.value.salary)
-      + '/' + encodeURIComponent(this.loanregisterform.value.experience)
-      + '/' + encodeURIComponent(this.loanregisterform.value.pan_no)
-      + '/' + encodeURIComponent(this.loanregisterform.value.material_status)
-      + '/' + encodeURIComponent(this.loanregisterform.value.address)
-      + '/' + encodeURIComponent(this.loanregisterform.value.city)
-      + '/' + encodeURIComponent(this.loanregisterform.value.state)
-      + '/' + encodeURIComponent(this.loanregisterform.value.pincode)
+      this.http.get(this.url + 'Login/addpersonalloan2/' + localStorage.getItem('id')
+        + '/' + encodeURIComponent(this.loanid)
+        + '/' + encodeURIComponent(this.loanregisterform.value.firstname)
+        + '/' + encodeURIComponent(this.loanregisterform.value.birth)
+        + '/' + encodeURIComponent(this.loanregisterform.value.company)
+        + '/' + encodeURIComponent(this.loanregisterform.value.employee)
+        + '/' + encodeURIComponent(this.loanregisterform.value.salary)
+        + '/' + encodeURIComponent(this.loanregisterform.value.experience)
+        + '/' + encodeURIComponent(this.loanregisterform.value.pan_no)
+        + '/' + encodeURIComponent(this.loanregisterform.value.material_status)
+        + '/' + encodeURIComponent(this.loanregisterform.value.address)
+        + '/' + encodeURIComponent(this.loanregisterform.value.city)
+        + '/' + encodeURIComponent(this.loanregisterform.value.state)
+        + '/' + encodeURIComponent(this.loanregisterform.value.pincode)
       ).pipe(
       )
         .subscribe((res: any) => {
@@ -150,14 +169,14 @@ export class RegisterPersonalLoanPage implements OnInit {
               // this.service.setLoanid(res.loan_id);
               // // this.form.setValue([name,res]);
               // this.form.reset();success-page
-              if(this.savedLoan.redirectto){
+              if (this.savedLoan.redirectto) {
                 this.service.setLoanPage('')
                 this.router.navigate(['tracker'])
-              }else{
-                
-                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3',redirectto:false }))
-                
-                if(this.service.getLoanType()=='personal_loan'){
+              } else {
+
+                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3', redirectto: false }))
+
+                if (this.service.getLoanType() == 'personal_loan') {
                   this.router.navigate(['/register-personal-loan2']);
                 }
                 else {

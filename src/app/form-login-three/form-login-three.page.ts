@@ -57,12 +57,12 @@ export class FormLoginThreePage implements OnInit {
   // routerLink="/segment-header-text" fcmtoken
   async onSubmit() {
     this.userAPI.showLoader();
-    if (localStorage.getItem("fcmtoken")) {
-      this.loginform.setValue({
-        fcmtoken: localStorage.getItem("fcmtoken"),
-      });
+    // if (localStorage.getItem("fcmtoken")) {
+    //   this.loginform.setValue({
+    //     fcmtoken: localStorage.getItem("fcmtoken"),
+    //   });
 
-    }
+    // }
     console.log(this.loginform.value)
     this.userAPI.login(this.loginform.value)
       .subscribe((res) => {
