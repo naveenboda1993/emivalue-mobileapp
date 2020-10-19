@@ -48,7 +48,8 @@
                     <ion-col size="12">
                         <ion-list>
                             <ion-item>
-                                <ion-input type="text" class="formGroup" placeholder="First Name"
+                                <ion-label position="floating">First Name</ion-label>
+                                <ion-input type="text" class="formGroup" 
                                     formControlName="firstname" required>
                                 </ion-input>
                                 <span class="error-msg"
@@ -57,7 +58,8 @@
                                     Name Is Required</span>
                             </ion-item>
                             <ion-item>
-                                <ion-input type="text" class="formGroup" placeholder="Last Name"
+                                <ion-label position="floating">Last Name</ion-label>
+                                <ion-input type="text" class="formGroup" 
                                     formControlName="lastname" required>
                                 </ion-input>
                                 <span class="error-msg"
@@ -66,7 +68,8 @@
                                     Is Required</span>
                             </ion-item>
                             <ion-item>
-                                <ion-input type="email" class="formGroup" placeholder="Email" formControlName="email"
+                                <ion-label position="floating">Email</ion-label>
+                                <ion-input type="email" class="formGroup"  formControlName="email"
                                     required>
                                 </ion-input>
                                 <span class="error-msg"
@@ -74,7 +77,8 @@
                                     Required</span>
                             </ion-item>
                             <ion-item>
-                                <ion-input type="number" class="formGroup" placeholder="Mobile Number"
+                                <ion-label position="floating">Mobile Number</ion-label>
+                                <ion-input type="number" class="formGroup" 
                                     formControlName="mobile" required>
                                 </ion-input>
                                 <span class="error-msg" *ngFor="let error of error_messages.mobile">
@@ -85,7 +89,8 @@
                             </ion-item>
 
                             <ion-item>
-                                <ion-input type="password" class="formGroup" placeholder="Password"
+                                <ion-label position="floating">Password</ion-label>
+                                <ion-input type="password" class="formGroup" 
                                     formControlName="password" required
                                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                 </ion-input>
@@ -102,7 +107,8 @@
                             </ion-item>
 
                             <ion-item>
-                                <ion-input type="password" class="formGroup" placeholder="Confirm Password"
+                                <ion-label position="floating">Confirm Password</ion-label>
+                                <ion-input type="password" class="formGroup" 
                                     formControlName="confirmpassword" required
                                     [ngClass]="{'is-invalid': submitted && f.confirmpassword.errors }">
                                 </ion-input>

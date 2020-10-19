@@ -129,6 +129,8 @@ const routes: Routes = [
   { path: 'form-forget-two', loadChildren: './form-forget-two/form-forget-two.module#FormForgetTwoPageModule' },
   { path: 'form-forget-three', loadChildren: './form-forget-three/form-forget-three.module#FormForgetThreePageModule' },
   //
+  { path: 'register-business-loan', loadChildren: './register-business-loan/register-business-loan.module#RegisterBusinessLoanPageModule' },
+  { path: 'register-business-loan2', loadChildren: './register-business-loan2/register-business-loan2.module#RegisterBusinessLoan2PageModule' },
   { path: 'register-personal-loan', loadChildren: './register-personal-loan/register-personal-loan.module#RegisterPersonalLoanPageModule' },
   { path: 'register-personal-loan2', loadChildren: './register-personal-loan2/register-personal-loan2.module#RegisterPersonalLoan2PageModule' },
   { path: 'success-page', loadChildren: './success-page/success-page.module#SuccessPagePageModule' },

@@ -25,7 +25,8 @@
         <ion-card-content>
             <ion-row>
                 <ion-col class="header-content" size="6">
-                    <h3>Welcome</h3><h4>to Emi Value</h4>
+                    <h3>Welcome</h3>
+                    <h4>to Emi Value</h4>
                 </ion-col>
                 <ion-col size="6">
                     <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
@@ -36,60 +37,66 @@
             </ion-row>
             <br>
             <form [formGroup]="personalloanform" (ngSubmit)="onSubmit()">
-                <ion-row>
-                    <ion-col size="12">
-                        <ion-list>
-                            <ion-item row>
-                                <ion-label col="4"> Type Of Loan</ion-label>
-                                <ion-select placeholder="personal Loan" formControlName="personalloan" col="8">
-                                    <ion-select-option value="personal_loan" selected> Personal Loan</ion-select-option>
-                                    <ion-select-option value="business_loan"> Business Loan</ion-select-option>
-                                    <ion-select-option value="martigage_loan"> Martigage Loan</ion-select-option>
-                                    <ion-select-option value="home_loan"> Home Loan</ion-select-option>
-                                    <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            <br>
-                            <br>
-                            <ion-item>
-                                <ion-label> Profile Type</ion-label>
-                                <ion-select placeholder="Salaried" formControlName="salarised">
-                                    <ion-select-option value="salaried" selected> Salaried</ion-select-option>
-                                    <ion-select-option value="businessman"> Business Man</ion-select-option>
-                                    <ion-select-option value="professional"> Professional</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            <br>
-                            <br>
-                            <ion-item>
-                                <ion-label> Customer Type</ion-label>
-                                <ion-select placeholder="Salaried Individual" formControlName="salarised_individual">
-                                    <ion-select-option value="salaried_individual" selected> Salaried Individual
-                                    </ion-select-option>
-                                    <ion-select-option value="salaried_professional"> Professional Salaried
-                                    </ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            <br>
-                            <br>
-                            <!-- <ion-label>Looking Loan Amount</ion-label> -->
-                            <ion-item>
-                                <ion-input type="number" placeholder="Loan Amount" formControlName="loanamount"
-                                    required>
-                                </ion-input>
-                            </ion-item>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                        </ion-list>
-                    </ion-col>
-                </ion-row>
+
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating"> Type Of Loan</ion-label>
+                        <ion-select placeholder="Personal Loan" formControlName="personalloan"
+                            (ionChange)="isTypeofloan($event)" style="min-width:200px;">
+                            <ion-select-option value="personal_loan" selected> Personal Loan
+                            </ion-select-option>
+                            <ion-select-option value="business_loan"> Business Loan</ion-select-option>
+                            <ion-select-option value="martigage_loan"> Martigage Loan
+                            </ion-select-option>
+                            <ion-select-option value="home_loan"> Home Loan</ion-select-option>
+                            <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating"> Profile Type</ion-label>
+                        <ion-select placeholder="Salaried" formControlName="salarised">
+                            <ion-select-option value="salaried" selected> Salaried</ion-select-option>
+                            <ion-select-option value="businessman"> Business Man</ion-select-option>
+                            <ion-select-option value="professional"> Professional</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item *ngIf="!isBussinesloan">
+                        <ion-label position="floating"> Customer Type</ion-label>
+                        <ion-select placeholder="Salaried Individual" formControlName="salarised_individual">
+                            <ion-select-option value="salaried_individual" selected> Salaried Individual
+                            </ion-select-option>
+                            <ion-select-option value="salaried_professional"> Professional Salaried
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item *ngIf="isBussinesloan">
+                        <ion-label position="floating"> Self employed Type</ion-label>
+                        <ion-select placeholder="Proprieter" formControlName="salarised_individual">
+                            <ion-select-option value="proprieter" selected> Proprieter
+                            </ion-select-option>
+                            <ion-select-option value="partnership">Partnership
+                            </ion-select-option>
+                            <ion-select-option value="pvt_ltd " selected> Pvt Ltd
+                            </ion-select-option>
+                            <ion-select-option value="trust">Trust
+                            </ion-select-option>
+                            <ion-select-option value="society">Society
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <!-- <ion-label>Looking Loan Amount</ion-label> -->
+                    <ion-item>
+                        <ion-label position="floating"> Loan Amount</ion-label>
+                        <ion-input type="number" formControlName="loanamount" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+
                 <br>
                 <br>
                 <ion-row>
                     <ion-col size="12">
-                        <ion-button expand="block"  type="submit">Save</ion-button>
+                        <ion-button expand="block" type="submit">Save</ion-button>
                     </ion-col>
                 </ion-row>
             </form>

@@ -12,17 +12,17 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-register-personal-loan',
-  templateUrl: './register-personal-loan.page.html',
-  styleUrls: ['./register-personal-loan.page.scss'],
+  selector: 'app-register-business-loan',
+  templateUrl: './register-business-loan.page.html',
+  styleUrls: ['./register-business-loan.page.scss'],
 })
-export class RegisterPersonalLoanPage implements OnInit {
+export class RegisterBusinessLoanPage implements OnInit {
   public itemColor = [];
   public iconColorVar = "";
   image: any = ''
   imageData: any = ''
   data: any;
-  loanregisterform: FormGroup;
+  loanregisterbusinessform: FormGroup;
   isMatching: any;
   loanid: any;
   url: any;
@@ -34,6 +34,7 @@ export class RegisterPersonalLoanPage implements OnInit {
   isprofession: any = false;
   isdoctor: any = false;
   professions: any;
+  natureofbusiness: any;
   specialization: any;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
@@ -74,7 +75,7 @@ export class RegisterPersonalLoanPage implements OnInit {
           console.log(res);
           if (res.isSuccess) {
             this.emptype = res.emptype;
-            this.professions = res.professions;
+            this.natureofbusiness = res.natureofbusiness;
             this.specialization = res.specialization;
             this.marialstaus = res.marialstaus;
             this.states = res.states;
@@ -84,33 +85,31 @@ export class RegisterPersonalLoanPage implements OnInit {
       });
   }
   yourFunction(event) {
-    this.loanregisterform.value.city = '';
+    this.loanregisterbusinessform.value.city = '';
     this.states.forEach(element => {
-      if (element.name == this.loanregisterform.value.state) {
+      if (element.name == this.loanregisterbusinessform.value.state) {
         this.cities = element.cities;
       }
     });
   }
   ngOnInit() {
 
-    // + '/' + encodeURIComponent(this.loanregisterform.value.email)
-
-    // email: ['', Validators.required],
-    this.loanregisterform = this.formBuilder.group({
+    this.loanregisterbusinessform = this.formBuilder.group({
       firstname: ['', Validators.required],
       birth: ['', Validators.required],
-      company: ['', Validators.required],
-      employee: ['', Validators.required],
-      salary: ['', Validators.required],
       experience: ['', Validators.required],
-      pan_no: ['', Validators.required],
       material_status: ['', Validators.required],
+      company: ['', Validators.required],
+      business: ['', Validators.required],
+      registrationnumber: ['', Validators.required],
+      industry: ['', Validators.required],
+      turnover: ['', Validators.required],
+      currentstatement: ['', Validators.required],
+      pan_no: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
       pincode: ['', Validators.required],
-      specialization: [''],
-      profession: [''],
     });
     this.url = this.service.getBackenEndUrl();
   }
@@ -139,33 +138,29 @@ export class RegisterPersonalLoanPage implements OnInit {
 
   onSubmit() {
 
-    if (!this.loanregisterform.valid) {
+    if (!this.loanregisterbusinessform.valid) {
       this.onToast("Please Fill All The Fields")
       return false;
     } else {
-      if(this.loanregisterform.value.profession== ""){
-        this.loanregisterform.value.profession="empty";
-      }
-      if(this.loanregisterform.value.specialization== ""){
-        this.loanregisterform.value.specialization="empty";
-      }
-      console.log(this.loanregisterform.value)
-      this.http.get(this.url + 'Login/basicdetails/' + localStorage.getItem('id')
+
+      console.log(this.loanregisterbusinessform.value)
+      this.http.get(this.url + 'Login/businessbasicdetails/' + localStorage.getItem('id')
         + '/' + encodeURIComponent(this.loanid)
-        + '/' + encodeURIComponent(this.loanregisterform.value.firstname)
-        + '/' + encodeURIComponent(this.loanregisterform.value.birth)
-        + '/' + encodeURIComponent(this.loanregisterform.value.company)
-        + '/' + encodeURIComponent(this.loanregisterform.value.employee)
-        + '/' + encodeURIComponent(this.loanregisterform.value.salary)
-        + '/' + encodeURIComponent(this.loanregisterform.value.experience)
-        + '/' + encodeURIComponent(this.loanregisterform.value.pan_no)
-        + '/' + encodeURIComponent(this.loanregisterform.value.material_status)
-        + '/' + encodeURIComponent(this.loanregisterform.value.address)
-        + '/' + encodeURIComponent(this.loanregisterform.value.city)
-        + '/' + encodeURIComponent(this.loanregisterform.value.state)
-        + '/' + encodeURIComponent(this.loanregisterform.value.pincode)
-        + '/' + encodeURIComponent(this.loanregisterform.value.specialization)
-        + '/' + encodeURIComponent(this.loanregisterform.value.profession)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.firstname)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.birth)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.experience)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.material_status)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.company)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.business)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.registrationnumber)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.industry)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.turnover)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.currentstatement)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.pan_no)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.address)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.city)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.state)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.pincode)
       ).pipe(
       )
         .subscribe((res: any) => {
@@ -180,12 +175,13 @@ export class RegisterPersonalLoanPage implements OnInit {
                 this.router.navigate(['tracker'])
               } else {
 
-                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3', redirectto: false }))
+                this.service.setLoanPage(JSON.stringify({ step: '/register-business-loan2', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step3', redirectto: false }))
 
                 if (this.service.getLoanType() == 'personal_loan') {
                   this.router.navigate(['/register-personal-loan2']);
                 }
                 else {
+                  this.router.navigate(['/register-business-loan2']);
                   this.router.navigate(['success-page'])
                 }
               }

@@ -1,0 +1,209 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Basic Details </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <h2 style="text-align: center;">Apply A Loan</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col class="header-content" size="6">
+                    <h3>Welcome</h3>
+                    <h4>to Emi Value</h4>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <h4>Please enter the basic details </h4>
+            </ion-row>
+            <br>
+
+            <form [formGroup]="loanregisterbusinessform" (ngSubmit)="onSubmit()">
+
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-list>
+                            <ion-item>
+                                <ion-label position="floating">Full Name/As Per Pan Card </ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="firstname" required>
+                                </ion-input>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['firstname'].valid && loanregisterbusinessform.controls['firstname'].touched">Full
+                                    Name is Required</span>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Date of Birth</ion-label>
+                                <ion-input type="date" class="formGroup" 
+                                    formControlName="birth" required>
+                                </ion-input>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['birth'].valid && loanregisterbusinessform.controls['birth'].touched">
+                                    Date of Birth is Required</span>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating"> Years in Business         </ion-label>
+                                <ion-input type="number" class="formGroup" formControlName="experience" required>
+                                </ion-input>
+                            </ion-item>
+                            <ion-item>
+
+                                <ion-label position="floating">Material Status</ion-label>
+                                <ion-select class="formGroup" formControlName="material_status" required>
+                                    <ion-select-option *ngFor="let sub of marialstaus" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Name of the Organization </ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="company" required>
+                                </ion-input>
+                                <span class="erroi-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['company'].valid && loanregisterbusinessform.controls['company'].touched">
+                                    Name of the Organization is Required</span>
+                            </ion-item>
+                            <!-- <ion-item *ngIf="isprofession">                              
+                                <ion-label>Profession</ion-label>
+                                <ion-select class="formGroup" formControlName="profession" (ionChange)="isProfession($event)" >
+                                    <ion-select-option *ngFor="let sub of professions" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>                                
+                            </ion-item>
+                            <ion-item *ngIf="isdoctor">                              
+                                <ion-label>Specialization</ion-label>
+                                <ion-select class="formGroup" formControlName="specialization" required>
+                                    <ion-select-option *ngFor="let sub of specialization" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['employee'].valid && loanregisterbusinessform.controls['employee'].touched"></span>
+                            </ion-item> -->
+                            <ion-item>
+                                <ion-label position="floating">Nature of Business </ion-label>
+                                <ion-select class="formGroup" formControlName="business" required>
+                                    <ion-select-option *ngFor="let sub of natureofbusiness" value="{{sub}}">{{sub}}
+                                    </ion-select-option>
+
+                                </ion-select>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['business'].valid && loanregisterbusinessform.controls['business'].touched"></span>
+                            </ion-item>
+                            <!-- <ion-item>
+                                <ion-input type= "email" class="formGroup" placeholder = "Enter Your E-mail" formControlName = "email" required>
+                                </ion-input>
+                                <span class="error-msg" *ngIf = "!loanregisterbusinessform.controls['email'].valid && loanregisterbusinessform.controls['email'].touched"></span>
+                            </ion-item>  -->
+                            <ion-item>
+                                <ion-label position="floating"> Registration number </ion-label>
+
+                                <ion-input type="number" class="formGroup" formControlName="registrationnumber"
+                                    required>
+                                </ion-input>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['registrationnumber'].valid && loanregisterbusinessform.controls['registrationnumber'].touched"></span>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating"> Type of Industry               </ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="industry" required>
+                                </ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating"> Annual Turnover  (*As Per ITR)                 </ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="turnover" required>
+                                </ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating"> Having Current Account statement                 </ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="currentstatement" required>
+                                </ion-input>
+                            </ion-item>
+                          
+                            <ion-item>
+                                <ion-label position="floating"> Pan Number        </ion-label>
+                                <ion-input type="text" class="formGroup" 
+                                formControlName="pan_no" required>
+                            </ion-input>
+                            <span class="error-msg"
+                            *ngIf="!loanregisterbusinessform.controls['pan_no'].valid && loanregisterbusinessform.controls['pan_no'].touched"></span>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label position="floating"> Address       </ion-label>
+                                <ion-input type="text" class="formGroup" 
+                                    formControlName="address" required>
+                                </ion-input>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['address'].valid && loanregisterbusinessform.controls['address'].touched"></span>
+                            </ion-item>
+                            <ion-item>
+                                <!-- <ion-input type="text" class="formGroup" placeholder="Select Your State" formControlName="state"
+                            required>
+                        </ion-input> -->
+                                <ion-label position="floating">State</ion-label>
+                                <ion-select class="formGroup" formControlName="state" required
+                                    (ionChange)="yourFunction($event)">
+                                    <ion-select-option *ngFor="let sub of states" value="{{sub.name}}">{{sub.name}}
+                                    </ion-select-option>
+
+                                </ion-select>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['state'].valid && loanregisterbusinessform.controls['state'].touched"></span>
+                            </ion-item>
+                            <ion-item>
+                                <!-- <ion-input type= "text" class="formGroup" placeholder = "Select your City" formControlName = "city" required>
+                        </ion-input> -->
+                                <ion-label position="floating">City</ion-label>
+                                <ion-select class="formGroup" formControlName="city" required>
+                                    <ion-select-option *ngFor="let sub of cities" value="{{sub.name}}">{{sub.name}}
+                                    </ion-select-option>
+                                    
+                                </ion-select>
+                                <span class="error-msg"
+                                *ngIf="!loanregisterbusinessform.controls['city'].valid && loanregisterbusinessform.controls['city'].touched"></span>
+                            </ion-item>
+                            
+                            <ion-item>
+                                <ion-label position="floating">Pincode</ion-label>
+                                <ion-input type="number" class="formGroup" 
+                                    formControlName="pincode" required>
+                                </ion-input>
+                                <span class="error-msg"
+                                    *ngIf="!loanregisterbusinessform.controls['pincode'].valid && loanregisterbusinessform.controls['pincode'].touched"></span>
+                            </ion-item>
+
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-button expand="block" type="submit" (click)="onToast()">Save</ion-button>
+                    </ion-col>
+                </ion-row>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br><br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

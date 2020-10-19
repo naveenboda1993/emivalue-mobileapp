@@ -28,12 +28,14 @@
             <!-- form with input text and submit buttons -->
             <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
                 <ion-item>
-                    <ion-input type="text" placeholder="Mobile number" formControlName="mobile" required>
+                    <ion-label position="floating">Mobile number</ion-label>
+                    <ion-input type="text" formControlName="mobile" required>
                     </ion-input>
                 </ion-item>
                 <br>
                 <ion-item *ngIf="!isOtp">
-                    <ion-input type="password" placeholder="Password" formControlName="password">
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input type="password" formControlName="password">
                     </ion-input>
                 </ion-item>
                 <ion-item *ngIf="isOtp">

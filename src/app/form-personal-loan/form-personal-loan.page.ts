@@ -24,6 +24,7 @@ export class FormPersonalLoanPage implements OnInit {
   data: any;
   personalloanform: FormGroup;
   isMatching: any;
+  isBussinesloan: boolean = false;
   constructor(private userAPI: UserService,
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
@@ -37,9 +38,9 @@ export class FormPersonalLoanPage implements OnInit {
     this.data = this.service.getTheme();//to get the selected theme color which is by default set as #F44336
     this.iconColorVar = this.data;
     // applyloan
-    var loan:any = this.service.getLoanpage();
+    var loan: any = this.service.getLoanpage();
     if (loan != null && loan != '') {
-      loan=JSON.parse(loan);
+      loan = JSON.parse(loan);
       this.router.navigate([loan.step]);
       console.log(loan);
     }
@@ -97,10 +98,14 @@ export class FormPersonalLoanPage implements OnInit {
     });
     toast.present();
   }
-
+  isTypeofloan(event) {
+    if (event.detail.value === 'business_loan') {
+      this.isBussinesloan = true;
+    }
+  }
 
   onSubmit() {
-    
+
     if (!this.personalloanform.valid) {
       this.onToast("Please enter the all fields")
       return false;
@@ -123,16 +128,17 @@ export class FormPersonalLoanPage implements OnInit {
               this.onToast("Api success", 'green')
               this.service.setLoanid(res.loan_id);
               this.service.setLoantype(this.personalloanform.value.personalloan);
-              if(this.personalloanform.value.salarised=='professional'){
-                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'professional',redirectto:false }))
-
-              }else{
-                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step2',redirectto:false }))
-
+              if (this.personalloanform.value.personalloan === 'business_loan') {
+                this.service.setLoanPage(JSON.stringify({ step: '/register-business-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'business', redirectto: false }))
+                this.router.navigate(['/register-business-loan']);
               }
-              // // this.form.setValue([name,res]);
-              // this.form.reset();
-              this.router.navigate(['/register-personal-loan']);
+              if (this.personalloanform.value.salarised == 'professional') {
+                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'professional', redirectto: false }))
+                this.router.navigate(['/register-personal-loan']);
+              } else {
+                this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'step2', redirectto: false }))
+                this.router.navigate(['/register-personal-loan']);
+              }
 
             } else {
               this.onToast(res.message);
@@ -155,94 +161,5 @@ export class FormPersonalLoanPage implements OnInit {
     }
   }
 
-  onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.personalloanform.get('image').setValue(file);
-    }
-  }
-  upload() {
 
-    let options = {
-
-      quality: 100
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-
-      const fileTransfer: FileTransferObject = this.transfer.create();
-
-      let options1: FileUploadOptions = {
-        chunkedMode: false,
-        fileKey: 'file',
-        fileName: 'name.jpg',
-        headers: {}
-      }
-
-      fileTransfer.upload(imageData, 'http://emivalue.snitchmedia.in/Login/appupload', options1)
-        .then((data) => {
-          // success
-          alert("success");
-        }, (err) => {
-          // error
-          alert("error" + JSON.stringify(err));
-        });
-
-
-    });
-
-
-  }
-  openCam() {
-
-    const options: CameraOptions = {
-      quality: 20,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      //alert(imageData)
-      this.imageData = imageData;
-      // this.imageData = 'data:image/jpeg;base64,' + imageData
-      this.image = (<any>window).Ionic.WebView.convertFileSrc(imageData);
-    }, (err) => {
-      // Handle error
-      alert("error " + JSON.stringify(err))
-    });
-
-  }
-
-
-  uploadFile() {
-    // const loading = await this.loadingController.create({
-    //   message: 'Uploading...',
-    //   });
-    // await loading.present();
-
-    const fileTransfer: FileTransferObject = this.transfer.create();
-
-    let options1: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: 'name.jpg',
-      chunkedMode: false,
-      headers: {}
-
-    }
-
-    fileTransfer.upload(this.imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
-      .then((data) => {
-        // success
-        // loading.dismiss()
-        alert("success");
-      }, (err) => {
-        // error
-        alert("error" + JSON.stringify(err));
-      });
-  }
 }
