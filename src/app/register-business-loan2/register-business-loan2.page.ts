@@ -73,7 +73,8 @@ export class RegisterBusinessLoan2Page implements OnInit {
       cheque1: ['',],
       covid: ['', Validators.required],
       covid1: ['',],
-      banker: ['', Validators.required]
+      banker: ['', Validators.required],
+      years: ['', Validators.required]
     }
     );
     console.log("hello")
@@ -102,7 +103,7 @@ export class RegisterBusinessLoan2Page implements OnInit {
 
       console.log(this.registerpersonalform2.value)
       // this.http.options. { headers: headers }
-      this.http.get(this.url + 'Login/addpersonalloan3/' + localStorage.getItem('id')
+      this.http.get(this.url + 'Login/businessquestioner/' + localStorage.getItem('id')
         + '/' + encodeURIComponent(this.loanid)
         + '/' + encodeURIComponent(this.registerpersonalform2.value.ownhouse=='yes'?this.registerpersonalform2.value.ownhouse1:'no')
         + '/' + encodeURIComponent(this.registerpersonalform2.value.cibil=='yes'?this.registerpersonalform2.value.cibil1:'no')
@@ -110,6 +111,7 @@ export class RegisterBusinessLoan2Page implements OnInit {
         + '/' + encodeURIComponent(this.registerpersonalform2.value.cheque=='yes'?this.registerpersonalform2.value.cheque1:'no')
         + '/' + encodeURIComponent(this.registerpersonalform2.value.covid=='yes'?this.registerpersonalform2.value.covid1:'no')
         + '/' + encodeURIComponent(this.registerpersonalform2.value.banker)
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.years)
 
       ).pipe(
       )
@@ -123,8 +125,8 @@ export class RegisterBusinessLoan2Page implements OnInit {
                 this.service.setLoanPage('')
                 this.router.navigate(['tracker']);
               }else{
-                this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
-                this.router.navigate(['/loan-documnets-upload']);
+                this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
+                this.router.navigate(['/loan-documnets-upload-business']);
               }             
 
             } else {

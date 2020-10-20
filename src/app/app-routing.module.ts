@@ -57,6 +57,7 @@ const routes: Routes = [
   { path: 'tab-header-text-icon-badge', loadChildren: './tab-header-text-icon-badge/tab-header-text-icon-badge.module#TabHeaderTextIconBadgePageModule' },
   { path: 'segment-header-text', loadChildren: './segment-header-text/segment-header-text.module#SegmentHeaderTextPageModule' },
   { path: 'loan-documnets-upload', loadChildren: './loan-documnets-upload/loan-documnets-upload.module#LoanDocumnetsUploadTextPageModule' },
+  { path: 'loan-documnets-upload-business', loadChildren: './loan-documnets-upload-business/loan-documnets-upload-business.module#LoanDocumnetsUploadBusinessTextPageModule' },
   { path: 'segment-header-icon', loadChildren: './segment-header-icon/segment-header-icon.module#SegmentHeaderIconPageModule' },
   { path: 'segment-scrollable-header-text', loadChildren: './segment-scrollable-header-text/segment-scrollable-header-text.module#SegmentScrollableHeaderTextPageModule' },
   { path: 'segment-scrollable-header-icon', loadChildren: './segment-scrollable-header-icon/segment-scrollable-header-icon.module#SegmentScrollableHeaderIconPageModule' },

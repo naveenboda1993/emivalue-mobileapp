@@ -1,0 +1,558 @@
+<ion-header class="header-color">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button expand="block" routerLink="/component-details" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Upload Digital Documents </ion-title>
+  </ion-toolbar>
+  <!-- segment header button  -->
+  <ion-segment [(ngModel)]="segments">
+    <!-- <ion-segment-button value="segmentOne" checked> {{ '1' }}</ion-segment-button>
+    <ion-segment-button value="segmentTwo">{{ '2' }} </ion-segment-button>
+    <ion-segment-button value="segmentThree" checked>{{ '3' }}</ion-segment-button>
+    <ion-segment-button value="segmentFour">{{ '4' }} </ion-segment-button>
+    <ion-segment-button value="segmentFive" checked>{{ '5' }}</ion-segment-button>
+    <ion-segment-button value="segmentSix">{{ '6' }} </ion-segment-button>
+    <ion-segment-button value="segmentSeven" checked>{{ '7' }}</ion-segment-button>
+    <ion-segment-button value="segmentEight">{{ '8' }} </ion-segment-button> -->
+  </ion-segment>
+</ion-header>
+
+<ion-content no-padding>
+  <!-- name of segment to access segment on runtime -->
+  <ion-card class="card">
+    <ion-card-header style="padding: 0;">
+      <h2 style="text-align: center;">Upload Digital Documents </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row style="padding: 10px 40px;">
+        <ion-col class="header-content" size="9">
+          <h3>Welcome</h3>
+          <h4>to <b>Emi Value</b></h4>
+        </ion-col>
+        <ion-col size="3">
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <h4>Please handy check list documents to upload Here</h4>
+      </ion-row>
+      <div [ngSwitch]="segments">
+        <!-- segment One -->
+        <div *ngSwitchCase="'segmentOne'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+              <div>
+                <nav class="slidemenu">
+                  <label for="slide-item-1" style="opacity: 1;">
+                    <p class="icon">
+                      <ion-icon name="card"></ion-icon>
+                    </p><span>1. Firm ID Documents</span>
+                  </label>
+                  <label for="slide-item-2">
+                    <p class="icon">
+                      <ion-icon name="images"></ion-icon>
+                    </p><span>2. Firm Address Proof</span>
+                  </label>
+                  <div class="clear"></div>
+                  <div class="slider">
+                    <div class="bar"></div>
+                  </div>
+                </nav>
+
+
+              </div>
+              <ion-item>
+                <ion-label>Firm ID Proof </ion-label>
+                <!-- <ion-select value="notifications" interface="action-sheet" [(ngModel)]="idproof">
+                  <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">
+                    {{sub.subcat_name}}</ion-select-option>
+                </ion-select> -->
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <!-- <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <div (click)="openCam($event)">
+                  <h5 *ngIf="!isimage">Camera</h5>
+                  <img *ngIf="isimage" src="{{image}}">
+                </div>
+
+                <br />OR <br /> -->
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+              <!-- <div (click)="openCam($event)">
+                <img *ngIf="!isimage" src="assets/images/upload_camera.png" />
+                <img *ngIf="isimage" src="{{image}}">
+              </div>
+              <br>
+              <br>
+              <div (click)="openFile($event)" *ngIf="isFolder">
+                <img src="assets/images/upload_doc.png" />
+
+              </div> -->
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+              <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- segment two -->
+        <div *ngSwitchCase="'segmentTwo'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+              <nav class="slidemenu">
+                <label for="slide-item-1">
+                  <p class="icon">
+                    <ion-icon name="card"></ion-icon>
+                  </p><span>1. ID Documents</span>
+                </label>
+                <label for="slide-item-2" style="opacity: 1;">
+                  <p class="icon">
+                    <ion-icon name="images"></ion-icon>
+                  </p><span>2. Address Proof</span>
+                </label>
+                <div class="clear"></div>
+                <div class="slider" style="margin-left: 50%;">
+                  <div class="bar"></div>
+                </div>
+              </nav>
+              <ion-item>
+                <ion-label>Firm Address Proof </ion-label>
+                <!-- <ion-select value="notifications" interface="action-sheet" [(ngModel)]="addressproof">
+                  <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">
+                    {{sub.subcat_name}}</ion-select-option>
+                </ion-select> -->
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <!-- <div (click)="openCam1($event)">
+                  <h5 *ngIf="!isimage1">Camera</h5>
+                  <img *ngIf="isimage1" src="{{image}}">
+                </div> 
+
+                <br />OR <br />-->
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+              <!-- <div (click)="openCam1($event)">
+                <img *ngIf="!isimage1" src="assets/images/upload_doc.png" />
+                <img *ngIf="isimage1" src="{{image1}}">
+              </div>
+              <div (click)="openFile($event)" *ngIf="isFolder">
+                <img src="assets/images/upload_doc.png" />
+
+              </div> -->
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+              <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- segment three -->
+        <div *ngSwitchCase="'segmentThree'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Own House Proof </ion-label>
+
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <!-- <div (click)="openCam_Own($event)">
+                  <h5 *ngIf="!isimage_Own">Camera</h5>
+                  <img *ngIf="isimage_Own" src="{{image}}">
+                </div>
+
+                <br />OR <br /> -->
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+              <!-- <div (click)="openCam_Own($event)">
+                <img *ngIf="!isimage_Own" src="assets/images/upload_camera.png" />
+                <img *ngIf="isimage_Own" src="{{image_Own}}">
+              </div>
+              <br>
+              <br>
+              <div (click)="openFile($event)" *ngIf="isFolder">
+                <img src="assets/images/upload_doc.png" />
+
+              </div> -->
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentFour'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Firm GST certificate </ion-label>
+
+              </ion-item>
+
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <!-- <div (click)="openCam_Company($event)">
+                  <h5 *ngIf="!isimage_Company">Camera</h5>
+                  <img *ngIf="isimage_Company" src="{{image}}">
+                </div>
+
+                <br />OR <br /> -->
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentFive'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Firm VAT/Service Certificate </ion-label>
+
+              </ion-item>
+
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <!-- <div (click)="openCam_Job($event)">
+                  <h5 *ngIf="!isimage_Job">Camera</h5>
+                  <img *ngIf="isimage_Job" src="{{image}}">
+                </div>
+
+                <br />OR <br /> -->
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentSix'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label> Firm Latest Year Turnover Statements </ion-label>
+
+              </ion-item>
+
+              <!-- <div >
+                <ion-button color="success">+ ADD Statement </ion-button>
+              </div>
+              <br>
+              <br> -->
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    ACTYPE : CA
+                    <ion-button (click)="addingstatement('CA')">
+                      <ion-icon name="eye"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+
+                  <ion-item>
+                    <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                    <ion-label>
+                      <h2>Bank Name </h2>
+                      <h3>{{actypeca.bankname}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                    <ion-label>
+                      <h2>AC Number </h2>
+                      <h3>{{actypeca.acnumber}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    ACTYPE : OD/CA
+                    <ion-button (click)="addingstatement('ODCC')">
+                      <ion-icon name="eye"></ion-icon>
+                    </ion-button>
+
+                  </ion-list-header>
+
+                  <ion-item>
+                    <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                    <ion-label>
+                      <h2>Bank Name </h2>
+                      <h3>{{actypeod.bankname}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                    <ion-label>
+                      <h2>AC Number </h2>
+                      <h3>{{actypeod.acnumber}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    ACTYPE : SAVING
+                    <ion-button (click)="addingstatement('SAVING')">
+                      <ion-icon name="eye"></ion-icon>
+                    </ion-button>
+
+                  </ion-list-header>
+
+                  <ion-item>
+                    <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                    <ion-label>
+                      <h2>Bank Name </h2>
+                      <h3>{{actypesaving.bankname}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                    <ion-label>
+                      <h2>AC Number </h2>
+                      <h3>{{actypesaving.acnumber}}</h3>
+                      <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <!--  <div (click)="openCam_Pay($event)">
+                <img *ngIf="!isimage_Pay" src="assets/images/upload_camera.png" />
+                <img *ngIf="isimage_Pay" src="{{image_Pay}}">
+              </div>
+              <br>
+              <br>
+              <div (click)="openFile($event)" *ngIf="isFolder">
+                <img src="assets/images/upload_doc.png" />
+
+              </div> -->
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="nextSlide()">Next
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentSeven'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Firm Latest two year Income Tax Returns Copies with Audit reports </ion-label>
+
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Latest year</ion-label>
+
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+              <ion-item>
+                <ion-label>Previous year </ion-label>
+               
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">              
+                <h4 (click)="openFileprev('previous')" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUploadPrevious}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="nextSlide()">Next
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentEight'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Firm Existing Loan Statements   </ion-label>
+
+              </ion-item>
+
+              <div (click)="loanstatementsAdd()">
+                <ion-button color="success">+ ADD LOAN </ion-button>
+              </div>
+              <br>
+              <br>
+              <div *ngIf="emiStatements.length!=0">
+                <ion-list>
+                  <ion-list-header>
+                    Loan Statements
+                  </ion-list-header>
+
+                  <ion-item *ngFor="let p of emiStatements">
+                    <!-- <ion-avatar slot="start">
+                  <img src="./avatar-finn.png">
+                </ion-avatar> -->
+                    <ion-label>
+                      <h2>{{p.banker}} {{p.facility}}</h2>
+                      <h3>Tenure: {{p.tenure}} End :{{p.to}}</h3>
+                      <p>{{p.amount}}</p>
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" class="ion-align-self-end">
+              <ion-button color="primary" (click)="finalStageSlide()">Save Application
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

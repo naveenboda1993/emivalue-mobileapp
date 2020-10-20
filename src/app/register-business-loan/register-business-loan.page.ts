@@ -182,7 +182,7 @@ export class RegisterBusinessLoanPage implements OnInit {
                 }
                 else {
                   this.router.navigate(['/register-business-loan2']);
-                  this.router.navigate(['success-page'])
+                  // this.router.navigate(['success-page'])
                 }
               }
 

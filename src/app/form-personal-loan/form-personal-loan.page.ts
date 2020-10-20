@@ -85,11 +85,11 @@ export class FormPersonalLoanPage implements OnInit {
   }
 
 
-  async onToast(text: any, color?: any) {
+  async onToast(text: any) {
 
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
-      color: color ? color : "danger",
+      color:  "danger",
       showCloseButton: true,
       position: 'top',
       message: text,
@@ -125,14 +125,14 @@ export class FormPersonalLoanPage implements OnInit {
         .subscribe((res: any) => {
           this.zone.run(() => {
             if (res.isSuccess) {
-              this.onToast("Api success", 'green')
+              this.onToast("Api success")
               this.service.setLoanid(res.loan_id);
               this.service.setLoantype(this.personalloanform.value.personalloan);
               if (this.personalloanform.value.personalloan === 'business_loan') {
                 this.service.setLoanPage(JSON.stringify({ step: '/register-business-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'business', redirectto: false }))
                 this.router.navigate(['/register-business-loan']);
               }
-              if (this.personalloanform.value.salarised == 'professional') {
+              else if (this.personalloanform.value.salarised == 'professional') {
                 this.service.setLoanPage(JSON.stringify({ step: '/register-personal-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'professional', redirectto: false }))
                 this.router.navigate(['/register-personal-loan']);
               } else {
