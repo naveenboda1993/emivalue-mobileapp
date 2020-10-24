@@ -53,8 +53,8 @@ export class RegisterBusinessLoan2Page implements OnInit {
     this.savedLoan = this.service.getLoanpage();
     if (this.savedLoan != null && this.savedLoan != '') {
       this.savedLoan = JSON.parse(this.savedLoan);
-      if(this.savedLoan.redirectto){
-        this.loanid=this.savedLoan.loanid;
+      if (this.savedLoan.redirectto) {
+        this.loanid = this.savedLoan.loanid;
         this.onToast(this.savedLoan.msg)
       }
     }
@@ -105,11 +105,11 @@ export class RegisterBusinessLoan2Page implements OnInit {
       // this.http.options. { headers: headers }
       this.http.get(this.url + 'Login/businessquestioner/' + localStorage.getItem('id')
         + '/' + encodeURIComponent(this.loanid)
-        + '/' + encodeURIComponent(this.registerpersonalform2.value.ownhouse=='yes'?this.registerpersonalform2.value.ownhouse1:'no')
-        + '/' + encodeURIComponent(this.registerpersonalform2.value.cibil=='yes'?this.registerpersonalform2.value.cibil1:'no')
-        + '/' + encodeURIComponent(this.registerpersonalform2.value.apply=='yes'?this.registerpersonalform2.value.apply1:'no')
-        + '/' + encodeURIComponent(this.registerpersonalform2.value.cheque=='yes'?this.registerpersonalform2.value.cheque1:'no')
-        + '/' + encodeURIComponent(this.registerpersonalform2.value.covid=='yes'?this.registerpersonalform2.value.covid1:'no')
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.ownhouse == 'yes' ? this.registerpersonalform2.value.ownhouse1 : 'no')
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.cibil == 'yes' ? this.registerpersonalform2.value.cibil1 : 'no')
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.apply == 'yes' ? this.registerpersonalform2.value.apply1 : 'no')
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.cheque == 'yes' ? this.registerpersonalform2.value.cheque1 : 'no')
+        + '/' + encodeURIComponent(this.registerpersonalform2.value.covid == 'yes' ? this.registerpersonalform2.value.covid1 : 'no')
         + '/' + encodeURIComponent(this.registerpersonalform2.value.banker)
         + '/' + encodeURIComponent(this.registerpersonalform2.value.years)
 
@@ -121,13 +121,16 @@ export class RegisterBusinessLoan2Page implements OnInit {
               this.onToast("Api success", 'green')
               // // this.form.setValue([name,res]);
               // this.form.reset();
-              if(this.savedLoan.redirectto){
+              if (this.savedLoan.redirectto) {
                 this.service.setLoanPage('')
                 this.router.navigate(['tracker']);
-              }else{
-                this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne',redirectto:false }))
+              } else if (this.service.getLoanEmployedType() !== 'proprieter') {
+                this.service.setLoanPage(JSON.stringify({ step: '/partners-business', status: 'incomplete', msg: 'Please complete the previous loan', action: this.service.getLoanEmployedType(), redirectto: false }))
+                this.router.navigate(['/partners-business']);
+              } else {
+                this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne', redirectto: false }))
                 this.router.navigate(['/loan-documnets-upload-business']);
-              }             
+              }
 
             } else {
               this.onToast(res.message);

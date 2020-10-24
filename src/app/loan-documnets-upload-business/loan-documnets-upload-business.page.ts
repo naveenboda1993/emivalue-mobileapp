@@ -103,6 +103,19 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
   savedLoan: any;
   loanid: any;
   wherefiledata: any;
+  jansalesreturngst: any;
+  febsalesreturngst: any;
+  marsalesreturngst: any;
+  aprsalesreturngst: any;
+  maysalesreturngst: any;
+  junsalesreturngst: any;
+  julsalesreturngst: any;
+  augsalesreturngst: any;
+  sptsalesreturngst: any;
+  octsalesreturngst: any;
+  novsalesreturngst: any;
+  decsalesreturngst: any;
+  monthnameSalesGst: any;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -160,13 +173,13 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
     this.fileChooser.open({ "mime": "application/pdf" })
       .then(uri => {
         this.isFileUpload = true;
-        this.wherefiledata=wherefiledata;
+        this.wherefiledata = wherefiledata;
         switch (this.wherefiledata) {
           case 'previous':
             this.UriFileUploadPrevious = uri;
             break;
           default:
-              break;
+            break;
         }
         this.uploadFile();
       })
@@ -345,6 +358,10 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         this.segments = 'segmentSeven';
         break;
       case 'segmentSeven':
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentNine', redirectto: false }))
+        this.segments = 'segmentNine';
+        break;
+      case 'segmentNine':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentEight', redirectto: false }))
         this.segments = 'segmentEight';
         break;
@@ -398,7 +415,7 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         //   isId = false;
         // } else {
         var filename = +new Date() + this.loanid + '-' + this.idproof.replace(/\s/g, "") + '-bidproof';
-        var idproof = this.idproof;
+        var idproof:any = 'bidproof';
         var imageData = this.imageData;
         // }
 
@@ -408,7 +425,7 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         //   isId = false;
         // } else {
         var filename = +new Date() + this.loanid + '-' + this.addressproof.replace(/\s/g, "") + '-baddressproof';
-        var idproof = this.addressproof;
+        var idproof:any = "baddressproof";
         var imageData = this.imageData1;
         // }
 
@@ -438,7 +455,85 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         // var imageData = this.imageData_Pay;
         break;
       case 'segmentSeven':
-        // this.segments = 'segmentEight';
+        // this.segments = 'segmentNine';
+        switch (this.wherefiledata) {
+          case 'previous':
+            var filename = +new Date() + this.loanid + '-bvatservicecertificates';
+            var idproof: any = "bvatservicecertificates";
+            imageData = this.UriFileUploadPrevious;
+            break;
+
+          default:
+            imageData = this.UriFileUpload;
+            break;
+        }
+        break;
+      case 'segmentNine':
+        switch (this.monthnameSalesGst) {
+          case 'jan':
+            var filename = +new Date() + this.loanid + '-b-jansalesreturngst';
+            var idproof: any = "b-jansalesreturngst";
+            var imageData = this.jansalesreturngst;
+            break;
+          case 'feb':
+            var filename = +new Date() + this.loanid + '-b-febsalesreturngst';
+            var idproof: any = "b-febsalesreturngst";
+            var imageData = this.febsalesreturngst;
+            break;
+          case 'mar':
+            var filename = +new Date() + this.loanid + '-b-marsalesreturngst';
+            var idproof: any = "b-marsalesreturngst";
+            var imageData = this.marsalesreturngst;
+            break;
+          case 'apr':
+            var filename = +new Date() + this.loanid + '-b-aprsalesreturngst';
+            var idproof: any = "b-aprsalesreturngst";
+            var imageData = this.aprsalesreturngst;
+            break;
+          case 'may':
+            var filename = +new Date() + this.loanid + '-b-maysalesreturngst';
+            var idproof: any = "b-maysalesreturngst";
+            var imageData = this.maysalesreturngst;
+            break;
+          case 'jun':
+            var filename = +new Date() + this.loanid + '-b-junsalesreturngst';
+            var idproof: any = "b-junsalesreturngst";
+            var imageData = this.junsalesreturngst;
+            break;
+          case 'jul':
+            var filename = +new Date() + this.loanid + '-b-julsalesreturngst';
+            var idproof: any = "b-julsalesreturngst";
+            var imageData = this.julsalesreturngst;
+            break;
+          case 'aug':
+            var filename = +new Date() + this.loanid + '-b-augsalesreturngst';
+            var idproof: any = "b-augsalesreturngst";
+            var imageData = this.augsalesreturngst;
+            break;
+          case 'spt':
+            var filename = +new Date() + this.loanid + '-b-sptsalesreturngst';
+            var idproof: any = "b-sptsalesreturngst";
+            var imageData = this.sptsalesreturngst;
+            break;
+          case 'oct':
+            var filename = +new Date() + this.loanid + '-b-octsalesreturngst';
+            var idproof: any = "b-octsalesreturngst";
+            var imageData = this.octsalesreturngst;
+            break;
+          case 'nov':
+            var filename = +new Date() + this.loanid + '-b-novsalesreturngst';
+            var idproof: any = "b-novsalesreturngst";
+            var imageData = this.novsalesreturngst;
+            break;
+          case 'dec':
+            var filename = +new Date() + this.loanid + '-b-decsalesreturngst';
+            var idproof: any = "b-decsalesreturngst";
+            var imageData = this.decsalesreturngst;
+            break;
+
+          default:
+            break;
+        }
         break;
       case 'segmentEight':
         // this.router.navigate(['/coapplicant-loan-documnets']);
@@ -466,17 +561,7 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
           params: { "app_key": "Testappkey" },
           chunkedMode: false
         }
-        switch (this.wherefiledata) {
-          case 'previous':
-            var filename = +new Date() + this.loanid + '-bvatservicecertificates';
-            var idproof: any = "bvatservicecertificates";
-            imageData = this.UriFileUploadPrevious;            
-            break;
-        
-          default:
-            imageData = this.UriFileUpload;
-            break;
-        }
+
       } else {
         options1 = {
           fileKey: 'file',
@@ -535,7 +620,12 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
                     if (this.savedLoan.redirectto) {
                       this.router.navigate(['tracker']);
                     } else {
-                      if (this.segments != 'segmentSeven') {
+                      if (this.segments == 'segmentSeven') {
+
+                      } else if (this.segments == 'segmentNine') {
+
+                      } else {
+
                         this.nextSlide();
                       }
                     }
@@ -684,6 +774,57 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
     });
 
     await alert.present();
+  }
+  salesreturngst(monthname) {
+    this.monthnameSalesGst = monthname;
+    this.fileChooser.open({ "mime": "application/pdf" })
+      .then(uri => {
+        this.isFileUpload = true;
+        switch (monthname) {
+          case 'jan':
+            this.jansalesreturngst = uri;
+            break;
+          case 'feb':
+            this.febsalesreturngst = uri;
+            break;
+          case 'mar':
+            this.marsalesreturngst = uri;
+            break;
+          case 'apr':
+            this.aprsalesreturngst = uri;
+            break;
+          case 'may':
+            this.maysalesreturngst = uri;
+            break;
+          case 'jun':
+            this.junsalesreturngst = uri;
+            break;
+          case 'jul':
+            this.julsalesreturngst = uri;
+            break;
+          case 'aug':
+            this.augsalesreturngst = uri;
+            break;
+          case 'spt':
+            this.sptsalesreturngst = uri;
+            break;
+          case 'oct':
+            this.octsalesreturngst = uri;
+            break;
+          case 'nov':
+            this.novsalesreturngst = uri;
+            break;
+          case 'dec':
+            this.decsalesreturngst = uri;
+            break;
+
+          default:
+            break;
+        }
+        this.uploadFile();
+      })
+      .catch(e => console.log(e));
+
   }
   async addingstatement(actype) {
     const alert = await this.alertController.create({

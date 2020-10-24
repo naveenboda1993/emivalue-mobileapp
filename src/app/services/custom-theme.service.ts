@@ -13,6 +13,7 @@ export class CustomThemeService {
   loantype: any;
   savedloanid: any;
   loanprofile: any;
+  employedType: any;
   constructor() {
   }
   public getBaseUrl() {
@@ -49,6 +50,12 @@ export class CustomThemeService {
   }
   public getUser() {
     return JSON.parse(localStorage.getItem("user"));
+  }
+  public setLoanEmployedType(employedType: any) {
+    this.employedType = employedType;
+  }
+  public getLoanEmployedType() {
+    return this.employedType;
   }
   public setLoantype(personalloan: any) {
     this.loantype = personalloan;

@@ -475,11 +475,11 @@
               </h6>
               <ion-item>
                 <ion-label>Previous year </ion-label>
-               
+
               </ion-item>
               <ion-label style="text-align: center;"> Attach Documents</ion-label>
               <br>
-              <div class="box">              
+              <div class="box">
                 <h4 (click)="openFileprev('previous')" *ngIf="isFolder">Browse Files</h4>
                 <p *ngIf="isFileUpload">{{UriFileUploadPrevious}}</p>
               </div>
@@ -508,7 +508,7 @@
             <ion-col size="12" style="text-align:center;">
 
               <ion-item>
-                <ion-label>Firm Existing Loan Statements   </ion-label>
+                <ion-label>Firm Existing Loan Statements </ion-label>
 
               </ion-item>
 
@@ -548,6 +548,199 @@
 
             <ion-col size="4" class="ion-align-self-end">
               <ion-button color="primary" (click)="finalStageSlide()">Save Application
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentNine'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Firm Latest one year Sales Returns GST 3B </ion-label>
+
+              </ion-item>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    January
+                    <ion-button class="pad-r" (click)="salesreturngst('jan')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{jansalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    February
+                    <ion-button class="pad-r" (click)="salesreturngst('feb')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{febsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    March
+                    <ion-button class="pad-r" (click)="salesreturngst('mar')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{marsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    April
+                    <ion-button class="pad-r" (click)="salesreturngst('apr')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{aprsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    May
+                    <ion-button class="pad-r" (click)="salesreturngst('may')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{maysalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    June
+                    <ion-button class="pad-r" (click)="salesreturngst('jun')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{junsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    July
+                    <ion-button class="pad-r" (click)="salesreturngst('jul')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{julsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    August
+                    <ion-button class="pad-r" (click)="salesreturngst('aug')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{augsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    September
+                    <ion-button class="pad-r" (click)="salesreturngst('spt')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{sptsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    October
+                    <ion-button class="pad-r" (click)="salesreturngst('oct')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{octsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    November
+                    <ion-button class="pad-r" (click)="salesreturngst('nov')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{novsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+              <div class="box">
+                <ion-list>
+                  <ion-list-header>
+                    December
+                    <ion-button class="pad-r" (click)="salesreturngst('dec')">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                    </ion-button>
+                  </ion-list-header>
+                  <ion-label>
+                    <p>{{decsalesreturngst}} </p>
+                  </ion-label>
+                </ion-list>
+              </div>
+              <br>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="nextSlide()">Next
               </ion-button>
             </ion-col>
           </ion-row>

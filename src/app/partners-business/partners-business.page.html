@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" routerLink="/component-details" routerDirection="backward">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>Patners Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <ion-card-header style="padding: 0;">
+      <h2 style="text-align: center;">Partners Details </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row style="padding: 10px 40px;">
+        <ion-col class="header-content" size="9">
+          <h3>Welcome</h3>
+          <h4>to <b>Emi Value</b></h4>
+        </ion-col>
+        <ion-col size="3">
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <h4>Please handy check list documents to upload Here</h4>
+      </ion-row>
+      <div (click)="partnerAdd()" style="text-align: center;">
+        <ion-button color="success">+ ADD PARTNER </ion-button>
+      </div>
+      <ion-list>
+        <div *ngFor="let item of items">
+          <ion-item>
+            <!-- <ion-avatar slot="start">
+              <img src="{{item.img}}">
+            </ion-avatar> -->
+            <ion-label>
+              <h3><b>Name :</b> {{item.partnername}}</h3>
+              <p><b>Share :</b>{{item.share}}</p>
+            </ion-label>
+
+          </ion-item>
+          <div class="box">
+            <ion-list>
+              <ion-list-header>
+                ID Proof
+                <ion-button class="pad-r" (click)="fileupload(item,'idproof')">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+              </ion-list-header>
+              <ion-label>
+                <p>{{item.idproof}} </p>
+              </ion-label>
+            </ion-list>
+            <ion-list>
+              <ion-list-header>
+                Address Proof
+                <ion-button class="pad-r" (click)="fileupload(item,'addressproof')">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+              </ion-list-header>
+              <ion-label>
+                <p>{{item.addressproof}} </p>
+              </ion-label>
+            </ion-list>
+            <ion-list>
+              <ion-list-header>
+                Own House Proof
+                <ion-button class="pad-r" (click)="fileupload(item,'ownhouseproof')">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+              </ion-list-header>
+              <ion-label>
+                {{item.ownhouse}}
+              </ion-label>
+            </ion-list>
+            <ion-list>
+              <ion-list-header>
+                Latest year ITR Copies
+                <ion-button class="pad-r" (click)="fileupload(item,'latestitr')">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+              </ion-list-header>
+              <ion-label>
+                {{item.latestitr}}
+              </ion-label>
+            </ion-list>
+            <ion-list>
+              <ion-list-header>
+                Previous year ITR Copies
+                <ion-button class="pad-r" (click)="fileupload(item,'previousitr')">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+              </ion-list-header>
+              <ion-label>
+                {{item.prevoiusitr}}
+              </ion-label>
+            </ion-list>
+          </div>
+        </div>
+
+      </ion-list>
+     
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+
+  <ion-button type="submit" expand="block" (click)="nextpage()"> Next </ion-button>
+</ion-footer>

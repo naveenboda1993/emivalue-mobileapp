@@ -156,3 +156,7 @@ ion-content{
   .slidemenu #slide-item-2:checked ~ .slider .bar{ margin-left: 25%; }
   .slidemenu #slide-item-3:checked ~ .slider .bar{ margin-left: 50%; }
   .slidemenu #slide-item-4:checked ~ .slider .bar{ margin-left: 75%; }
+
+  .pad-r{
+    padding-right: 15px;
+  }

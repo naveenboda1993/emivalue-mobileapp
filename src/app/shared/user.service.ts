@@ -49,6 +49,13 @@ export class UserService {
       );
 
   }
+  getBussinessPartners(userid, loanid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/businesspartners/' + userid + '/' + loanid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   getUserLoans(userid): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/getuserloans/' + userid, this.httpOptions)
       .pipe(
@@ -112,8 +119,8 @@ export class UserService {
       );
 
   }
-  changepassword(number,otp, passowrd): Observable<any> {
-    return this.http.get<any>(this.baseloginurl + '/changepassword/' + number + '/' + otp+'/' + passowrd, this.httpOptions)
+  changepassword(number, otp, passowrd): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/changepassword/' + number + '/' + otp + '/' + passowrd, this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('get category error'))
       );

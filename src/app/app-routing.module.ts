@@ -123,7 +123,7 @@ const routes: Routes = [
   // { path: 'badge-movie', loadChildren: './badge-movie/badge-movie.module#BadgeMoviePageModule' },
   // { path: 'badge-card', loadChildren: './badge-card/badge-card.module#BadgeCardPageModule' },
   // { path: 'badge-setting', loadChildren: './badge-setting/badge-setting.module#BadgeSettingPageModule' },
-  // { path: 'component-details', loadChildren: './component-details/component-details.module#ComponentDetailsPageModule' },
+  { path: 'components', loadChildren: './component-details/component-details.module#ComponentDetailsPageModule' },
   { path: 'component-details', redirectTo: 'home', pathMatch: 'full' },
   { path: 'intro', loadChildren: './intro/intro.module#IntroPageModule' },
   { path: 'form-forget-one', loadChildren: './form-forget-one/form-forget-one.module#FormForgetOnePageModule' },
@@ -147,6 +147,7 @@ const routes: Routes = [
   { path: 'list-of-upload-files', loadChildren: './list-of-upload-files/list-of-upload-files.module#ListOfUploadFilesPageModule' },
   { path: 'how-it-works', loadChildren: './how-it-works/how-it-works.module#HowItWorksPageModule' },
   { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' },
+  { path: 'partners-business', loadChildren: './partners-business/partners-business.module#PartnersBusinessPageModule' },
   { path: 'add-documents', loadChildren: './add-documents/add-documents.module#AddDocumentsPageModule' }
 
 ];
