@@ -90,7 +90,7 @@
                             </ion-item>
                             <ion-item *ngIf="isdoctor">                              
                                 <ion-label>Specialization</ion-label>
-                                <ion-select class="formGroup" formControlName="specialization" required>
+                                <ion-select class="formGroup" formControlName="specialization" >
                                     <ion-select-option *ngFor="let sub of specialization" value="{{sub}}">{{sub}}
                                     </ion-select-option>
 

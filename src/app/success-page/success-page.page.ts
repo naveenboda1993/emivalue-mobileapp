@@ -11,6 +11,8 @@ export class SuccessPagePage implements OnInit {
   constructor( private service: CustomThemeService) { 
     this.service.setLoanPage('');
     this.service.setresponse('');
+    localStorage.removeItem("setLoanEmployedType");
+    localStorage.removeItem("profileType");
   }
 
   ngOnInit() {

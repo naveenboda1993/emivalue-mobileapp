@@ -76,6 +76,7 @@ export class RegisterBusinessLoanPage implements OnInit {
           if (res.isSuccess) {
             this.emptype = res.emptype;
             this.natureofbusiness = res.natureofbusiness;
+            this.professions = res.professions;
             this.specialization = res.specialization;
             this.marialstaus = res.marialstaus;
             this.states = res.states;

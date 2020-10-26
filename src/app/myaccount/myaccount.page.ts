@@ -24,6 +24,8 @@ export class MyaccountPage implements OnInit {
     localStorage.removeItem("applyloan");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("setLoanEmployedType");
+    localStorage.removeItem("profileType");
     this.router.navigate(['form-login-three']);
   }
 
