@@ -138,6 +138,7 @@ const routes: Routes = [
   { path: 'tracker', loadChildren: './tracker/tracker.module#TrackerPageModule' },
   { path: 'tracker-view', loadChildren: './tracker-view/tracker-view.module#TrackerViewPageModule' },
   { path: 'refer', loadChildren: './refer/refer.module#ReferPageModule' },
+  { path: 'wallet', loadChildren: './wallet/wallet.module#WalletPageModule' },
   { path: 'our-channel-partners', loadChildren: './our-channel-partners/our-channel-partners.module#OurChannelPartnersPageModule' },
   { path: 'refer-earn', loadChildren: './refer-earn/refer-earn.module#ReferEarnPageModule' },
   { path: 'my-referrals', loadChildren: './my-referrals/my-referrals.module#MyReferralsPageModule' },

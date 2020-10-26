@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: blue;">EMI allet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <ion-card-header>
+      <h2 style="text-align: center;">My Referrals</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="header-content" size="6">
+          <h3>Welcome</h3>
+          <h4>to Emi Value</h4>
+        </ion-col>
+        <ion-col size="6">
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <p>Let me Know the your referrals status.</p>
+      </ion-row>
+      <ion-card *ngFor="let item of refers">
+        <ion-card-header style="border-bottom: 1px solid blue;">
+          <ion-card-title>
+            Refers ID : R{{item.id}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+
+              <ion-col>
+                <h4>Refer Name</h4>
+                <h6>{{item.refername}}</h6>
+              </ion-col>
+              <ion-col>
+                <h4>Amount</h4>
+                <h6>{{item.loanamount}}/-</h6>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h4>Mobile Number</h4>
+                <h6>{{item.mobilenumber }}</h6>
+                <!-- <h6>{{item.created_on | date:mediumDate}}</h6> -->
+              </ion-col>
+              <ion-col>
+                <h4>Status</h4>
+                <h6 style="color:#f7a40a;" *ngIf="item.status=='init'">{{item.status}}</h6>
+                <h6 style="color:red;" *ngIf="item.status=='failed'">{{item.status}}</h6>
+                <h6 style="color:green;" *ngIf="item.status=='success'">{{item.status}}</h6>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+        <ion-row>
+          <ion-col size="7" no-padding>
+            <!-- <ion-button size="small" color="primary" fill="clear">
+              <ion-icon name='eye'></ion-icon>
+               View
+          </ion-button> -->
+          </ion-col>
+          <ion-col size="5" no-padding>
+            <ion-button color="primary" size="small" fill="clear" (click)="deleteRefer(item)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </ion-button>
+          </ion-col>
+          <!-- <ion-col size="3" no-padding>
+          <ion-button size="small" fill="clear">
+              11h ago
+          </ion-button>
+      </ion-col> -->
+        </ion-row>
+      </ion-card>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
