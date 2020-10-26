@@ -116,6 +116,9 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
   novsalesreturngst: any;
   decsalesreturngst: any;
   monthnameSalesGst: any;
+  imageData_Qua: any;
+  image_Qua: any;
+  isimage_Qua: boolean;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -254,6 +257,26 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
     });
 
   }
+  openCam_Qua() {
+
+    const options: CameraOptions = {
+      quality: 80,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.imageData_Qua = imageData;
+      this.image_Qua = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+      this.isimage_Qua = true;
+      this.isFolder = false;
+    }, (err) => {
+      // Handle error
+      alert("error " + JSON.stringify(err))
+    });
+
+  }
   openCam_Company() {
 
     const options: CameraOptions = {
@@ -342,6 +365,15 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         this.segments = 'segmentThree';
         break;
       case 'segmentThree':
+        if (this.service.getLoanProfiletype() == 'professional') {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTen', redirectto: false }))
+          this.segments = 'segmentTen';
+        } else {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
+          this.segments = 'segmentFour';
+        }
+        break;
+      case 'segmentTen':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
         this.segments = 'segmentFour';
         break;
@@ -415,7 +447,7 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         //   isId = false;
         // } else {
         var filename = +new Date() + this.loanid + '-' + this.idproof.replace(/\s/g, "") + '-bidproof';
-        var idproof:any = 'bidproof';
+        var idproof: any = 'bidproof';
         var imageData = this.imageData;
         // }
 
@@ -425,10 +457,16 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         //   isId = false;
         // } else {
         var filename = +new Date() + this.loanid + '-' + this.addressproof.replace(/\s/g, "") + '-baddressproof';
-        var idproof:any = "baddressproof";
+        var idproof: any = "baddressproof";
         var imageData = this.imageData1;
         // }
 
+        break;
+      case 'segmentTen':
+        // _Own
+        var filename = +new Date() + this.loanid + '-bqualificationcertificates';
+        var idproof: any = "bqualificationcertificates";
+        var imageData = this.imageData_Qua;
         break;
       case 'segmentThree':
         // _Own

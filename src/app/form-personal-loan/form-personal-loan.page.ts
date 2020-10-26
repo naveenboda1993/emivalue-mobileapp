@@ -127,10 +127,11 @@ export class FormPersonalLoanPage implements OnInit {
             if (res.isSuccess) {
               this.onToast("Api success")
               this.service.setLoanid(res.loan_id);
-              this.service.setLoantype(this.personalloanform.value.personalloan);
+              this.service.setLoantype(this.personalloanform.value.personalloan);              
+              this.service.setLoanProfiletype(this.personalloanform.value.salarised);              
               if (this.personalloanform.value.personalloan === 'business_loan') {
                 this.service.setLoanEmployedType(this.personalloanform.value.salarised_individual);
-                this.service.setLoanPage(JSON.stringify({ step: '/register-business-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'business', redirectto: false }))
+                this.service.setLoanPage(JSON.stringify({ step: '/register-business-loan', status: 'incomplete', msg: 'Please complete the previous loan', action: 'business', redirectto: false, }))
                 this.router.navigate(['/register-business-loan']);
               }
               else if (this.personalloanform.value.salarised == 'professional') {

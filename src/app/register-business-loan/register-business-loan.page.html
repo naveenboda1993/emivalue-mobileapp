@@ -73,7 +73,7 @@
                                     *ngIf="!loanregisterbusinessform.controls['company'].valid && loanregisterbusinessform.controls['company'].touched">
                                     Name of the Organization is Required</span>
                             </ion-item>
-                            <!-- <ion-item *ngIf="isprofession">                              
+                            <ion-item *ngIf="isprofession">                              
                                 <ion-label>Profession</ion-label>
                                 <ion-select class="formGroup" formControlName="profession" (ionChange)="isProfession($event)" >
                                     <ion-select-option *ngFor="let sub of professions" value="{{sub}}">{{sub}}
@@ -90,7 +90,7 @@
                                 </ion-select>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterbusinessform.controls['employee'].valid && loanregisterbusinessform.controls['employee'].touched"></span>
-                            </ion-item> -->
+                            </ion-item>
                             <ion-item>
                                 <ion-label position="floating">Nature of Business </ion-label>
                                 <ion-select class="formGroup" formControlName="business" required>

@@ -52,10 +52,17 @@ export class CustomThemeService {
     return JSON.parse(localStorage.getItem("user"));
   }
   public setLoanEmployedType(employedType: any) {
+    localStorage.setItem("setLoanEmployedType", employedType);
     this.employedType = employedType;
   }
   public getLoanEmployedType() {
-    return this.employedType;
+    return localStorage.getItem("setLoanEmployedType");;
+  }
+  public setLoanProfiletype(profileType: any) {
+    localStorage.setItem("profileType", profileType);
+  }
+  public getLoanProfiletype() {
+    return localStorage.getItem("profileType");;
   }
   public setLoantype(personalloan: any) {
     this.loantype = personalloan;

@@ -9,7 +9,8 @@ import { CustomThemeService } from '../services/custom-theme.service';
 export class SuccessPagePage implements OnInit {
 
   constructor( private service: CustomThemeService) { 
-    this.service.setLoanPage('')
+    this.service.setLoanPage('');
+    this.service.setresponse('');
   }
 
   ngOnInit() {

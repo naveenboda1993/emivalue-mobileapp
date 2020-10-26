@@ -259,7 +259,7 @@
                 <br />OR <br />
                 <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
               </div>
-              <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock"> Secure
+              <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock" > Secure
                 </ion-icon>
               </h6>
 
@@ -368,7 +368,7 @@
                 </ion-avatar> -->
                     <ion-label>
                       <h2>{{p.monthname}}</h2>
-                      <h3>From: {{p.from}} End :{{p.to}}</h3>
+                      <h3>File: {{p.from}}</h3>
                       <!-- <p>Listen, I've had a pretty messed up day...</p> -->
                     </ion-label>
                   </ion-item>
@@ -495,6 +495,48 @@
 
             <ion-col size="4" class="ion-align-self-end">
               <ion-button color="primary" (click)="finalStageSlide()">Save Application
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'segmentNine'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+
+              <ion-item>
+                <ion-label>Qualification Certifications</ion-label>
+
+              </ion-item>
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <div (click)="openCam_Qua($event)">
+                  <h5 *ngIf="!isimage_Qua">Camera</h5>
+                  <img *ngIf="isimage_Qua" src="{{image}}">
+                </div>
+
+                <br />OR <br />
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+           
+
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="6" class="ion-align-self-end">
+              <ion-button color="primary" (click)="uploadFile()">Upload
               </ion-button>
             </ion-col>
           </ion-row>

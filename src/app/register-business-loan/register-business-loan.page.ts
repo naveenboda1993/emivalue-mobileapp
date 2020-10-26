@@ -59,7 +59,7 @@ export class RegisterBusinessLoanPage implements OnInit {
         this.loanid = this.savedLoan.loanid;
         this.onToast(this.savedLoan.msg)
       }
-      if (this.savedLoan.action == 'professional') {
+      if (this.service.getLoanProfiletype() == 'professional') {
         this.isprofession = true;
       }
     }
@@ -110,6 +110,8 @@ export class RegisterBusinessLoanPage implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       pincode: ['', Validators.required],
+      specialization: [''],
+      profession: [''],
     });
     this.url = this.service.getBackenEndUrl();
   }
@@ -142,7 +144,12 @@ export class RegisterBusinessLoanPage implements OnInit {
       this.onToast("Please Fill All The Fields")
       return false;
     } else {
-
+      if(this.loanregisterbusinessform.value.profession== ""){
+        this.loanregisterbusinessform.value.profession="empty";
+      }
+      if(this.loanregisterbusinessform.value.specialization== ""){
+        this.loanregisterbusinessform.value.specialization="empty";
+      }
       console.log(this.loanregisterbusinessform.value)
       this.http.get(this.url + 'Login/businessbasicdetails/' + localStorage.getItem('id')
         + '/' + encodeURIComponent(this.loanid)
@@ -161,6 +168,8 @@ export class RegisterBusinessLoanPage implements OnInit {
         + '/' + encodeURIComponent(this.loanregisterbusinessform.value.city)
         + '/' + encodeURIComponent(this.loanregisterbusinessform.value.state)
         + '/' + encodeURIComponent(this.loanregisterbusinessform.value.pincode)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.specialization)
+        + '/' + encodeURIComponent(this.loanregisterbusinessform.value.profession)
       ).pipe(
       )
         .subscribe((res: any) => {

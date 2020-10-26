@@ -87,6 +87,9 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
   uploadPercent: number;
   savedLoan: any;
   loanid: any;
+  imageData_Qua: any;
+  image_Qua: any;
+  isimage_Qua: boolean;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -210,6 +213,26 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
     });
 
   }
+  openCam_Qua() {
+
+    const options: CameraOptions = {
+      quality: 80,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.imageData_Qua = imageData;
+      this.image_Qua = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+      this.isimage_Qua = true;
+      this.isFolder = false;
+    }, (err) => {
+      // Handle error
+      alert("error " + JSON.stringify(err))
+    });
+
+  }
   openCam_Company() {
 
     const options: CameraOptions = {
@@ -298,6 +321,16 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
         this.segments = 'segmentThree';
         break;
       case 'segmentThree':
+        if (this.service.getLoanProfiletype() == 'professional') {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentNine', redirectto: false }))
+          this.segments = 'segmentNine';
+        } else {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
+          this.segments = 'segmentFour';
+        }
+
+        break;
+      case 'segmentNine':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
         this.segments = 'segmentFour';
         break;
@@ -381,6 +414,12 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
           var imageData = this.imageData1;
         }
 
+        break;
+      case 'segmentNine':
+        // _Own
+        var filename = +new Date() + this.loanid + '-pqualificationcertificates';
+        var idproof: any = "pqualificationcertificates";
+        var imageData = this.imageData_Qua;
         break;
       case 'segmentThree':
         // _Own
@@ -661,29 +700,84 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       message: 'Please fill the required fields',
       inputs: [
         {
-          name: 'name1',
-          type: 'text',
-          placeholder: 'Month Name'
-        },
-
-        {
-          name: 'From',
-          type: 'date',
-          placeholder: 'From Date',
-          label: 'From Date'
+          name: 'month',
+          type: 'radio',
+          label: 'January',
+          value: 'jan',
         },
         {
-          name: 'To',
-          type: 'date',
-          placeholder: 'To Date',
-          label: 'To Date'
-        }
+          name: 'month',
+          type: 'radio',
+          label: 'February',
+          value: 'February',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'March',
+          value: 'March',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'April',
+          value: 'April',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'May',
+          value: 'May',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'June',
+          value: 'June',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'July',
+          value: 'July',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'August',
+          value: 'August',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'September',
+          value: 'September',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'October',
+          value: 'October',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'November',
+          value: 'November',
+        },
+        {
+          name: 'month',
+          type: 'radio',
+          label: 'December',
+          value: 'December',
+        }       
       ],
       buttons: [
         {
           text: 'Select Upload Documnets',
           handler: (alertData) => {
-            if (alertData.name1.length == 0 || alertData.From.length == 0 || alertData.To.length == 0) {
+            console.log(alertData)
+            if (alertData == undefined) {
               this.onToast('please fill all the details')
               return false;
             } else {
@@ -692,7 +786,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                   console.log(uri)
                   const fileTransfer: FileTransferObject = this.transfer.create();
                   var filename = +new Date() + this.loanid + '-payslips';
-                  var idproof: any = "payslips :" + alertData.name1 + " FromDate:" + alertData.From + "EndDate:" + alertData.To;
+                  var idproof: any = "payslips :" + alertData;
 
                   // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
                   let options1: FileUploadOptions = {
@@ -724,9 +818,9 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                           path: dataObject.target_path,
                           userid: localStorage.getItem('id'),
                           loanid: this.loanid,
-                          monthname: alertData.name1,
-                          from: alertData.From,
-                          to: alertData.To,
+                          monthname: alertData,
+                          from: alertData,
+                          to: alertData,
                           isLoan: 4,
                           idproof: idproof
                         }
@@ -737,10 +831,10 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                               this.userAPI.hideLoader();
                               if (res.isSuccess) {
                                 this.onToast(res.message);
-                                var obj: objbankpayslips = { monthname: alertData.name1 };
-                                obj.from = alertData.From;
-                                obj.monthname = alertData.name1;
-                                obj.to = alertData.To;
+                                var obj: objbankpayslips = { monthname: alertData };
+                                obj.from = uri;
+                                // obj.monthname = alertData.name1;
+                                // obj.to = alertData.To;
                                 this.bankpayslips.push(obj);
                               } else {
                                 this.onToast(res.message);

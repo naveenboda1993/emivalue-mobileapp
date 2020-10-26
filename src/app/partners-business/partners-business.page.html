@@ -23,7 +23,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <h4>Please handy check list documents to upload Here</h4>
+        <h4>Please add partners and check list documents to upload Here</h4>
       </ion-row>
       <div (click)="partnerAdd()" style="text-align: center;">
         <ion-button color="success">+ ADD PARTNER </ion-button>
@@ -96,12 +96,15 @@
                 {{item.prevoiusitr}}
               </ion-label>
             </ion-list>
+            <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock" style="color: black"> Secure
+              </ion-icon>
+            </h6>
           </div>
         </div>
 
       </ion-list>
-     
-      
+
+
     </ion-card-content>
   </ion-card>
 </ion-content>
