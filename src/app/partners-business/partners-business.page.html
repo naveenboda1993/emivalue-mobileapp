@@ -3,14 +3,14 @@
     <ion-button slot="start" fill="clear" routerLink="/component-details" routerDirection="backward">
       <ion-icon name="arrow-back"></ion-icon>
     </ion-button>
-    <ion-title>Patners Details</ion-title>
+    <ion-title>{{heading}}s Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="card">
     <ion-card-header style="padding: 0;">
-      <h2 style="text-align: center;">Partners Details </h2>
+      <h2 style="text-align: center;">{{heading}}s Details </h2>
     </ion-card-header>
     <ion-card-content>
       <ion-row style="padding: 10px 40px;">
@@ -23,10 +23,10 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <h4>Please add partners and check list documents to upload Here</h4>
+        <h4>Please add {{heading}}s and check list documents to upload Here</h4>
       </ion-row>
       <div (click)="partnerAdd()" style="text-align: center;">
-        <ion-button color="success">+ ADD PARTNER </ion-button>
+        <ion-button color="success">+ ADD {{heading}} </ion-button>
       </div>
       <ion-list>
         <div *ngFor="let item of items">
@@ -35,7 +35,7 @@
               <img src="{{item.img}}">
             </ion-avatar> -->
             <ion-label>
-              <h3><b>Name :</b> {{item.partnername}}</h3>
+              <h3><b>{{heading}} Name :</b> {{item.partnername}}</h3>
               <p><b>Share :</b>{{item.share}}</p>
             </ion-label>
 

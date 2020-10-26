@@ -27,6 +27,7 @@ export class PartnersBusinessPage implements OnInit {
   items: Array<objpartners> = [];
   loanid: any;
   uploadPercent: any;
+  heading: string;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -38,8 +39,36 @@ export class PartnersBusinessPage implements OnInit {
     private toastCtrl: ToastController,
     private fileChooser: FileChooser,
     public alertController: AlertController,) {
-    // this.loanid = '65';
+    // this.loanid = '74';
     this.loanid = this.service.getLoanid();
+    this.userAPI.getuserloan(localStorage.getItem('id'), this.loanid).subscribe((res) => {
+      this.zone.run(() => {
+        console.log(res);
+        if (res.data.loan_type == 'business_loan') {
+          switch (res.data.customer_type) {
+            // case 'partnership':
+
+            //   break;
+            case 'pvt_ltd':
+              this.heading = 'Director';
+              break;
+            case 'trust':
+              this.heading = 'Trustee';
+
+              break;
+            case 'society':
+              this.heading = 'Society member';
+
+              break;
+
+            default:
+              this.heading = 'Partner';
+              break;
+          }
+        }
+      })
+    });
+
   }
   getpartners() {
     // businesspartners
@@ -230,7 +259,7 @@ export class PartnersBusinessPage implements OnInit {
                 }, (err) => {
                   alert(err)
                   this.loadingController.dismiss(null, 'cancel');
-      
+
                 });
             } else {
               this.loadingController.dismiss(null, 'cancel');

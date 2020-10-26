@@ -49,6 +49,13 @@ export class UserService {
       );
 
   }
+  getuserloan(userid, loanid): Observable<any> {
+    return this.http.get<any>(this.baseloginurl + '/getuserloan/' + userid + '/' + loanid, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('get category error'))
+      );
+
+  }
   getBussinessPartners(userid, loanid): Observable<any> {
     return this.http.get<any>(this.baseloginurl + '/businesspartners/' + userid + '/' + loanid, this.httpOptions)
       .pipe(
