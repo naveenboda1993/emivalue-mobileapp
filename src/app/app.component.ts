@@ -170,10 +170,10 @@ export class AppComponent {
   public loan = [
     { name: "Personal Loan" },
     { name: "Business Loan" },
-    { name: "Home Loan" },
-    { name: "Martigage Loan" },
-    { name: "Professional Loan" },
-    { name: "Vehicle Loan" }
+    // { name: "Home Loan" },
+    // { name: "Martigage Loan" },
+    // { name: "Professional Loan" },
+    // { name: "Vehicle Loan" }
   ];
 
   goToLoan(i) {

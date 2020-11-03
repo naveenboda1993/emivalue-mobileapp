@@ -98,13 +98,13 @@ export class RegisterPersonalLoanPage implements OnInit {
     // email: ['', Validators.required],
     this.loanregisterform = this.formBuilder.group({
       firstname: ['', Validators.required],
-      birth: ['', Validators.required],
+      birth: [''],
       company: ['', Validators.required],
       employee: ['', Validators.required],
       salary: ['', Validators.required],
-      experience: ['', Validators.required],
+      experience: [''],
       pan_no: ['', Validators.required],
-      material_status: ['', Validators.required],
+      material_status: [''],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -148,6 +148,15 @@ export class RegisterPersonalLoanPage implements OnInit {
       }
       if(this.loanregisterform.value.specialization== ""){
         this.loanregisterform.value.specialization="empty";
+      }
+      if(this.loanregisterform.value.birth== ""){
+        this.loanregisterform.value.birth="nill";
+      }
+      if(this.loanregisterform.value.material_status== ""){
+        this.loanregisterform.value.material_status="nill";
+      }
+      if(this.loanregisterform.value.experience== ""){
+        this.loanregisterform.value.experience="nill";
       }
       console.log(this.loanregisterform.value)
       this.http.get(this.url + 'Login/basicdetails/' + localStorage.getItem('id')

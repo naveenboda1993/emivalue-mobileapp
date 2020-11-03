@@ -46,15 +46,15 @@
                     <ion-col size="12">
                         <ion-list>
                             <ion-item>
-                                <ion-input type="text" class="formGroup" placeholder="Full Name"
-                                    formControlName="firstname" required>
+                                <ion-label position="floating" class="astertick">Full Name</ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="firstname" required>
                                 </ion-input>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['firstname'].valid && loanregisterform.controls['firstname'].touched">Full
                                     Name is Required</span>
                             </ion-item>
                             <ion-item>
-                                <ion-label>Date of Birth</ion-label>
+                                <ion-label position="floating">Date of Birth</ion-label>
                                 <ion-input type="date" class="formGroup" placeholder="Date of Birth"
                                     formControlName="birth" required>
                                 </ion-input>
@@ -64,15 +64,16 @@
                             </ion-item>
                             <ion-item>
                                 <!-- <ion-input type= "text" class="formGroup" placeholder = "Material Status" formControlName = "material_status" required>
-                        </ion-input> -->
-                                <ion-label>Material Status</ion-label>
-                                <ion-select class="formGroup" formControlName="material_status" required>
+                                </ion-input> -->
+                                <ion-label position="floating">Material Status</ion-label>
+                                <ion-select class="formGroup" formControlName="material_status">
                                     <ion-select-option *ngFor="let sub of marialstaus" value="{{sub}}">{{sub}}
                                     </ion-select-option>
 
                                 </ion-select>
                             </ion-item>
                             <ion-item>
+                                <ion-label position="floating" class="astertick">Company Name</ion-label>
                                 <ion-input type="text" class="formGroup" placeholder="Company Name"
                                     formControlName="company" required>
                                 </ion-input>
@@ -80,17 +81,18 @@
                                     *ngIf="!loanregisterform.controls['company'].valid && loanregisterform.controls['company'].touched">
                                     Company Name is Required</span>
                             </ion-item>
-                            <ion-item *ngIf="isprofession">                              
-                                <ion-label>Profession</ion-label>
-                                <ion-select class="formGroup" formControlName="profession" (ionChange)="isProfession($event)" >
+                            <ion-item *ngIf="isprofession">
+                                <ion-label position="floating" class="astertick">Profession</ion-label>
+                                <ion-select class="formGroup" formControlName="profession"
+                                    (ionChange)="isProfession($event)">
                                     <ion-select-option *ngFor="let sub of professions" value="{{sub}}">{{sub}}
                                     </ion-select-option>
 
-                                </ion-select>                                
+                                </ion-select>
                             </ion-item>
-                            <ion-item *ngIf="isdoctor">                              
-                                <ion-label>Specialization</ion-label>
-                                <ion-select class="formGroup" formControlName="specialization" >
+                            <ion-item *ngIf="isdoctor">
+                                <ion-label position="floating" class="astertick">Specialization</ion-label>
+                                <ion-select class="formGroup" formControlName="specialization">
                                     <ion-select-option *ngFor="let sub of specialization" value="{{sub}}">{{sub}}
                                     </ion-select-option>
 
@@ -98,44 +100,43 @@
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['employee'].valid && loanregisterform.controls['employee'].touched"></span>
                             </ion-item>
-                            <ion-item>                              
-                                <ion-label>Employee Type</ion-label>
+                            <ion-item>
+                                <ion-label position="floating" class="astertick">Employee Type</ion-label>
                                 <ion-select class="formGroup" formControlName="employee" required>
                                     <ion-select-option *ngFor="let sub of emptype" value="{{sub}}">{{sub}}
                                     </ion-select-option>
-
                                 </ion-select>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['employee'].valid && loanregisterform.controls['employee'].touched"></span>
                             </ion-item>
                             <!-- <ion-item>
-                        <ion-input type= "email" class="formGroup" placeholder = "Enter Your E-mail" formControlName = "email" required>
-                        </ion-input>
-                        <span class="error-msg" *ngIf = "!loanregisterform.controls['email'].valid && loanregisterform.controls['email'].touched"></span>
-                     </ion-item>  -->
+                                <ion-input type= "email" class="formGroup" placeholder = "Enter Your E-mail" formControlName = "email" required>
+                                </ion-input>
+                                <span class="error-msg" *ngIf = "!loanregisterform.controls['email'].valid && loanregisterform.controls['email'].touched"></span>
+                            </ion-item>  -->
                             <ion-item>
-                                <ion-input type="number" class="formGroup" placeholder="Net Salary"
-                                    formControlName="salary" required>
+                                <ion-label position="floating" class="astertick">Net Salary</ion-label>
+                                <ion-input type="number" class="formGroup" formControlName="salary" required>
                                 </ion-input>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['salary'].valid && loanregisterform.controls['salary'].touched"></span>
                             </ion-item>
                             <ion-item>
-                                <ion-input type="number" class="formGroup" placeholder="Year of Experience"
-                                    formControlName="experience" required>
+                                <ion-label position="floating">Year of Experience</ion-label>
+                                <ion-input type="number" class="formGroup" formControlName="experience">
                                 </ion-input>
                             </ion-item>
                             <ion-item>
-                                <ion-input type="text" class="formGroup" placeholder="Pan Card No"
-                                    formControlName="pan_no" required>
+                                <ion-label position="floating" class="astertick">Pan Card No</ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="pan_no" required>
                                 </ion-input>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['pan_no'].valid && loanregisterform.controls['pan_no'].touched"></span>
                             </ion-item>
 
                             <ion-item>
-                                <ion-input type="text" class="formGroup" placeholder="Residential Address"
-                                    formControlName="address" required>
+                                <ion-label position="floating" class="astertick">Residential Address</ion-label>
+                                <ion-input type="text" class="formGroup" formControlName="address" required>
                                 </ion-input>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['address'].valid && loanregisterform.controls['address'].touched"></span>
@@ -144,7 +145,7 @@
                                 <!-- <ion-input type="text" class="formGroup" placeholder="Select Your State" formControlName="state"
                             required>
                         </ion-input> -->
-                                <ion-label>State</ion-label>
+                                <ion-label position="floating" class="astertick">State</ion-label>
                                 <ion-select class="formGroup" formControlName="state" required
                                     (ionChange)="yourFunction($event)">
                                     <ion-select-option *ngFor="let sub of states" value="{{sub.name}}">{{sub.name}}
@@ -157,19 +158,17 @@
                             <ion-item>
                                 <!-- <ion-input type= "text" class="formGroup" placeholder = "Select your City" formControlName = "city" required>
                         </ion-input> -->
-                                <ion-label>City</ion-label>
+                                <ion-label position="floating" class="astertick">City</ion-label>
                                 <ion-select class="formGroup" formControlName="city" required>
                                     <ion-select-option *ngFor="let sub of cities" value="{{sub.name}}">{{sub.name}}
                                     </ion-select-option>
-
                                 </ion-select>
-                                <span class="error-msg"
-                                    *ngIf="!loanregisterform.controls['city'].valid && loanregisterform.controls['city'].touched"></span>
+
                             </ion-item>
 
                             <ion-item>
-                                <ion-input type="number" class="formGroup" placeholder="Enter Your Pincode"
-                                    formControlName="pincode" required>
+                                <ion-label position="floating" class="astertick">Enter Your Pincode</ion-label>
+                                <ion-input type="number" class="formGroup" formControlName="pincode" required>
                                 </ion-input>
                                 <span class="error-msg"
                                     *ngIf="!loanregisterform.controls['pincode'].valid && loanregisterform.controls['pincode'].touched"></span>

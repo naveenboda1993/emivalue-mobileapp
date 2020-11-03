@@ -35,10 +35,18 @@
         <ion-row>
             <ion-col size="12">
                 <ion-list>
+                    <ion-radio-group>
+                        <ion-col>
+                            <ion-item no-lines id="question">
+                                1. Your Primary Banker ?
+                            </ion-item>
+                        </ion-col>    
+                    </ion-radio-group>
+                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "banker"></ion-textarea>
                     <ion-radio-group formControlName="ownhouse">
                         <ion-col>
                             <ion-item no-lines>
-                                1. Do you Have Own House Anywhere in India ?
+                                2. Do you Have Own House Anywhere in India ?
                             </ion-item>
                         </ion-col>
                         <ion-col>
@@ -59,7 +67,7 @@
                     <ion-radio-group formControlName = "cibil">
                         <ion-col>
                             <ion-item no-lines id="question">
-                                2. Do You Have Any Cibil Derog's ?
+                                3. Do You Have Any Cibil Derog's ?
                             </ion-item>
                         </ion-col>
                         <ion-col>
@@ -80,7 +88,7 @@
                     <ion-radio-group formControlName = "apply">
                         <ion-col>
                             <ion-item no-lines id="question">
-                                3. Did you Applied Anywhere in Past 6 Months ?
+                                4. Did you Applied Anywhere in Past 6 Months ?
                             </ion-item>
                         </ion-col>
                         <ion-col>
@@ -98,14 +106,7 @@
                     </ion-radio-group>
                     <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "apply1" *ngIf="registerpersonalform2.value.apply==='yes'"></ion-textarea>
                     
-                    <ion-radio-group>
-                        <ion-col>
-                            <ion-item no-lines id="question">
-                                4. Your Primary Banker ?
-                            </ion-item>
-                        </ion-col>    
-                    </ion-radio-group>
-                    <ion-textarea placeholder = "Enter Your Text Here..." formControlName = "banker"></ion-textarea>
+                  
 
                     <ion-radio-group formControlName = "cheque">
                         <ion-col>

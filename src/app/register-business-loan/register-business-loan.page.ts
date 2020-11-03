@@ -97,15 +97,15 @@ export class RegisterBusinessLoanPage implements OnInit {
 
     this.loanregisterbusinessform = this.formBuilder.group({
       firstname: ['', Validators.required],
-      birth: ['', Validators.required],
-      experience: ['', Validators.required],
-      material_status: ['', Validators.required],
+      birth: [''],
+      experience: [''],
+      material_status: [''],
       company: ['', Validators.required],
       business: ['', Validators.required],
       registrationnumber: ['', Validators.required],
       industry: ['', Validators.required],
       turnover: ['', Validators.required],
-      currentstatement: ['', Validators.required],
+      currentstatement: [''],
       pan_no: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
@@ -150,6 +150,18 @@ export class RegisterBusinessLoanPage implements OnInit {
       }
       if(this.loanregisterbusinessform.value.specialization== ""){
         this.loanregisterbusinessform.value.specialization="empty";
+      }
+      if(this.loanregisterbusinessform.value.birth== ""){
+        this.loanregisterbusinessform.value.birth="nill";
+      }
+      if(this.loanregisterbusinessform.value.experience== ""){
+        this.loanregisterbusinessform.value.experience="nill";
+      }
+      if(this.loanregisterbusinessform.value.material_status== ""){
+        this.loanregisterbusinessform.value.material_status="nill";
+      }
+      if(this.loanregisterbusinessform.value.currentstatement== ""){
+        this.loanregisterbusinessform.value.currentstatement="nill";
       }
       console.log(this.loanregisterbusinessform.value)
       this.http.get(this.url + 'Login/businessbasicdetails/' + localStorage.getItem('id')

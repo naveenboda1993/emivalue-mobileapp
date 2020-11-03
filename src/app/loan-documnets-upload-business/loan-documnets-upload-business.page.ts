@@ -119,6 +119,7 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
   imageData_Qua: any;
   image_Qua: any;
   isimage_Qua: boolean;
+  isProprieter: boolean = false;
   constructor(private userAPI: UserService,
     public loadingController: LoadingController,
     private formBuilder: FormBuilder,
@@ -146,6 +147,17 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
       }
       // this.router.navigate([loan.step]);
     }
+    this.userAPI.getuserloan(localStorage.getItem('id'), this.loanid).subscribe((res) => {
+      this.zone.run(() => {
+        console.log(res);
+        if (res.data.customer_type == "proprieter") {
+          this.isProprieter = true;
+          // segmentPropertierAddr
+          // segmentPropertierID
+        }
+      })
+    });
+
   }
   async ngOnInit() {
     // ... 
@@ -368,12 +380,25 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         if (this.service.getLoanProfiletype() == 'professional') {
           this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTen', redirectto: false }))
           this.segments = 'segmentTen';
-        } else {
+        }
+        else if (this.isProprieter) {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentPropertierID', redirectto: false }))
+          this.segments = 'segmentPropertierID';
+        }
+        else {
           this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
           this.segments = 'segmentFour';
         }
         break;
       case 'segmentTen':
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
+        this.segments = 'segmentFour';
+        break;
+      case 'segmentPropertierID':
+        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentPropertierAddr', redirectto: false }))
+        this.segments = 'segmentPropertierAddr';
+        break;
+      case 'segmentPropertierAddr':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
         this.segments = 'segmentFour';
         break;
@@ -390,8 +415,14 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         this.segments = 'segmentSeven';
         break;
       case 'segmentSeven':
-        this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentNine', redirectto: false }))
-        this.segments = 'segmentNine';
+        if (this.isProprieter) {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentNine', redirectto: false }))
+          this.segments = 'segmentNine';
+
+        } else {
+          this.service.setLoanPage(JSON.stringify({ step: '/partners-business', status: 'incomplete', msg: 'Please complete the previous loan', action: this.service.getLoanEmployedType(), redirectto: false }))
+          this.router.navigate(['/partners-business']);
+        }
         break;
       case 'segmentNine':
         this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentEight', redirectto: false }))
@@ -466,6 +497,18 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         // _Own
         var filename = +new Date() + this.loanid + '-bqualificationcertificates';
         var idproof: any = "bqualificationcertificates";
+        var imageData = this.imageData_Qua;
+        break;
+      case 'segmentPropertierAddr':
+        // _Own
+        var filename = +new Date() + this.loanid + '-bpropertieraddress';
+        var idproof: any = "bpropertieraddress";
+        var imageData = this.imageData_Qua;
+        break;
+      case 'segmentPropertierID':
+        // _Own
+        var filename = +new Date() + this.loanid + '-bpropertieridproof';
+        var idproof: any = "bpropertieridproof";
         var imageData = this.imageData_Qua;
         break;
       case 'segmentThree':

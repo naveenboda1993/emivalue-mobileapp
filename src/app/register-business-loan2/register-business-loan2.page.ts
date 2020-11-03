@@ -124,10 +124,12 @@ export class RegisterBusinessLoan2Page implements OnInit {
               if (this.savedLoan.redirectto) {
                 this.service.setLoanPage('')
                 this.router.navigate(['tracker']);
-              } else if (this.service.getLoanEmployedType() !== 'proprieter') {
-                this.service.setLoanPage(JSON.stringify({ step: '/partners-business', status: 'incomplete', msg: 'Please complete the previous loan', action: this.service.getLoanEmployedType(), redirectto: false }))
-                this.router.navigate(['/partners-business']);
-              } else {
+              }
+              // else if (this.service.getLoanEmployedType() !== 'proprieter') {
+              //   this.service.setLoanPage(JSON.stringify({ step: '/partners-business', status: 'incomplete', msg: 'Please complete the previous loan', action: this.service.getLoanEmployedType(), redirectto: false }))
+              //   this.router.navigate(['/partners-business']);
+              // }
+              else {
                 this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne', redirectto: false }))
                 this.router.navigate(['/loan-documnets-upload-business']);
               }

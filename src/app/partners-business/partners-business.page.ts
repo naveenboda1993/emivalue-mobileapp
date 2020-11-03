@@ -279,7 +279,7 @@ export class PartnersBusinessPage implements OnInit {
     if (this.items.length == 0) {
       this.onToast("Please add atleast add one partner ")
     } else {
-      this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentOne', redirectto: false }))
+      this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentNine', redirectto: false }));
       this.router.navigate(['/loan-documnets-upload-business']);
     }
   }

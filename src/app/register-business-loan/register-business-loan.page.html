@@ -35,7 +35,7 @@
                     <ion-col size="12">
                         <ion-list>
                             <ion-item>
-                                <ion-label position="floating">Full Name/As Per Pan Card </ion-label>
+                                <ion-label position="floating" class="astertick">Full Name/As Per Pan Card </ion-label>
                                 <ion-input type="text" class="formGroup" formControlName="firstname" required>
                                 </ion-input>
                                 <span class="error-msg"
@@ -45,28 +45,26 @@
                             <ion-item>
                                 <ion-label position="floating">Date of Birth</ion-label>
                                 <ion-input type="date" class="formGroup" 
-                                    formControlName="birth" required>
+                                    formControlName="birth" >
                                 </ion-input>
-                                <span class="error-msg"
-                                    *ngIf="!loanregisterbusinessform.controls['birth'].valid && loanregisterbusinessform.controls['birth'].touched">
-                                    Date of Birth is Required</span>
+                               
                             </ion-item>
                             <ion-item>
                                 <ion-label position="floating"> Years in Business         </ion-label>
-                                <ion-input type="number" class="formGroup" formControlName="experience" required>
+                                <ion-input type="number" class="formGroup" formControlName="experience" >
                                 </ion-input>
                             </ion-item>
                             <ion-item>
 
                                 <ion-label position="floating">Material Status</ion-label>
-                                <ion-select class="formGroup" formControlName="material_status" required>
+                                <ion-select class="formGroup" formControlName="material_status" >
                                     <ion-select-option *ngFor="let sub of marialstaus" value="{{sub}}">{{sub}}
                                     </ion-select-option>
 
                                 </ion-select>
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating">Name of the Organization </ion-label>
+                                <ion-label position="floating" class="astertick">Name of the Organization </ion-label>
                                 <ion-input type="text" class="formGroup" formControlName="company" required>
                                 </ion-input>
                                 <span class="erroi-msg"
@@ -74,7 +72,7 @@
                                     Name of the Organization is Required</span>
                             </ion-item>
                             <ion-item *ngIf="isprofession">                              
-                                <ion-label>Profession</ion-label>
+                                <ion-label position="floating" class="astertick">Profession</ion-label>
                                 <ion-select class="formGroup" formControlName="profession" (ionChange)="isProfession($event)" >
                                     <ion-select-option *ngFor="let sub of professions" value="{{sub}}">{{sub}}
                                     </ion-select-option>
@@ -82,7 +80,7 @@
                                 </ion-select>                                
                             </ion-item>
                             <ion-item *ngIf="isdoctor">                              
-                                <ion-label>Specialization</ion-label>
+                                <ion-label position="floating" class="astertick">Specialization</ion-label>
                                 <ion-select class="formGroup" formControlName="specialization" >
                                     <ion-select-option *ngFor="let sub of specialization" value="{{sub}}">{{sub}}
                                     </ion-select-option>
@@ -91,7 +89,7 @@
                                 
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating">Nature of Business </ion-label>
+                                <ion-label position="floating" class="astertick">Nature of Business </ion-label>
                                 <ion-select class="formGroup" formControlName="business" required>
                                     <ion-select-option *ngFor="let sub of natureofbusiness" value="{{sub}}">{{sub}}
                                     </ion-select-option>
@@ -106,7 +104,7 @@
                                 <span class="error-msg" *ngIf = "!loanregisterbusinessform.controls['email'].valid && loanregisterbusinessform.controls['email'].touched"></span>
                             </ion-item>  -->
                             <ion-item>
-                                <ion-label position="floating"> Registration number </ion-label>
+                                <ion-label position="floating" class="astertick"> Registration number </ion-label>
 
                                 <ion-input type="number" class="formGroup" formControlName="registrationnumber"
                                     required>
@@ -115,23 +113,23 @@
                                     *ngIf="!loanregisterbusinessform.controls['registrationnumber'].valid && loanregisterbusinessform.controls['registrationnumber'].touched"></span>
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating"> Type of Industry               </ion-label>
+                                <ion-label position="floating" class="astertick"> Type of Industry               </ion-label>
                                 <ion-input type="text" class="formGroup" formControlName="industry" required>
                                 </ion-input>
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating"> Annual Turnover  (*As Per ITR)                 </ion-label>
+                                <ion-label position="floating" class="astertick"> Annual Turnover  (*As Per ITR)                 </ion-label>
                                 <ion-input type="text" class="formGroup" formControlName="turnover" required>
                                 </ion-input>
                             </ion-item>
                             <ion-item>
                                 <ion-label position="floating"> Having Current Account statement                 </ion-label>
-                                <ion-input type="text" class="formGroup" formControlName="currentstatement" required>
+                                <ion-input type="text" class="formGroup" formControlName="currentstatement" >
                                 </ion-input>
                             </ion-item>
                           
                             <ion-item>
-                                <ion-label position="floating"> Pan Number        </ion-label>
+                                <ion-label position="floating" class="astertick"> Pan Number        </ion-label>
                                 <ion-input type="text" class="formGroup" 
                                 formControlName="pan_no" required>
                             </ion-input>
@@ -140,7 +138,7 @@
                         </ion-item>
                         
                         <ion-item>
-                            <ion-label position="floating"> Address       </ion-label>
+                            <ion-label position="floating" class="astertick"> Address       </ion-label>
                                 <ion-input type="text" class="formGroup" 
                                     formControlName="address" required>
                                 </ion-input>
@@ -151,7 +149,7 @@
                                 <!-- <ion-input type="text" class="formGroup" placeholder="Select Your State" formControlName="state"
                             required>
                         </ion-input> -->
-                                <ion-label position="floating">State</ion-label>
+                                <ion-label position="floating" class="astertick">State</ion-label>
                                 <ion-select class="formGroup" formControlName="state" required
                                     (ionChange)="yourFunction($event)">
                                     <ion-select-option *ngFor="let sub of states" value="{{sub.name}}">{{sub.name}}
@@ -164,7 +162,7 @@
                             <ion-item>
                                 <!-- <ion-input type= "text" class="formGroup" placeholder = "Select your City" formControlName = "city" required>
                         </ion-input> -->
-                                <ion-label position="floating">City</ion-label>
+                                <ion-label position="floating" class="astertick">City</ion-label>
                                 <ion-select class="formGroup" formControlName="city" required>
                                     <ion-select-option *ngFor="let sub of cities" value="{{sub.name}}">{{sub.name}}
                                     </ion-select-option>
@@ -175,7 +173,7 @@
                             </ion-item>
                             
                             <ion-item>
-                                <ion-label position="floating">Pincode</ion-label>
+                                <ion-label position="floating" class="astertick">Pincode</ion-label>
                                 <ion-input type="number" class="formGroup" 
                                     formControlName="pincode" required>
                                 </ion-input>

@@ -46,10 +46,10 @@
                             <ion-select-option value="personal_loan" selected> Personal Loan
                             </ion-select-option>
                             <ion-select-option value="business_loan"> Business Loan</ion-select-option>
-                            <ion-select-option value="martigage_loan"> Martigage Loan
+                            <!-- <ion-select-option value="martigage_loan"> Martigage Loan
                             </ion-select-option>
                             <ion-select-option value="home_loan"> Home Loan</ion-select-option>
-                            <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option>
+                            <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option> -->
                         </ion-select>
                     </ion-item>
                     <ion-item>
@@ -63,9 +63,9 @@
                     <ion-item *ngIf="!isBussinesloan">
                         <ion-label position="floating"> Customer Type</ion-label>
                         <ion-select placeholder="Salaried Individual" formControlName="salarised_individual">
-                            <ion-select-option value="salaried_individual" selected> Salaried Individual
+                            <ion-select-option value="salaried_individual" selected> Employee
                             </ion-select-option>
-                            <ion-select-option value="salaried_professional"> Professional Salaried
+                            <ion-select-option value="salaried_professional"> CA/Doctor/ICWA
                             </ion-select-option>
                         </ion-select>
                     </ion-item>
