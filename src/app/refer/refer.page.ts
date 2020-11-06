@@ -31,6 +31,7 @@ export class ReferPage implements OnInit {
       mobilenumber: ['', Validators.required],
       email: ['', Validators.required],
       loanamount: ['', Validators.required],
+      typeofloan: ['', Validators.required],
       // loantype: ['', Validators.required],
 
     });
@@ -63,7 +64,7 @@ export class ReferPage implements OnInit {
         + '/' + encodeURIComponent(this.referloanform.value.mobilenumber)
         + '/' +  encodeURIComponent(this.referloanform.value.email)
         + '/' + encodeURIComponent(this.referloanform.value.loanamount)
-        // + '/' + encodeURIComponent(this.referloanform.value.loantype)
+        + '/' + encodeURIComponent(this.referloanform.value.typeofloan)
       ).pipe(
       )
         .subscribe((res: any) => {

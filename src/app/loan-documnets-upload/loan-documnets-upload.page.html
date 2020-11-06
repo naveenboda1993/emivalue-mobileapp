@@ -170,7 +170,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -224,7 +224,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -259,7 +259,7 @@
                 <br />OR <br />
                 <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
               </div>
-              <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock" > Secure
+              <h6 style="opacity: 0.5;">Attached File Types: .jpeg and .pdf only <ion-icon name="lock"> Secure
                 </ion-icon>
               </h6>
 
@@ -276,7 +276,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -328,7 +328,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -387,7 +387,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -436,7 +436,7 @@
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -471,21 +471,22 @@
                   </ion-list-header>
 
                   <ion-item *ngFor="let p of emiStatements">
-                    <!-- <ion-avatar slot="start">
-                  <img src="./avatar-finn.png">
-                </ion-avatar> -->
+                   
                     <ion-label>
                       <h2>{{p.banker}} {{p.facility}}</h2>
                       <h3>Tenure: {{p.tenure}} End :{{p.to}}</h3>
                       <p>{{p.amount}}</p>
                     </ion-label>
-                  </ion-item>
+                  </ion-item>                
                 </ion-list>
+              </div>
+              <div *ngIf="emiStatements.length==0">
+                <h2>Nill</h2>
               </div>
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="5" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip
@@ -523,11 +524,11 @@
                 </ion-icon>
               </h6>
 
-           
+
 
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="6" class="ion-align-self-start">
               <div>
                 <ion-button color="primary" *ngIf="isSkipbutton" (click)="nextSlide()">Skip

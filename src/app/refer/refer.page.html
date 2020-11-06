@@ -82,6 +82,19 @@
                                   required>
                               </ion-input>
                           </ion-item>
+                          <ion-item>
+                            <ion-label position="floating"> Type Of Loan</ion-label>
+                            <ion-select  formControlName="typeofloan"
+                                 style="min-width:200px;">
+                                <ion-select-option value="personal_loan" selected> Personal Loan
+                                </ion-select-option>
+                                <ion-select-option value="business_loan"> Business Loan</ion-select-option>
+                                <!-- <ion-select-option value="martigage_loan"> Martigage Loan
+                                </ion-select-option>
+                                <ion-select-option value="home_loan"> Home Loan</ion-select-option>
+                                <ion-select-option value="vehicle_loan"> Vehicle Loan</ion-select-option> -->
+                            </ion-select>
+                        </ion-item>
                       </ion-list>
                   </ion-col>
               </ion-row>
