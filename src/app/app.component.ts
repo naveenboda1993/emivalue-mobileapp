@@ -1315,7 +1315,7 @@ export class AppComponent {
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: 'App Termination!',
-      message: 'Do you want to close the app?',
+      message: 'Do you want to redirect to  the home ?',
       buttons: [
         {
           text: 'STAY',
@@ -1327,7 +1327,8 @@ export class AppComponent {
         }, {
           text: 'EXIT',
           handler: () => {
-            navigator['app'].exitApp();
+            // navigator['app'].exitApp();
+            this.navCtrl.navigateForward("home");
           }
         }
       ]

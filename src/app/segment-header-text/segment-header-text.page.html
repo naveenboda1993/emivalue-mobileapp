@@ -17,78 +17,129 @@
 
 <ion-content no-padding>
   <!-- name of segment to access segment on runtime -->
-  <div [ngSwitch]="segments">
-    <!-- segment One -->
-    <div *ngSwitchCase="'segmentOne'">
+  <ion-card class="card">
+    <ion-card-header>
+      <h2 style="text-align: center;">KYC Update Documents</h2>
+    </ion-card-header>
+    <ion-card-content>
       <ion-row>
-        <ion-col size="12" style="text-align:center;">
-
-          <ion-item>
-            <ion-label>ID Proof </ion-label>
-            <ion-select value="notifications" interface="action-sheet"  [(ngModel)]="idproof">
-              <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">{{sub.subcat_name}}</ion-select-option>             
-            </ion-select>
-          </ion-item>
-
-          <div (click)="openCam($event)">
-            <img *ngIf="!isimage" src="assets/images/upload_doc.png" />
-            <img *ngIf="isimage" src="{{image}}">
-          </div>
-         
+        <ion-col class="header-content" size="6">
+          <h3>Welcome</h3>
+          <h4>to Emi Value</h4>
+        </ion-col>
+        <ion-col size="6">
+          <ion-img class="logo-img" src="/assets/images/logo.png"></ion-img>
         </ion-col>
       </ion-row>
-      <ion-row  style="position:fixed; bottom:30px;width:100%">
-        <ion-col size="8" class="ion-align-self-start">
-          <div>
-            <ion-button color="primary" (click)="nextpage()">Skip
-            </ion-button>
-          </div>
-        </ion-col>
-       
-        <ion-col size="4" class="ion-align-self-end">
-          <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
-          <ion-button  color="primary" (click)="uploadFile()" >Upload
-          </ion-button>
-          <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
-        </ion-col>
-      </ion-row>
-    </div>
-    <!-- segment two -->
-    <div *ngSwitchCase="'segmentTwo'">
       <ion-row>
-        <ion-col size="12" style="text-align:center;">
-          <ion-item>
-            <ion-label>Address Proof </ion-label>
-            <ion-select value="notifications" interface="action-sheet"  [(ngModel)]="addressproof">
-              <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">{{sub.subcat_name}}</ion-select-option>             
-            </ion-select>
-          </ion-item>
+        <h4>Condition: uses of Bonus Cash Money while Refering 2 successful qualified Disbursal Loan Leads.</h4>
+      </ion-row>
+      <br>
+      <div [ngSwitch]="segments">
+        <!-- segment One -->
+        <div *ngSwitchCase="'segmentOne'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
 
-          <div (click)="openCam1($event)">
-            <img *ngIf="!isimage1" src="assets/images/upload_doc.png" />
-            <img *ngIf="isimage1" src="{{image1}}">
-          </div>
-         
-        </ion-col>
-      </ion-row>
-      <ion-row  style="position:fixed; bottom:30px;width:100%">
-        <ion-col size="8" class="ion-align-self-start">
-          <div>
-            <ion-button color="primary" (click)="nextpage()">Skip
-            </ion-button>
-          </div>
-        </ion-col>
-       
-        <ion-col size="4" class="ion-align-self-end">
-          <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
-          <ion-button  color="primary" (click)="uploadFile()" >Upload
-          </ion-button>
-          <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
-        </ion-col>
-      </ion-row>
-    </div>
-    <!-- segment three -->
-    <!-- <div *ngSwitchCase="'segmentThree'">
+              <ion-item>
+                <ion-label>ID Proof </ion-label>
+                <ion-select value="notifications" interface="action-sheet" [(ngModel)]="idproof">
+                  <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">
+                    {{sub.subcat_name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- <div (click)="openCam($event)">
+                <img *ngIf="!isimage" src="assets/images/upload_doc.png" />
+                <img *ngIf="isimage" src="{{image}}">
+              </div> -->
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <div (click)="openCam($event)">
+                  <h5 *ngIf="!isimage">Camera</h5>
+                  <img *ngIf="isimage" src="{{image}}">
+                </div>
+
+                <br />OR <br />
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types:.jpg or .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+
+            </ion-col>
+          </ion-row>
+          <ion-row style="position:fixed; bottom:30px;width:100%">
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" (click)="nextpage()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" class="ion-align-self-end">
+              <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+              <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- segment two -->
+        <div *ngSwitchCase="'segmentTwo'">
+          <ion-row>
+            <ion-col size="12" style="text-align:center;">
+              <ion-item>
+                <ion-label>Address Proof </ion-label>
+                <ion-select value="notifications" interface="action-sheet" [(ngModel)]="addressproof">
+                  <ion-select-option *ngFor="let sub of subcategory" value="{{sub.subcat_id+sub.subcat_name}}">
+                    {{sub.subcat_name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- <div (click)="openCam1($event)">
+                <img *ngIf="!isimage1" src="assets/images/upload_doc.png" />
+                <img *ngIf="isimage1" src="{{image1}}">
+              </div> -->
+              <ion-label style="text-align: center;"> Attach Documents</ion-label>
+              <br>
+              <div class="box">
+                <ion-icon name="cloud-upload" class="icon"></ion-icon>
+                <div (click)="openCam1($event)">
+                  <h5 *ngIf="!isimage1">Camera</h5>
+                  <img *ngIf="isimage1" src="{{image1}}">
+                </div>
+
+                <br />OR <br />
+                <h4 (click)="openFile($event)" *ngIf="isFolder">Browse Files</h4>
+                <p *ngIf="isFileUpload">{{UriFileUpload}}</p>
+              </div>
+              <h6 style="opacity: 0.5;">Attached File Types:.jpg or .pdf only <ion-icon name="lock"> Secure
+                </ion-icon>
+              </h6>
+            </ion-col>
+          </ion-row>
+          <ion-row style="position:fixed; bottom:30px;width:100%">
+            <ion-col size="6" class="ion-align-self-start">
+              <div>
+                <ion-button color="primary" (click)="nextpage()">Skip
+                </ion-button>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" class="ion-align-self-end">
+              <!-- <ion-icon  (click)="nextSlide()" name="arrow-round-forward"></ion-icon> -->
+              <ion-button color="primary" (click)="uploadFile()">Upload
+              </ion-button>
+              <!-- <ion-button *ngIf="visiable" routerLink="/home" routerDirection="forward" fill="clear">Done</ion-button> -->
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- segment three -->
+        <!-- <div *ngSwitchCase="'segmentThree'">
       <ion-slides @itemState [options]="sliderConfig">
         <ion-slide *ngFor="let product of items">
           <ion-card>
@@ -113,5 +164,7 @@
         </ion-item>
       </ion-list>
     </div> -->
-  </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

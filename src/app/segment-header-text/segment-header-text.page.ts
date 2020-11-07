@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 @Component({
   selector: 'app-segment-header-text',
   templateUrl: './segment-header-text.page.html',
@@ -29,6 +30,8 @@ export class SegmentHeaderTextPage implements OnInit {
     slidesPerView: 2.2,
     spaceBetween: 0
   };
+  isFileUpload: boolean = false;
+  UriFileUpload: any;
   isimage: boolean = false;
   isimage1: boolean = false;
   itemColor: string[];
@@ -43,7 +46,7 @@ export class SegmentHeaderTextPage implements OnInit {
     private formBuilder: FormBuilder,
     private transfer: FileTransfer,
     private zone: NgZone,
-    private router: Router,
+    private router: Router, private fileChooser: FileChooser,
     private service: CustomThemeService,
     private http: HttpClient,
     private toastCtrl: ToastController,
@@ -109,6 +112,15 @@ export class SegmentHeaderTextPage implements OnInit {
     });
 
   }
+  openFile() {
+    this.fileChooser.open({ "mime": "application/pdf" })
+      .then(uri => {
+        this.isFileUpload = true;
+        this.UriFileUpload = uri;
+        this.uploadFile();
+      })
+      .catch(e => console.log(e));
+  }
   async onToast(text: any) {
     const toast = await this.toastCtrl.create({
       cssClass: 'toastTag',
@@ -152,12 +164,25 @@ export class SegmentHeaderTextPage implements OnInit {
       await this.userAPI.showLoader();
       this.userAPI.showLoader();
       const fileTransfer: FileTransferObject = this.transfer.create();
-      let options1: FileUploadOptions = {
-        fileKey: 'file',
-        fileName: filename,
-        chunkedMode: false,
-        headers: { id: localStorage.getItem('id') },
-        params: { id: localStorage.getItem('id') }
+      let options1: FileUploadOptions;
+      if (this.isFileUpload) {
+        // regarding detailed description of this you cn just refere ionic 2 transfer plugin in official website
+        options1 = {
+          fileKey: 'file',
+          fileName: filename + '.pdf',
+          headers: {},
+          params: { "app_key": "Testappkey" },
+          chunkedMode: false
+        }
+
+      } else {
+        options1 = {
+          fileKey: 'file',
+          fileName: filename,
+          chunkedMode: false,
+          headers: { id: localStorage.getItem('id') },
+          params: { id: localStorage.getItem('id') }
+        }
       }
 
       fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
