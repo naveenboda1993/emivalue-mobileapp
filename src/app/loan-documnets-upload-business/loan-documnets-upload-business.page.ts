@@ -377,14 +377,15 @@ export class LoanDocumnetsUploadBusinessTextPage implements OnInit {
         this.segments = 'segmentThree';
         break;
       case 'segmentThree':
-        if (this.service.getLoanProfiletype() == 'professional') {
-          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTen', redirectto: false }))
-          this.segments = 'segmentTen';
-        }
-        else if (this.isProprieter) {
+        if (this.isProprieter) {
           this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentPropertierID', redirectto: false }))
           this.segments = 'segmentPropertierID';
         }
+        else if (this.service.getLoanProfiletype() == 'professional') {
+          this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentTen', redirectto: false }))
+          this.segments = 'segmentTen';
+        }
+
         else {
           this.service.setLoanPage(JSON.stringify({ step: '/loan-documnets-upload-business', status: 'incomplete', msg: 'Please complete the previous loan', action: 'segmentFour', redirectto: false }))
           this.segments = 'segmentFour';

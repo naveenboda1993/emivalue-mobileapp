@@ -71,6 +71,11 @@
                     {{sub.subcat_name}}</ion-select-option>
                 </ion-select>
               </ion-item>
+              <br>
+              <p> <b>Identity Proof:</b>
+                Driving Licence / PAN Card / Passport / Voters ID Card / Aadhaar Card
+              </p>
+              <br>
               <ion-label style="text-align: center;"> Attach Documents</ion-label>
               <br>
               <div class="box">
@@ -143,6 +148,11 @@
                     {{sub.subcat_name}}</ion-select-option>
                 </ion-select>
               </ion-item>
+              <br>
+              <p> <b>Address Proof:</b>
+               Ration Card / Telephone Bill / Electricity Bill / Passport / Trade Licence / Lease agreement / Sales Tax certificate
+              </p>
+              <br>
               <ion-label style="text-align: center;"> Attach Documents</ion-label>
               <br>
               <div class="box">
@@ -471,13 +481,13 @@
                   </ion-list-header>
 
                   <ion-item *ngFor="let p of emiStatements">
-                   
+
                     <ion-label>
                       <h2>{{p.banker}} {{p.facility}}</h2>
                       <h3>Tenure: {{p.tenure}} End :{{p.to}}</h3>
                       <p>{{p.amount}}</p>
                     </ion-label>
-                  </ion-item>                
+                  </ion-item>
                 </ion-list>
               </div>
               <div *ngIf="emiStatements.length==0">
