@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CustomThemeService } from '../services/custom-theme.service';
 import { UserService } from '../shared/user.service';
@@ -14,7 +15,7 @@ export class WalletPage implements OnInit {
   refers: any;
   constructor(private service: CustomThemeService,
       private userAPI: UserService,
-      private zone: NgZone,
+      private zone: NgZone,private router: Router,
       public alertController: AlertController) {
     this.user = this.service.getUser();
    this.GetRefers();
@@ -23,6 +24,26 @@ export class WalletPage implements OnInit {
   ngOnInit() {   
     
     this.GetRefers();
+  }
+  async withdraw(){
+    const alert = await this.alertController.create({
+      header: "Pleae refer now",
+      message: "Dear User, Use's Of Bonus cash Money While Refering of Two successful Qualified Loan Disbursal Leads",
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            // console.log(this.bankStatements);
+          }
+        },
+        {
+          text: 'Refer Now',
+          handler: () => {
+            this.router.navigate(['/refer']);
+          }
+        }
+      ]
+    });
   }
 
   GetRefers() {

@@ -3,14 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title style="color: blue;">EMI allet</ion-title>
+    <ion-title style="color: blue;">EMI Wallet</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="card">
     <ion-card-header>
-      <h2 style="text-align: center;">My Referrals</h2>
+      <h2 style="text-align: center;">My EMI Wallet</h2>
     </ion-card-header>
     <ion-card-content>
       <ion-row>
@@ -25,62 +25,47 @@
       <ion-row>
         <p>Let me Know the your referrals status.</p>
       </ion-row>
-      <ion-card *ngFor="let item of refers">
-        <ion-card-header style="border-bottom: 1px solid blue;">
+      <ion-card style="box-shadow: 13px 13px 17px rgb(108 158 201);">
+        <!-- <ion-card-header style="border-bottom: 1px solid blue;">
           <ion-card-title>
             Refers ID : R{{item.id}}
           </ion-card-title>
-        </ion-card-header>
+        </ion-card-header> -->
         <ion-card-content>
           <ion-grid>
             <ion-row>
-
-              <ion-col>
-                <h4>Refer Name</h4>
-                <h6>{{item.refername}}</h6>
-              </ion-col>
               <ion-col>
                 <h4>Amount</h4>
-                <h6>{{item.loanamount}}/-</h6>
+              </ion-col>
+              <ion-col>
+                <h1 style="text-align: right;"> ₹ 2500/-</h1>
               </ion-col>
             </ion-row>
+            <hr>
             <ion-row>
               <ion-col>
-                <h4>Mobile Number</h4>
-                <h6>{{item.mobilenumber }}</h6>
+                <h4>Additional Note</h4>
+                <h6>T&C : Use's Of Bonus cash Money While Refering of Two successful Qualified Loan Disbursal Leads.</h6>
                 <!-- <h6>{{item.created_on | date:mediumDate}}</h6> -->
               </ion-col>
-              <ion-col>
+              <!-- <ion-col>
                 <h4>Status</h4>
                 <h6 style="color:#f7a40a;" *ngIf="item.status=='init'">{{item.status}}</h6>
                 <h6 style="color:red;" *ngIf="item.status=='failed'">{{item.status}}</h6>
                 <h6 style="color:green;" *ngIf="item.status=='success'">{{item.status}}</h6>
-              </ion-col>
+              </ion-col> -->
             </ion-row>
           </ion-grid>
         </ion-card-content>
-        <ion-row>
-          <ion-col size="7" no-padding>
-            <!-- <ion-button size="small" color="primary" fill="clear">
-              <ion-icon name='eye'></ion-icon>
-               View
-          </ion-button> -->
-          </ion-col>
-          <ion-col size="5" no-padding>
-            <ion-button color="primary" size="small" fill="clear" (click)="deleteRefer(item)">
-              <ion-icon name='trash'></ion-icon>
-              Delete
-            </ion-button>
-          </ion-col>
-          <!-- <ion-col size="3" no-padding>
-          <ion-button size="small" fill="clear">
-              11h ago
-          </ion-button>
-      </ion-col> -->
-        </ion-row>
+      
       </ion-card>
 
     </ion-card-content>
   </ion-card>
 
 </ion-content>
+<ion-footer no-border>
+	<!-- <ion-toolbar transparent> -->
+    <ion-button expand="full" (click)="withdraw()">WithDraw Amount</ion-button>
+	<!-- </ion-toolbar> -->
+</ion-footer>
