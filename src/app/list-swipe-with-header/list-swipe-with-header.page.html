@@ -10,7 +10,30 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-grid no-padding>
+  <div style="height:55%;text-align: center;">
+    <div>
+      <!-- <img src="/assets/images/onlylogo.png" alt="logo" > -->
+    </div>
+    <img src="/assets/images/upload-to-cloud.png" alt="upload-to-cloud"style="    margin-top: 25%;" >
+    <p>You need to Upload your </p>
+    <h1 style="margin:2px;">ID Proof</h1>
+    <div style="font-size:x-small;">
+      Please handy check list documents to upload Here
+    </div>
+  </div>
+  <div style="height:45%;background-color:#3880ff;text-align: center;color:white;">
+
+    <ion-button (click)="uploadFile()" style="    --background: #0ec254;
+    --color: white;box-shadow: 2px 3px 12px #22242870;
+    border-radius: 50%;
+    margin-top: -20px;">
+      <ion-icon name="cloud-upload"></ion-icon> Select Documents from the Gallery
+    </ion-button>
+    <h6 style="opacity: 0.5;">Attached File Types: .pdf only <ion-icon name="lock"> Secure
+      </ion-icon>
+    </h6>
+  </div>
+  <!-- <ion-grid no-padding>
     <ion-row [ngStyle]="{background:itemColor}" align-items-center padding>
       <ion-col align-self-start size="2" padding>
         <ion-icon name="arrow-dropright"></ion-icon>
@@ -33,10 +56,8 @@
         <ion-icon name="share"></ion-icon>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <!-- list with multiple iterations -->
-  <ion-list no-padding>
-    <!-- for sliding item  -->
+  </ion-grid>  
+  <ion-list no-padding>    
     <ion-item-sliding *ngFor="let item of items; let i=index">
       <ion-item>
         <ion-avatar slot="start">
@@ -48,8 +69,7 @@
         </ion-label>
         <p>4:00 </p>
         <ion-icon name="arrow-dropright-circle"></ion-icon>
-      </ion-item>
-      <!-- slide item from right -->
+      </ion-item>      
       <ion-item-options side="end">
         <ion-button fill="clear">
           <ion-icon [ngStyle]="{color:itemColor}" name="add-circle"></ion-icon>
@@ -59,12 +79,13 @@
         </ion-button>
       </ion-item-options>
     </ion-item-sliding>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
 <ion-footer>
-  <ion-fab vertical="bottom" horizontal="end">
+  <ion-fab vertical="bottom" horizontal="center">
     <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
+      <!-- <ion-icon name="add"></ion-icon>  -->
+      Next
     </ion-fab-button>
   </ion-fab>
 </ion-footer>
