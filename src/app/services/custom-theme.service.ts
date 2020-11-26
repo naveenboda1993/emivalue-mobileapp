@@ -8,8 +8,10 @@ export class CustomThemeService {
   public color;
   public response;
   public loanid;
-  public baseurl = 'http://emivalue.snitchmedia.in/api';
-  public backendurl = 'http://emivalue.snitchmedia.in/';
+  public baseurl = 'http://dev.emivalue.com/api';
+  // public baseurl = 'http://emivalue.snitchmedia.in/api';
+  // public backendurl = 'http://emivalue.snitchmedia.in/';
+  public backendurl = 'http://dev.emivalue.com/';
   loantype: any;
   savedloanid: any;
   loanprofile: any;

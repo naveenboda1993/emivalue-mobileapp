@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import { LoadingController } from '@ionic/angular';
+import { CustomThemeService } from '../services/custom-theme.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +16,11 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  public baseurl = 'http://emivalue.snitchmedia.in/api';
-  public baseloginurl = 'http://emivalue.snitchmedia.in/Login';
-  public baseloanurl = 'http://emivalue.snitchmedia.in/Loan';
+  public baseurl = this.service.getBackenEndUrl() + '/api';
+  public baseloginurl = this.service.getBackenEndUrl() + '/Login';
+  public baseloanurl = this.service.getBackenEndUrl() + '/Loan';
 
-  constructor(private http: HttpClient, private http2: HTTP, public loadingController: LoadingController) { }
+  constructor(private http: HttpClient, private http2: HTTP, private service: CustomThemeService, public loadingController: LoadingController) { }
 
   getcategory(): Observable<any> {
     return this.http.get<any>(this.baseurl + '/getcategory', this.httpOptions)

@@ -195,7 +195,7 @@ export class PartnersBusinessPage implements OnInit {
         fileTransfer.onProgress((data) => {
           this.uploadPercent = Math.round((data.loaded / data.total) * 100);
         });
-        fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+        fileTransfer.upload(uri, encodeURI(this.service.getBackenEndUrl()+'/Login/apploanupload/' + this.loanid), options1)
           .then((data: any) => {
             // success
             // loading.dismiss()

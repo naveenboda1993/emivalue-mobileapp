@@ -118,7 +118,8 @@ export class FormRegisterThreePage implements OnInit {
     // let loading =  this.loading.create();
     //  loading.present();
     // https://www.youtube.com/watch?v=FXpwVLiKowc
-    this.http.post('http://emivalue.snitchmedia.in/api/appadduser', this.form.value).pipe(
+    // this.http.post('http://emivalue.snitchmedia.in/api/appadduser', this.form.value).pipe(
+    this.http.post(this.service.getBackenEndUrl()+'/api/appadduser', this.form.value).pipe(
       // finalize(() => loading.dismiss())
     )
       .subscribe((res:any) => {

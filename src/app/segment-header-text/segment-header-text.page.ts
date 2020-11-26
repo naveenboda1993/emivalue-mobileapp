@@ -185,7 +185,7 @@ export class SegmentHeaderTextPage implements OnInit {
         }
       }
 
-      fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/appupload'), options1)
+      fileTransfer.upload(imageData, encodeURI(this.service.getBackenEndUrl()+'/Login/appupload'), options1)
         .then((data: any) => {
           // success
           // loading.dismiss()
@@ -207,7 +207,7 @@ export class SegmentHeaderTextPage implements OnInit {
               isLoan: 0,
               idproof: idproof
             }
-            this.http.post('http://emivalue.snitchmedia.in/api/test', formdata).pipe(
+            this.http.post(this.service.getBackenEndUrl()+'/api/test', formdata).pipe(
             )
               .subscribe((res: any) => {
                 this.zone.run(() => {

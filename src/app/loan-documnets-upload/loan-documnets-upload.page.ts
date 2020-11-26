@@ -507,7 +507,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
       });
 
 
-      fileTransfer.upload(imageData, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+      fileTransfer.upload(imageData, encodeURI(this.service.getBackenEndUrl()+'/Login/apploanupload/' + this.loanid), options1)
         .then((data: any) => {
           // success
           // loading.dismiss()
@@ -615,7 +615,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
                   }
                   this.userAPI.showLoader();
-                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+                  fileTransfer.upload(uri, encodeURI(this.service.getBackenEndUrl()+'/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
@@ -798,7 +798,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
                   }
                   this.userAPI.showLoader();
-                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+                  fileTransfer.upload(uri, encodeURI(this.service.getBackenEndUrl()+'/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
@@ -940,7 +940,7 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
 
                   }
 
-                  fileTransfer.upload(uri, encodeURI('http://emivalue.snitchmedia.in/Login/apploanupload/' + this.loanid), options1)
+                  fileTransfer.upload(uri, encodeURI(this.service.getBackenEndUrl()+'/Login/apploanupload/' + this.loanid), options1)
                     .then((data: any) => {
                       // success
                       // loading.dismiss()
