@@ -493,7 +493,7 @@ var LoanDocumnetsUploadTextPage = /** @class */ (function () {
             fileTransfer.onProgress(function (data) {
                 _this.uploadPercent = Math.round((data.loaded / data.total) * 100);
             });
-            fileTransfer.upload(imageData, encodeURI(this.service.getBackenEndUrl() + 'Login/apploanupload/' + this.loanid), options1)
+            fileTransfer.upload(imageData, encodeURI(this.service.getBackenEndUrl() + '/Login/apploanupload/' + this.loanid), options1)
                 .then(function (data) {
                 // success
                 // loading.dismiss()
@@ -535,6 +535,10 @@ var LoanDocumnetsUploadTextPage = /** @class */ (function () {
                             }
                         });
                     });
+                }
+                else {
+                    _this.loadingController.dismiss(null, 'cancel');
+                    alert("error");
                 }
             }, function (err) {
                 // error
@@ -599,7 +603,7 @@ var LoanDocumnetsUploadTextPage = /** @class */ (function () {
                                                     chunkedMode: false
                                                 };
                                                 _this.userAPI.showLoader();
-                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + 'Login/apploanupload/' + _this.loanid), options1)
+                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + '/Login/apploanupload/' + _this.loanid), options1)
                                                     .then(function (data) {
                                                     // success
                                                     // loading.dismiss()
@@ -778,7 +782,7 @@ var LoanDocumnetsUploadTextPage = /** @class */ (function () {
                                                     chunkedMode: false
                                                 };
                                                 _this.userAPI.showLoader();
-                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + 'Login/apploanupload/' + _this.loanid), options1)
+                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + '/Login/apploanupload/' + _this.loanid), options1)
                                                     .then(function (data) {
                                                     // success
                                                     // loading.dismiss()
@@ -913,7 +917,7 @@ var LoanDocumnetsUploadTextPage = /** @class */ (function () {
                                                     params: { "app_key": "Testappkey" },
                                                     chunkedMode: false
                                                 };
-                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + 'Login/apploanupload/' + _this.loanid), options1)
+                                                fileTransfer.upload(uri, encodeURI(_this.service.getBackenEndUrl() + '/Login/apploanupload/' + _this.loanid), options1)
                                                     .then(function (data) {
                                                     // success
                                                     // loading.dismiss()

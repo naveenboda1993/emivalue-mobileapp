@@ -552,6 +552,10 @@ export class LoanDocumnetsUploadTextPage implements OnInit {
                   }
                 })
               });
+          }else{
+            this.loadingController.dismiss(null, 'cancel');
+            alert("error" );
+
           }
         }, (err) => {
           // error
